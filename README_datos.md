@@ -47,6 +47,8 @@ Los datos se distribuyen en dos directorios:
   - `geomorfonos` ráster: mapa de geomórfonos de República Dominicana, derivado del DEM pseudo-ortométrico usando el complemento `r.geomorphon` de GRASS GIS.
   - `litologia_recodificado` ráster y vectorial: polígonos de las litologías extraídos del Mapa Geológico de República Dominicana, escala 1:250,000.
   - `mascara*` vectoriales: máscaras de país, que incluye la máscara por defecto, con área *buffer* de 1 km, y con área *buffer* de 1 km sólo en la frontera.
-  - `prioridad*` vectoriales y rasters: prioridad de instalacion de estaciones hidrometricas
-  
+  - `prioridad*` vectoriales y rasters: prioridad, original y reescalada, a nivel global y para cada escenario de densidad, de instalacion de estaciones hidrometricas.
+  - `puntos_para_areas_prospeccion_###_km2` vectoriales: Mapas de puntos conteniendo los centroides de las áreas de prospección para el establecimiento de estaciones hidrométricas.
+  - `red_mtn50k_cleaned` vectorial: red de drenaje, aparentemente extraída desde el mapa topográfico nacioanal escala 1:50,000. No usada en el estudio, almacenada para fines de consultas posteriores. El sufijo "cleaned" hace referencia a que se aplicó una corrección de topología mediante la herramienta `v.clean` de GRASS GIS.
+  - `red_mtn50k_cleaned_largos` vectorial: red de drenaje, aparentemente extraída desde el mapa topográfico nacioanal escala 1:50,000. No usada en el estudio, almacenada para fines de consultas posteriores.
   
