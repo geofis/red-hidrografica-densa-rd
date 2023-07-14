@@ -1,0 +1,9 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*_cache/
+alos-palsar-dem-rd
+out
+R
+seleccion-sitios-red-de-estaciones-hidrometricas-suplemento-metodologico.Rmd

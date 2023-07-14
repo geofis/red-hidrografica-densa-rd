@@ -1,0 +1,187 @@
+---
+title: Generación de red hidrográfica densa de República Dominicana a partir de modelo digital de elevaciones de resolución media
+authors:
+  - name: José-Ramón Martínez-Batlle\orcidlink{0000-0001-9924-0327}
+    department: Facultad de Ciencias
+    affiliation: Universidad Autónoma de Santo Domingo (UASD)
+    location:  Santo Domingo, República Dominicana
+    email: joseramon@geografiafisica.org
+  - name: Michela Izzo Gioiosa\orcidlink{0000-0003-4835-3967}
+    department: Directora Ejecutiva
+    affiliation: Guakia Ambiente
+    location:  Santo Domingo, República Dominicana
+    email: michela.izzo@guakiambiente.org
+abstract: |
+  El resumen se colocará aquí.
+keywords:
+  - modelo digital de elevaciones
+  - análisis hidrológico
+  - procesamiento de datos geoespaciales
+  - hidrología computacional
+bibliography: references.bib
+csl: apa-es.csl
+lang: es
+output: rticles::arxiv_article
+editor_options: 
+  chunk_output_type: console
+always_allow_html: true
+header-includes:
+  \usepackage{orcidlink}
+  \usepackage{float}
+  \usepackage[all]{nowidow}
+  \usepackage[spanish]{babel}
+  \usepackage{xcolor}
+  \usepackage{tabu}
+  \renewcommand\tablename{Tabla}
+  \renewcommand\figurename{Figura}
+  \newcommand{\beginsupplement}{
+    \setcounter{table}{0}
+    \renewcommand{\thetable}{S\arabic{table}}
+    \renewcommand\tablename{Tabla}
+    \setcounter{figure}{0}
+    \renewcommand{\thefigure}{S\arabic{figure}}
+    \renewcommand\figurename{Figura}
+  }
+  \usepackage[hidelinks]{hyperref}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  cache = TRUE, 
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE,
+  out.width = '80%',
+  dpi = 300,
+  fig.align = "center"
+  )
+# options(digits = 3)
+options(knitr.duplicate.label = "allow")
+raiz_supl_met <- 'suplemento'
+```
+
+```{r, echo=F, include=F}
+incluir_supl_al_final <- T
+cargar_script_supl_met <- T
+if(cargar_script_supl_met) {
+  knitr::purl(paste0(raiz_supl_met, '.Rmd'))
+  source(paste0(raiz_supl_met, '.R'))
+}
+```
+
+```{r pkgsetings, echo=F, include=F}
+set.seed(99)
+library(tidyverse)
+theme_set(theme_bw()) 
+library(kableExtra)
+options(knitr.kable.NA = '', knitr.table.format = 'latex')
+```
+
+# Introducción
+
+El agua es un recurso crítico, que impulsa la economía y sostiene la vida. A nivel global, pero especialmente en países que comparten islas pequeñas, como República Dominicana (RD), la administración eficaz de este recurso es esencial [@Lohmann2016ComparingVA; @Izzo2010ANC; @LincolnLenderking2020ClimateCA; @Mackay2017TheFO; @Le2019ClimateCA; @Roson2013AMF]. Sin embargo, la gestión eficiente de los recursos hídricos puede verse limitada por la falta de información precisa y completa sobre la red hidrográfica. En este contexto, las fuentes actuales de información geográfica, a pesar de su valor, presentan limitaciones en cuanto a su resolución, cobertura y consistencia.
+
+La red hidrográfica de RD digitalizada a partir del mapa topográfico nacional a escala 1:50,000 ("MTN-50k") [@icm1989serie] ofrece una cobertura extensa pero carece de los detalles necesarios para apoyar el análisis hidrológico. Por otro lado, los estudios técnicos y multitemáticos de ámbito subnacional desarrollados por el Instituto Nacional de Recursos Hidráulicos (INDRHI) de RD y otras entidades, aunque son valiosas fuentes de información, utilizan metodologías diversas, lo que limita la consolidación de una red hidrográfica coherente a nivel nacional [@indrhi2012plan; @indrhiaquater2000estudio; @indrhieptisa2004estudio; @oeaindrhi1994estudio; @indrhi1996estadisticas; @semarn2004atlas; @rodriguez2006potencial; @cidiatindrhi1992control; @halcrow1992estudio; @sercitecindrhi2002control].
+
+Adicionalmente, las redes hidrográficas derivadas de modelos digitales de elevaciones de baja resolución, como el Shuttle Radar Topography Mission (SRTM) de 3 arco-segundos, normalmente presentan artefactos de difícil depuración, además de que la longitud de los canales es siempre más corta que la verdadera, resultando en redes poco densas [@nasajpl2013nasa; @jarvis2008; @nasa2014srtm1sdem; @nasa2013aster]. Por otro lado, el DEM SRTM de 1 arco-segundo (\~30 metros) garantiza la precisión mientras aumenta el detalle de elevación y parece ser una de las fuentes más consistentes actualmente [@aziz2022]. No obstante, nosotros hemos generado productos hidrográficos con SRTM-DEM de 30 metros, y notamos que el nivel de detalle de la red es bastante mejorable, sobre todo en áreas de montaña.
+
+Desde 2014, Alaska Satellite Facility (ASF) inició la creación de productos ALOS-PALSAR corregidos radiométricamente en función del terreno (RTC), con el objetivo de mejorar la geometría y la radiometría---coeficiente de retrodispersión por unidad de superficie del frente de onda incidente, también conocido como *gamma-nought*, $\gamma^0$---de las imágenes generadas por el sensor PALSAR (radar de apertura sintética, banda L, con distintas polarizaciones y modos de barrido) montado a bordo del satélite ALOS de la Agencia Espacial Japonesa (JAXA) [@jaxameti2007alos; @asfdaac2014hires]. ALOS fue lanzado en 2006, pero luego de cinco años de servicio, perdió energía y cesó la comunicación con el centro de control, aunque aún permanece en órbita.
+
+Para obtener los productos RTC, denominados propiamente como "*Hi-Res Terrain Corrected*" o "ALOS PALSAR RTC", ASF requirió de datos globales de elevación de la máxima resolución posible, para lo cual empleó de forma preferente (según territorios) el SRTM de 1 arco-segundo. En el proceso fue necesario ajustar el espaciado de píxeles del DEM fuente (\~30 metros) para hacerlo coincidir con el espaciado de píxel de las imágenes ALOS PALSAR (\~ 12.5 metros) usando una función de remuestreo (*up-sampling*), obteniéndose así un DEM de 12.5 metros [@jaxameti2007alos; @asfdaac2014hires].
+
+A pesar de que ASF advirtió que este DEM se empleó únicamente para realizar la corrección radiométrica del terreno del producto derivado de ALOS-PALSAR, y que no debería ser utilizado como fuente de elevación precisa [@asfdaac2014hires], lo cierto es que en países donde no se dispone de DEM de mediana o alta resolución, se vuelve crucial indagar en el potencial de cada nuevo producto disponible. Por esta razón, tras varias pruebas iniciales en las que extrajimos redes de drenaje y elementos del relieve a partir de este DEM, comprobamos que la red hidrográfica obtenida tenía mucho mayor detalle que las redes generadas con cualquier otra fuente disponible. Dado que la elevación precisa no es crucial en nuestras aplicaciones, vimos un alto potencial en este DEM para realizar aplicaciones de hidrología computacional, en concreto para la extracción de redes densas con énfasis en áreas de montaña.
+
+El propósito de este artículo es ofrecer nuevos datos para superar las limitaciones de las redes hidrográficas existentes, desarrollando una red densa de ríos, arroyos y cañadas---canales, talwegs---, con énfasis en áreas montañosas donde la precisión es crítica, utilizando como fuente el DEM servido con los productos ALOS PALSAR RTC de 12.5 metros de resolución espacial. Nuestro segundo objetivo es optimizar el DEM, reduciendo el ruido y asegurando su precisión hidrológica, a la vez que mantenemos los elementos morfológicos significativos del terreno. El tercer objetivo, no menos importante, es sistematizar el protocolo de procesamiento con una metodología explícita, generando una base de código abierto basada en software libre para el procesamiento de datos de elevación e hidrología computacional, que ofrezca a personas interesadas, especialmente a estudiantes, una referencia didáctica que pueda aplicarse a fuentes de elevación similares.
+
+Nuestro trabajo tiene potencial para suplir las demandas de información sobre hidrografía de resolución fina, que es un aspecto crucial en muchos estudios de modelación, análisis de riesgos, morfometría de cuencas, entre otros. De manera particular, la hidrografía densa generada por nosotros es idónea para mejorar la red estaciones hidrométricas del país, la cual es limitada y afronta diversos desafíos como muchas redes de este tipo a nivel global. Asimismo, nuestro trabajo también podría contribuir información para acciones de conservación, planificación y gestión de los recursos hídricos a nivel nacional [@burn1997; @indrhi2019inventario; @mishra2010; @mishra2009]. Además, los datos generados pueden ser de gran valor para un amplio rango de aplicaciones, incluyendo la planificación del uso del suelo, el diseño de infraestructuras, la gestión de cuencas hidrográficas y la modelización de escorrentía y erosión. A medida que nos enfrentamos a los impactos del cambio climático y a la creciente escasez de agua, esperamos que este trabajo sirva como una contribución significativa para la gestión de los recursos hídricos en la República Dominicana [@Lohmann2016ComparingVA; @Izzo2010ANC; @LincolnLenderking2020ClimateCA; @Mackay2017TheFO; @Le2019ClimateCA; @Roson2013AMF].
+
+## Notas sobre terminología {.unnumbered}
+
+La terminología utilizada para describir los distintos componentes de los sistemas fluviales es un tema de continuo debate en el campo de la geomorfología fluvial. Este debate suele estar intrínsecamente ligado a la escala de análisis empleada; al variar la escala, incrementándola o reduciéndola, los criterios empleados para delimitar las definiciones de los elementos morfológicos, tienden a desdibujarse y/o a resultar inconsistentes [@garcia2011clasificacion]. Seleccionar el término apropiado para describir la unidad topográficamente deprimida por donde fluye o por donde podría circular el agua de escorrentía, es un desafío nada despreciable. Este reto se intensifica cuando el idioma introduce distintas connotaciones para términos similares, cuya traducción literal puede generar confusión (como ocurre con *channel* y canal en inglés y español, respectivamente). [@charlton2010fundamentals; @anderson2010geomorphology; @gutierrez2009geomorfologia; @pedraza1996geomorfologia].
+
+Dado que las distintas acepciones y discrepancias en la terminología superan el alcance del presente trabajo, fijaremos los términos que utilizaremos de manera convencional. En este estudio, empleamos los términos *talweg* y canal de forma indistinta para referimos a la unidad topográficamente deprimida por la que fluye, o podría fluir, la corriente. En geomorfología, utilizamos la voz germánica *talweg* para referirnos a la línea imaginaria que traza la parte más baja de un valle [@foucault1985diccionario]. Es importante remarcar que esta definición no siempre se refiere a un curso fluvial permanente, pues la circulación del agua está influenciada por múltiples factores. A esta unidad, en sus distintas variantes hidrodinámicas y de tamaño, también se le conoce con múltiples nombres en República Dominicana, como son río, arroyo o cañada, denominaciones que también incorporamos en la redacción.
+
+Finalmente, en nuestro en este trabajo también adoptamos los términos curso, drenaje o corriente, especialmente cuando destacamos la presencia de un flujo ya sea permanente, semipermanente o intermitente. Además, nos referimos al sistema interconectado de canales, cursos, corrientes o drenajes con las denominaciones "red de drenajes" o "red hidrográfica".
+
+# Materiales y métodos
+
+## Obtención y Preprocesamiento del DEM
+
+```{r obtencionpreprocdem, echo=F, fig.cap='Resumen gráfico de la obtención y preprocesamiento del DEM', fig.pos='H'}
+knitr::include_graphics("resumen-obtencion-preprocesamiento-dem.pdf")
+```
+
+Iniciamos nuestro estudio valorando diversas herramientas para el procesamiento de los datos. Debido a la gran variedad de complementos que ofrece, junto con su alto rendimiento y la calidad de los resultados que proporciona, decidimos utilizar GRASS GIS v8.2.0 para realizar la mayor parte del procesamiento (Figura \ref{fig:obtencionpreprocdem}). La implementación de su interfaz de línea de comandos (e.g. interfaz basada en texto), en nuestro caso Bash, garantizó la reproducibilidad de nuestros procedimientos. Nos auxiliamos también de la biblioteca GDAL/OGR, WhiteboxTools el entorno de programación estadística R y el lenguaje de programación Python [@GRASS_GIS_softwarev82; @gdal2022gdal; @lindsay2018whiteboxtools; @rcoreteam2023r; @vanrossum2009python]. Nuestro enfoque de reproducibilidad asegura que, sin importar la fuente de datos empleada, el seguimiento del flujo de trabajo es viable, manteniendo la integridad y coherencia del proceso de análisis, sin menoscabo de la calidad del resultado final.
+
+Asimismo, para facilitar nuestra labor, utilizamos una serie de bibliotecas de R, además de  funciones personalizadas escritas por nosotros para agilizar y optimizar las tareas de limpieza y representación de datos y mapas [@hijmans2023raster; @whicham2019welcome; @obrien2023gdalutilities; @pebesma2018simple; @pebesma2023spatial; @zhu2021kableextra; @xie2023knitr; @xie2015dynamic; @xie2014implementing]. El código reproducible usado en el estudio se puede consultar en la sección [Información suplementaria](#infosupl), así como los repositorios creados al efecto, donde incluimos el código escrito y las direcciones para acceder a los datos fuentes, entre otras utilidades.
+
+Nos centramos en la fuente de datos, que en nuestro caso es el modelo digital de elevaciones (DEM) servido con los productos *Hi-Res Terrain Corrected* de Alaska Satellite Facility (ASF) [@asfdaac2014hires]. Este producto se descarga desde el Centro de Archivo Activo Distribuido del Alaska Satellite Facility o ASF DAAC---una de las instalaciones temáticas de la Administración Nacional de Aeronáutica y del Espacio de los Estados Unidos, NASA---en forma de escenas o "cuadros" (*tiles*), conteniendo dos imágenes de retrodispersión $\gamma^0$ (ca. 70x58 km cada una), una por cada polaridad, y el modelo digital de elevaciones remuestreado con el que ASF realizó la corrección radiométrica de terreno (ca. 80x70 km), objeto de nuestro estudio.
+
+Cabe señalar que en un estudio de @aziz2022, se evaluó la precisión del DEM comparándolo con otras fuentes de elevación, encontrándose un rendimiento relativamente bajo en varias pruebas. Sin embargo, en el trabajo se utilizó el DEM sin preprocesar, lo cual seguramente afectó el detectado bajo rendimiento. Consideramos que, a pesar de los resultados de su comparativa, la alta resolución del DEM lo convierte en una excelente opción para la extracción de redes de drenaje, siempre que se apliquen filtros apropiados. Además, ASF señaló en su documentación [@jaxameti2007alos; @asfdaac2014hires] que el DEM usado en la RTC no es una fuente confiable de elevación, por lo que el resultado obtenido por @aziz2022 era más bien el esperado.
+
+Para conformar un mosaico continuo del DEM de República Dominicana, seleccionamos y descargamos más de 40 escenas únicas de ALOS-PALSAR desde el ASF DAAC [@jaxameti2007alos], minimizando la redundancia espacial y eligiendo las versiones más recientes, conservando sólo `r nrow(ind_orig_sel)` escenas distintas (Figura \ref{fig:mapaindice} y Tabla \ref{tab:tablaindice}). Después, extrajimos los DEM correspondientes de los archivos comprimidos y transformamos aquellos proyectos en el huso 18N al 19N del sistema UTM. Posteriormente, creamos un mosaico continuo ("sin costuras") usando el formato de ráster virtual.
+
+```{r mapaindice, echo=F, fig.cap=paste('Mapa índice de las', nrow(ind_orig_sel), 'escenas usadas en la formación del DEM de República Dominicana, superponiendo las huellas (polígono de área con datos) de las escenas ALOS PALSAR RTC sobre el límite costero e internacional del país')}
+ind_orig_sel_m
+```
+
+Posteriormente, creamos una base de datos, con su correspondiente localización, en GRASS GIS, nuestro software principal por su eficiencia. Ocasionalmente recurrimos a otras herramientas como WhiteboxTools y QGIS, siempre con el objetivo de optimizar el uso de los recursos de hardware para obtener los resultados necesarios de manera rápida [@GRASS_GIS_softwarev82; @lindsay2018whiteboxtools; @QGIS_software]. Complementariamente, generamos una máscara de país en QGIS, fusionando el límite oficial de la Oficina Nacional de Estadística con fuentes en línea como GADM, OCHA y OpenStreetMap, y excluyendo superficies de lagos naturales y embalses para facilitar el análisis de cuencas endorreicas; este paso fue realizado de forma semimanual. Posteriormente, importamos tanto el ráster virtual como la máscara a la base de datos de GRASS GIS (Figura \ref{fig:demsinprocesar}). Inmediatamente, aplicamos la máscara a la región activa para enfocar los análisis sólo dentro del área de interés. [@QGIS_software; @one2023division; @gadm; @ocha2023hdx; @OpenStreetMap].
+
+Dentro de la base de datos de GRASS, rellenamos los datos nulos del DEM (Figura \ref{fig:demrelleno}), para luego suavizar el resultado preservando morfologías con la herramienta *FeaturePreservingSmoothing* de WhiteboxTools (Figura \ref{fig:demsuavizado}). Tras esto, combinamos el DEM suavizado con el ráster de altura del geoide EGM2008 mediante una simple suma algebraica para obtener alturas pseudo-ortométricas, incrementando previamente la resolución del segundo para acercarla ligeramente a la del primero [@lindsay2019; @lindsay2018whiteboxtools].
+
+A continuación, como último paso del preprocesamiento, tallamos el DEM con una red preexistente de cursos largos de República Dominicana, usando *stream burning* [@lindsay2016]. Primero creamos la red a partir de una selección de ríos largos y permanentes, apoyados en imágenes satelitales [@googlemaps], MTN-50K [@icm1989serie] y @OpenStreetMap.  Para representar ríos que que llenan embalses, usamos sus trazados históricos para así mantener la continuidad hidrológica (Figura \ref{fig:redcursoslargos}). Luego realizamos el tallado del DEM probando tres algoritmos: `r.carve` y `r.mapcalc` de GRASS GIS, y `FillBurn` de WhiteboxTools [@GRASS_GIS_software; @petrasova2011geoinformation; @grassdev2022rcarve; @grassdev2022rmapcalc; @shapiro1994rmapcalc; @larson1991performing; @lindsay2018whiteboxtools; @saunders2000]. Como criterio de selección establecimos que el mejor algoritmo sería aquel que lograra una mínima alteración en el DEM, minimizando a la vez el tiempo de cómputo. `r.carve` produjo un buen DEM tallado, aunque ocupó mucho tiempo de cómputo, por lo que no la consideramos una herramienta adecuada para iteraciones rápidas. Con `r.mapcalc` realizamos el tallado mediante una simple álgebra de mapas (normalización, operaciones booleanas, multiplicación), de donde obtuvimos un DEM poco alterado en tiempo relativamente corto. Finalmente, probamos con la función `FillBurn` de WhiteboxTools, la cual produjo un DEM tallado sustancialmente alterado respecto del original, especialmente en las áreas de karst con depresiones. Optamos por continuar nuestro flujo de procesamiento con el DEM tallado por `r.mapcalc` (ver Figura \ref{fig:demtallado}).
+
+## Procesamiento de hidrología computacional
+
+
+<!-- A partir de este punto, usamos el DEM tallado para generar generamos la red de drenaje de la República Dominicana. Los detalles de este proceso incluyeron una serie de pasos para eliminar los sumideros y para definir adecuadamente la red de drenaje. En particular, se utilizó el enfoque D8, uno de los métodos más utilizados en la hidrología digital, para la dirección del flujo. -->
+
+<!-- Finalmente, extrajimos la red de drenaje a partir de los datos de elevación procesados. Este es el último paso en el procesamiento de los datos de elevación y proporciona el resultado final de nuestro análisis: una representación detallada de la red de drenaje de la República Dominicana. -->
+
+<!-- [@quinn1991prediction; @freeman1991calculating] -->
+
+
+<!-- Para lograrlo, relevamos el papel de las herramientas de código abierto, que permiten la extracción automatizada y reproducible de redes de drenaje, y nos apoyamos en la fuente geoespacial más detallada y accesible actualmente: el modelo digital de elevaciones ALOS-PALSAR, que ofrece una resolución de 12 metros [@jaxameti2007alos]. Además, complementamos nuestro análisis con recursos preexistentes, como el mapa topográfico nacional. -->
+
+<!-- Para ello, nos enfocamos en algoritmos de minimización de ruido e inconsistencias, al tiempo que preservamos las características morfológicas esenciales. De este modo, garantizamos la idoneidad hidrológica del modelo, mejorando su aplicabilidad para análisis, modelaciones y cartografía geomorfológica de escala media. -->
+
+# Resultados
+
+# Discusión
+
+Por el énfasis que hemos puesto en la generación de la red hidrográfica y la detallada metodología, nuestro trabajo es un artículo de datos y metodológico a la vez.
+
+Para lograr una rápida salida del trabajo, dejamos para futuras investigaciones lo siguiente:
+
+-   Evaluación de precisión de la elevación.
+-   Mejora de la hidrografía de las áreas llanas.
+-   Análisis hortonianos exhaustivos.
+-   Segregación de la red teórica y la red circulante.
+-   Con respecto a la precisión posicional de la red, estimamos que es alta en sistemas montañosos no kársticos, y moderada en sistemas kársticos. En los sistemas kársticos en particular, nuestro mapa exhibe un grado ligeramente mayor de incertidumbre debido a la ausencia de un catálogo detallado y preciso de depresiones, como las dolinas, que en última instancia definen la topología y jerarquización de la red en estos relieves. Para subsanar esta carencia, generamos nuestro propio inventario de depresiones a partir del modelo de elevaciones seleccionado, aunque lo aplicamos con prudencia a la hora de determinar la ubicación de los sumideros reales donde el flujo se infiltra al karst. Es relevante mencionar que nuestra red podría presentar una precisión reducida en áreas urbanas y llanas, así como en terrenos con canales de riego. Sin embargo, este factor no impacta la relevancia de nuestro estudio, dado que se enfoca primordialmente en otros tipos de áreas.
+-   En relación a las cuencas y redes de drenaje transfronterizas, es importante destacar que sólo se caracterizaron utilizando información la porción correspondiente al territorio dominicano. Como resultado, el orden de red máximo obtenido para estas redes podría no reflejar su orden real. Estas cuencas abarcan las de los ríos Artibonito, Pedernales y Masacre, además de varias cuencas menores dispersas a lo largo de la frontera. No obstante, una evaluación visual preliminar indica que la mencionada limitación no interfiere con el propósito de nuestro estudio. Además, en futuros trabajos, abordaremos estas cuencas de manera integral para proporcionar una visión más completa de su morfometría.
+-   Para asegurar que los datos de elevación eran adecuados y precisos en términos de elevación, se debería validar el DEM con datos de puntos de verificación tomados con GNSS.
+
+
+
+# Financiamiento {-}
+
+Esta investigación recibió financiamiento del Banco Interamericano de Desarrollo (BID), y fue apoyado por la ONG Guakía Ambiente y la Universidad Autónoma de Santo Domingo (UASD).
+
+# Declaración de conflicto de intereses {-}
+
+El autor y la autora de este artículo declaran que no tienen ningún conflicto de interés con el contenido de este artículo.
+
+# Disponibilidad de datos, scripts y código
+
+Los datos que respaldan los hallazgos de este estudio están disponibles abiertamente en Zenodo en \url{10.5281/zenodo.8146391} [@RELLENAR]. Los scripts utilizados para la curación de datos, análisis y visualización están disponibles en Zenodo en \url{} [@RELLENAR].
+
+\newpage
+
+# Información suplementaria {- #infosupl}
+
+\beginsupplement
+
+```{r child=paste0(raiz_supl_met, '.Rmd'), eval=incluir_supl_al_final}
+```
+
+# Referencias
