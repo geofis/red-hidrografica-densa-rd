@@ -109,7 +109,7 @@ partir de modelo digital de elevaciones de resolución media}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
-\usepackage{orcidlink} \usepackage{float} \usepackage[all]{nowidow} \usepackage[spanish]{babel} \usepackage{xcolor} \usepackage{tabu} \renewcommand\tablename{Tabla} \renewcommand\figurename{Figura} \newcommand{\beginsupplement}{ \setcounter{table}{0} \renewcommand{\thetable}{S\arabic{table}} \renewcommand\tablename{Tabla} \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}} \renewcommand\figurename{Figura} } \usepackage[hidelinks]{hyperref}
+\usepackage{orcidlink} \usepackage{float} \usepackage[all]{nowidow} \usepackage[spanish]{babel} \usepackage{xcolor} \usepackage{tabu} \renewcommand\tablename{Tabla} \renewcommand\figurename{Figura} \newcommand{\beginsupplement}{ \setcounter{table}{0} \renewcommand{\thetable}{S\arabic{table}} \renewcommand\tablename{Tabla} \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}} \renewcommand\figurename{Figura} } \usepackage[hidelinks]{hyperref} \usepackage{xurl}
 \begin{document}
 \maketitle
 
@@ -270,20 +270,22 @@ términos \emph{talweg} y canal de forma indistinta para referimos a la
 unidad topográficamente deprimida por la que fluye, o podría fluir, la
 corriente. En geomorfología, utilizamos la voz germánica \emph{talweg}
 para referirnos a la línea imaginaria que traza la parte más baja de un
-valle (Foucault y Raoult, 1985). Es importante remarcar que esta
-definición no siempre se refiere a un curso fluvial permanente, pues la
-circulación del agua está influenciada por múltiples factores. A esta
-unidad, en sus distintas variantes hidrodinámicas y de tamaño, también
-se le conoce con múltiples nombres en República Dominicana, como son
-río, arroyo o cañada, denominaciones que también incorporamos en la
-redacción.
+valle, razón por la cual también la hemos incluido entre los términos
+usados (Foucault y Raoult, 1985). Es importante remarcar que nuestra
+definición convencional no siempre se refiere a un curso fluvial
+permanente, pues la circulación del agua está influenciada por múltiples
+factores. Asimismo, cabe destacar que, a esta unidad geomorfológica en
+sus distintas variantes hidrodinámicas y dimensionales, también se le
+conoce con múltiples nombres en República Dominicana (en orden de mayor
+a menor ``importancia''), como son río, arroyo o cañada, denominaciones
+que también incorporamos en la redacción.
 
 Finalmente, en nuestro en este trabajo también adoptamos los términos
 curso, drenaje o corriente, especialmente cuando destacamos la presencia
 de un flujo ya sea permanente, semipermanente o intermitente. Además,
-nos referimos al sistema interconectado de canales, cursos, corrientes o
-drenajes con las denominaciones ``red de drenajes'' o ``red
-hidrográfica''.
+para el análisis hortoniano de los sistemas fluviales, nos referimos al
+sistema interconectado de canales, cursos, corrientes o drenajes con las
+denominaciones ``red de drenajes'' o ``red hidrográfica''.
 
 \hypertarget{materiales-y-muxe9todos}{%
 \section{Materiales y métodos}\label{materiales-y-muxe9todos}}
@@ -395,39 +397,41 @@ Dentro de la base de datos de GRASS, rellenamos los datos nulos del DEM
 (Figura \ref{fig:demrelleno}), para luego suavizar el resultado
 preservando morfologías con la herramienta
 \emph{FeaturePreservingSmoothing} de WhiteboxTools (Figura
-\ref{fig:demsuavizado}). Tras esto, combinamos el DEM suavizado con el
-ráster de altura del geoide EGM2008 mediante una simple suma algebraica
-para obtener alturas pseudo-ortométricas, incrementando previamente la
-resolución del segundo para acercarla ligeramente a la del primero
-(Lindsay, 2018; Lindsay et~al., 2019).
+\ref{fig:demsuavizado}) (Lindsay, 2018; Lindsay et~al., 2019). Tras
+esto, combinamos el DEM suavizado con el ráster de altura del geoide
+EGM2008 mediante una simple suma algebraica para obtener alturas
+pseudo-ortométricas, incrementando previamente la resolución del segundo
+para acercarla ligeramente a la del primero.
 
 A continuación, como último paso del preprocesamiento, tallamos el DEM
-con una red preexistente de cursos largos de República Dominicana,
-usando \emph{stream burning} (Lindsay, 2016). Primero creamos la red a
-partir de una selección de ríos largos y permanentes, apoyados en
-imágenes satelitales (Google; Airbus, CNES; Airbus, Landsat; Copernicus;
-Maxar Technologies; U.S. Geological Survey, 2023), MTN-50K (Instituto
-Cartográfico Militar (ICM), 1989) y OpenStreetMap contributors (2017).
-Para representar ríos que que llenan embalses, usamos sus trazados
-históricos para así mantener la continuidad hidrológica (Figura
-\ref{fig:redcursoslargos}). Luego realizamos el tallado del DEM probando
-tres algoritmos: \texttt{r.carve} y \texttt{r.mapcalc} de GRASS GIS, y
-\texttt{FillBurn} de WhiteboxTools (GRASS Development Team, 2022a; GRASS
-Development Team, 2022b, 2022c; Larson et~al., 1991; Lindsay, 2018;
-Petrasova et~al., 2011; Saunders, 2000; Shapiro y Westervelt, 1994).
-Como criterio de selección establecimos que el mejor algoritmo sería
-aquel que lograra una mínima alteración en el DEM, minimizando a la vez
-el tiempo de cómputo. \texttt{r.carve} produjo un buen DEM tallado,
-aunque ocupó mucho tiempo de cómputo, por lo que no la consideramos una
-herramienta adecuada para iteraciones rápidas. Con \texttt{r.mapcalc}
-realizamos el tallado mediante una simple álgebra de mapas
-(normalización, operaciones booleanas, multiplicación), de donde
-obtuvimos un DEM poco alterado en tiempo relativamente corto.
-Finalmente, probamos con la función \texttt{FillBurn} de WhiteboxTools,
-la cual produjo un DEM tallado sustancialmente alterado respecto del
-original, especialmente en las áreas de karst con depresiones. Optamos
-por continuar nuestro flujo de procesamiento con el DEM tallado por
-\texttt{r.mapcalc} (ver Figura \ref{fig:demtallado}).
+con una red preexistente de cursos largos de República Dominicana, un
+paso clave en la generación de la hidrografía por métodos
+computacionales, y que en inglés se conoce como \emph{stream burning}
+(Lindsay, 2016). Primero creamos la red a partir de una selección de
+ríos largos y permanentes, apoyados en imágenes satelitales (Google;
+Airbus, CNES; Airbus, Landsat; Copernicus; Maxar Technologies; U.S.
+Geological Survey, 2023), MTN-50K (Instituto Cartográfico Militar (ICM),
+1989) y OpenStreetMap contributors (2017). Para representar ríos que que
+llenan embalses, usamos sus trazados históricos para así mantener la
+continuidad hidrológica (Figura \ref{fig:redcursoslargos}). Luego
+realizamos el tallado del DEM probando tres algoritmos: \texttt{r.carve}
+y \texttt{r.mapcalc} de GRASS GIS, y \texttt{FillBurn} de WhiteboxTools
+(GRASS Development Team, 2022a; GRASS Development Team, 2022b, 2022c;
+Larson et~al., 1991; Lindsay, 2018; Petrasova et~al., 2011; Saunders,
+2000; Shapiro y Westervelt, 1994). Como criterio de selección
+establecimos que el mejor algoritmo fuese aquel que lograra una mínima
+alteración en el DEM, minimizando a la vez el tiempo de cómputo.
+\texttt{r.carve} produjo un buen DEM tallado, aunque ocupó mucho tiempo
+de cómputo, por lo que no la consideramos una herramienta adecuada para
+iteraciones rápidas. Con \texttt{r.mapcalc} realizamos el tallado
+mediante una simple álgebra de mapas (normalización, operaciones
+booleanas, multiplicación), de donde obtuvimos un DEM poco alterado en
+tiempo relativamente corto. Finalmente, probamos con la función
+\texttt{FillBurn} de WhiteboxTools, la cual produjo un DEM tallado
+sustancialmente alterado respecto del original, especialmente en las
+áreas de karst con depresiones. Optamos por continuar nuestro flujo de
+procesamiento con el DEM tallado por \texttt{r.mapcalc} (ver Figura
+\ref{fig:demtallado}).
 
 \hypertarget{procesamiento-de-hidrologuxeda-computacional}{%
 \subsection{Procesamiento de hidrología
@@ -511,10 +515,12 @@ conflicto de interés con el contenido de este artículo.
 código}\label{disponibilidad-de-datos-scripts-y-cuxf3digo}}
 
 Los datos que respaldan los hallazgos de este estudio están disponibles
-abiertamente en Zenodo en \url{10.5281/zenodo.8146391}
-(\textbf{RELLENAR?}). Los scripts utilizados para la curación de datos,
-análisis y visualización están disponibles en Zenodo en \url{}
-(\textbf{RELLENAR?}).
+abiertamente en Zenodo en \url{https://doi.org/10.5281/zenodo.8146391}
+(Martínez-Batlle y Izzo-Gioiosa, 2023). Los scripts utilizados para la
+curación de datos, análisis y visualización están disponibles en esta
+sección, así como en el repositorio de GitHub en
+\url{https://github.com/geofis/red-hidrografica-densa-rd} y en Zenodo en
+\url{} (\textbf{RELLENAR?}).
 
 \newpage
 
@@ -522,7 +528,7 @@ análisis y visualización están disponibles en Zenodo en \url{}
 \section*{Información suplementaria}\label{infosupl}}
 \addcontentsline{toc}{section}{Información suplementaria}
 
-\setcounter{table}{0} \renewcommand{\thetable}{S\arabic{table}} \renewcommand\tablename{Tabla} \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}} \renewcommand\figurename{Figura}
+\beginsupplement
 
 \hypertarget{suplemento-para-la-secciuxf3n-materiales-y-muxe9todos}{%
 \subsection*{Suplemento para la sección Materiales y
@@ -1003,9 +1009,8 @@ los negativos como los positivos, es de aproximadamente 404 m, con
 desviación estándar de 487 m y coeficiente de variación de 121\%.
 Remarcamos que, aunque ASF advierte de no usar este modelo para fines de
 elevación, el valor máximo se ajusta bastante a la elevación máxima
-conocida en República Dominicana, que es el pico Duarte (\emph{Instituto
-Geográfico Nacional - - Medición por Sistema Global de Navegación por
-Satélite (GNSS) de los Tres Picos Más Altos De Las Antillas}, s.~f.).
+conocida en República Dominicana, que es el pico Duarte (Instituto
+Geográfico Nacional, 2022).
 
 \begin{figure}
 
@@ -1416,10 +1421,10 @@ Instituto Cartográfico Militar (ICM). (1989). \emph{{Serie E733 de mapas
 topográficos escala 1:50,000}}. {Instituto Cartográfico Militar}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-ign2022medicion}{}}%
-\emph{Instituto Geográfico Nacional - - Medición por Sistema Global de
-Navegación por Satélite (GNSS) de los Tres Picos Más Altos De Las
-Antillas}. (s.~f.).
-\url{https://www.ign.gob.do/index.php/noticias/item/448-medicion-por-sistema-global-de-navegacion-por-satelite-gnss-de-los-tres-picos-mas-altos-de-las-antillas}
+Instituto Geográfico Nacional. (2022). \emph{Medición por Sistema Global
+de Navegación por Satélite (GNSS) de los Tres Picos Más Altos De Las
+Antillas}. Disponible en línea. Accedido a través de
+\url{https://www.ign.gob.do/index.php/noticias/item/448-medicion-por-sistema-global-de-navegacion-por-satelite-gnss-de-los-tres-picos-mas-altos-de-las-antillas}.
 
 \leavevmode\vadjust pre{\hypertarget{ref-Izzo2010ANC}{}}%
 Izzo, M., Rosskopf, C. M., Aucelli, P. P. C., Maratea, A., Méndez, R.
@@ -1435,7 +1440,7 @@ SRTM for the globe Version 4. \emph{available from the CGIAR-CSI SRTM
 \leavevmode\vadjust pre{\hypertarget{ref-jaxameti2007alos}{}}%
 JAXA/METI y ASF DAAC. (2015). \emph{{ALOS
 PALSAR\_Radiometric\_Terrain\_Corrected\_high\_res. Includes material de
-JAXA/METI 2010}}. Available online. Accessed through ASF DAAC
+JAXA/METI 2010}}. Disponible en línea. Accedido a través de ASF DAAC
 \url{https://asf.alaska.edu/}. DOI:
 \url{https://doi.org/10.5067/Z97HFCNKR6VA} (accessed on abril, 2023).
 
@@ -1482,6 +1487,12 @@ climate change in individuals of coastal Dominican Republic. \emph{Ocean
 Mackay, E. A. y Spencer, A. J. (2017). The future of Caribbean tourism:
 competition and climate change implications. \emph{Worldwide Hospitality
 and Tourism Themes}, \emph{9}, 44-59.
+
+\leavevmode\vadjust pre{\hypertarget{ref-martinez2023datos}{}}%
+Martínez-Batlle, J.-R. y Izzo-Gioiosa, M. (2023). \emph{Datos del
+estudio "Generación de red hidrográfica densa de República Dominicana a
+partir de modelo digital de elevaciones de resolución media"}.
+\url{https://doi.org/10.5281/ZENODO.8146391}
 
 \leavevmode\vadjust pre{\hypertarget{ref-mishra2009}{}}%
 Mishra, A. K. y Coulibaly, P. (2009). Developments in hydrometric

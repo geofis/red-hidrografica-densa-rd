@@ -43,6 +43,7 @@ header-includes:
     \renewcommand\figurename{Figura}
   }
   \usepackage[hidelinks]{hyperref}
+  \usepackage{xurl}
 ---
 
 ```{r setup, include=FALSE}
@@ -99,9 +100,9 @@ Nuestro trabajo tiene potencial para suplir las demandas de información sobre h
 
 La terminología utilizada para describir los distintos componentes de los sistemas fluviales es un tema de continuo debate en el campo de la geomorfología fluvial. Este debate suele estar intrínsecamente ligado a la escala de análisis empleada; al variar la escala, incrementándola o reduciéndola, los criterios empleados para delimitar las definiciones de los elementos morfológicos, tienden a desdibujarse y/o a resultar inconsistentes [@garcia2011clasificacion]. Seleccionar el término apropiado para describir la unidad topográficamente deprimida por donde fluye o por donde podría circular el agua de escorrentía, es un desafío nada despreciable. Este reto se intensifica cuando el idioma introduce distintas connotaciones para términos similares, cuya traducción literal puede generar confusión (como ocurre con *channel* y canal en inglés y español, respectivamente). [@charlton2010fundamentals; @anderson2010geomorphology; @gutierrez2009geomorfologia; @pedraza1996geomorfologia].
 
-Dado que las distintas acepciones y discrepancias en la terminología superan el alcance del presente trabajo, fijaremos los términos que utilizaremos de manera convencional. En este estudio, empleamos los términos *talweg* y canal de forma indistinta para referimos a la unidad topográficamente deprimida por la que fluye, o podría fluir, la corriente. En geomorfología, utilizamos la voz germánica *talweg* para referirnos a la línea imaginaria que traza la parte más baja de un valle [@foucault1985diccionario]. Es importante remarcar que esta definición no siempre se refiere a un curso fluvial permanente, pues la circulación del agua está influenciada por múltiples factores. A esta unidad, en sus distintas variantes hidrodinámicas y de tamaño, también se le conoce con múltiples nombres en República Dominicana, como son río, arroyo o cañada, denominaciones que también incorporamos en la redacción.
+Dado que las distintas acepciones y discrepancias en la terminología superan el alcance del presente trabajo, fijaremos los términos que utilizaremos de manera convencional. En este estudio, empleamos los términos *talweg* y canal de forma indistinta para referimos a la unidad topográficamente deprimida por la que fluye, o podría fluir, la corriente. En geomorfología, utilizamos la voz germánica *talweg* para referirnos a la línea imaginaria que traza la parte más baja de un valle, razón por la cual también la hemos incluido entre los términos usados [@foucault1985diccionario]. Es importante remarcar que nuestra definición convencional no siempre se refiere a un curso fluvial permanente, pues la circulación del agua está influenciada por múltiples factores. Asimismo, cabe destacar que, a esta unidad geomorfológica en sus distintas variantes hidrodinámicas y dimensionales, también se le conoce con múltiples nombres en República Dominicana (en orden de mayor a menor "importancia"), como son río, arroyo o cañada, denominaciones que también incorporamos en la redacción.
 
-Finalmente, en nuestro en este trabajo también adoptamos los términos curso, drenaje o corriente, especialmente cuando destacamos la presencia de un flujo ya sea permanente, semipermanente o intermitente. Además, nos referimos al sistema interconectado de canales, cursos, corrientes o drenajes con las denominaciones "red de drenajes" o "red hidrográfica".
+Finalmente, en nuestro en este trabajo también adoptamos los términos curso, drenaje o corriente, especialmente cuando destacamos la presencia de un flujo ya sea permanente, semipermanente o intermitente. Además, para el análisis hortoniano de los sistemas fluviales, nos referimos al sistema interconectado de canales, cursos, corrientes o drenajes con las denominaciones "red de drenajes" o "red hidrográfica".
 
 # Materiales y métodos
 
@@ -113,7 +114,7 @@ knitr::include_graphics("resumen-obtencion-preprocesamiento-dem.pdf")
 
 Iniciamos nuestro estudio valorando diversas herramientas para el procesamiento de los datos. Debido a la gran variedad de complementos que ofrece, junto con su alto rendimiento y la calidad de los resultados que proporciona, decidimos utilizar GRASS GIS v8.2.0 para realizar la mayor parte del procesamiento (Figura \ref{fig:obtencionpreprocdem}). La implementación de su interfaz de línea de comandos (e.g. interfaz basada en texto), en nuestro caso Bash, garantizó la reproducibilidad de nuestros procedimientos. Nos auxiliamos también de la biblioteca GDAL/OGR, WhiteboxTools el entorno de programación estadística R y el lenguaje de programación Python [@GRASS_GIS_softwarev82; @gdal2022gdal; @lindsay2018whiteboxtools; @rcoreteam2023r; @vanrossum2009python]. Nuestro enfoque de reproducibilidad asegura que, sin importar la fuente de datos empleada, el seguimiento del flujo de trabajo es viable, manteniendo la integridad y coherencia del proceso de análisis, sin menoscabo de la calidad del resultado final.
 
-Asimismo, para facilitar nuestra labor, utilizamos una serie de bibliotecas de R, además de  funciones personalizadas escritas por nosotros para agilizar y optimizar las tareas de limpieza y representación de datos y mapas [@hijmans2023raster; @whicham2019welcome; @obrien2023gdalutilities; @pebesma2018simple; @pebesma2023spatial; @zhu2021kableextra; @xie2023knitr; @xie2015dynamic; @xie2014implementing]. El código reproducible usado en el estudio se puede consultar en la sección [Información suplementaria](#infosupl), así como los repositorios creados al efecto, donde incluimos el código escrito y las direcciones para acceder a los datos fuentes, entre otras utilidades.
+Asimismo, para facilitar nuestra labor, utilizamos una serie de bibliotecas de R, además de funciones personalizadas escritas por nosotros para agilizar y optimizar las tareas de limpieza y representación de datos y mapas [@hijmans2023raster; @whicham2019welcome; @obrien2023gdalutilities; @pebesma2018simple; @pebesma2023spatial; @zhu2021kableextra; @xie2023knitr; @xie2015dynamic; @xie2014implementing]. El código reproducible usado en el estudio se puede consultar en la sección [Información suplementaria](#infosupl), así como los repositorios creados al efecto, donde incluimos el código escrito y las direcciones para acceder a los datos fuentes, entre otras utilidades.
 
 Nos centramos en la fuente de datos, que en nuestro caso es el modelo digital de elevaciones (DEM) servido con los productos *Hi-Res Terrain Corrected* de Alaska Satellite Facility (ASF) [@asfdaac2014hires]. Este producto se descarga desde el Centro de Archivo Activo Distribuido del Alaska Satellite Facility o ASF DAAC---una de las instalaciones temáticas de la Administración Nacional de Aeronáutica y del Espacio de los Estados Unidos, NASA---en forma de escenas o "cuadros" (*tiles*), conteniendo dos imágenes de retrodispersión $\gamma^0$ (ca. 70x58 km cada una), una por cada polaridad, y el modelo digital de elevaciones remuestreado con el que ASF realizó la corrección radiométrica de terreno (ca. 80x70 km), objeto de nuestro estudio.
 
@@ -127,19 +128,17 @@ ind_orig_sel_m
 
 Posteriormente, creamos una base de datos, con su correspondiente localización, en GRASS GIS, nuestro software principal por su eficiencia. Ocasionalmente recurrimos a otras herramientas como WhiteboxTools y QGIS, siempre con el objetivo de optimizar el uso de los recursos de hardware para obtener los resultados necesarios de manera rápida [@GRASS_GIS_softwarev82; @lindsay2018whiteboxtools; @QGIS_software]. Complementariamente, generamos una máscara de país en QGIS, fusionando el límite oficial de la Oficina Nacional de Estadística con fuentes en línea como GADM, OCHA y OpenStreetMap, y excluyendo superficies de lagos naturales y embalses para facilitar el análisis de cuencas endorreicas; este paso fue realizado de forma semimanual. Posteriormente, importamos tanto el ráster virtual como la máscara a la base de datos de GRASS GIS (Figura \ref{fig:demsinprocesar}). Inmediatamente, aplicamos la máscara a la región activa para enfocar los análisis sólo dentro del área de interés. [@QGIS_software; @one2023division; @gadm; @ocha2023hdx; @OpenStreetMap].
 
-Dentro de la base de datos de GRASS, rellenamos los datos nulos del DEM (Figura \ref{fig:demrelleno}), para luego suavizar el resultado preservando morfologías con la herramienta *FeaturePreservingSmoothing* de WhiteboxTools (Figura \ref{fig:demsuavizado}). Tras esto, combinamos el DEM suavizado con el ráster de altura del geoide EGM2008 mediante una simple suma algebraica para obtener alturas pseudo-ortométricas, incrementando previamente la resolución del segundo para acercarla ligeramente a la del primero [@lindsay2019; @lindsay2018whiteboxtools].
+Dentro de la base de datos de GRASS, rellenamos los datos nulos del DEM (Figura \ref{fig:demrelleno}), para luego suavizar el resultado preservando morfologías con la herramienta *FeaturePreservingSmoothing* de WhiteboxTools (Figura \ref{fig:demsuavizado})  [@lindsay2019; @lindsay2018whiteboxtools]. Tras esto, combinamos el DEM suavizado con el ráster de altura del geoide EGM2008 mediante una simple suma algebraica para obtener alturas pseudo-ortométricas, incrementando previamente la resolución del segundo para acercarla ligeramente a la del primero.
 
-A continuación, como último paso del preprocesamiento, tallamos el DEM con una red preexistente de cursos largos de República Dominicana, usando *stream burning* [@lindsay2016]. Primero creamos la red a partir de una selección de ríos largos y permanentes, apoyados en imágenes satelitales [@googlemaps], MTN-50K [@icm1989serie] y @OpenStreetMap.  Para representar ríos que que llenan embalses, usamos sus trazados históricos para así mantener la continuidad hidrológica (Figura \ref{fig:redcursoslargos}). Luego realizamos el tallado del DEM probando tres algoritmos: `r.carve` y `r.mapcalc` de GRASS GIS, y `FillBurn` de WhiteboxTools [@GRASS_GIS_software; @petrasova2011geoinformation; @grassdev2022rcarve; @grassdev2022rmapcalc; @shapiro1994rmapcalc; @larson1991performing; @lindsay2018whiteboxtools; @saunders2000]. Como criterio de selección establecimos que el mejor algoritmo sería aquel que lograra una mínima alteración en el DEM, minimizando a la vez el tiempo de cómputo. `r.carve` produjo un buen DEM tallado, aunque ocupó mucho tiempo de cómputo, por lo que no la consideramos una herramienta adecuada para iteraciones rápidas. Con `r.mapcalc` realizamos el tallado mediante una simple álgebra de mapas (normalización, operaciones booleanas, multiplicación), de donde obtuvimos un DEM poco alterado en tiempo relativamente corto. Finalmente, probamos con la función `FillBurn` de WhiteboxTools, la cual produjo un DEM tallado sustancialmente alterado respecto del original, especialmente en las áreas de karst con depresiones. Optamos por continuar nuestro flujo de procesamiento con el DEM tallado por `r.mapcalc` (ver Figura \ref{fig:demtallado}).
+A continuación, como último paso del preprocesamiento, tallamos el DEM con una red preexistente de cursos largos de República Dominicana, un paso clave en la generación de la hidrografía por métodos computacionales, y que en inglés se conoce como *stream burning* [@lindsay2016]. Primero creamos la red a partir de una selección de ríos largos y permanentes, apoyados en imágenes satelitales [@googlemaps], MTN-50K [@icm1989serie] y @OpenStreetMap. Para representar ríos que que llenan embalses, usamos sus trazados históricos para así mantener la continuidad hidrológica (Figura \ref{fig:redcursoslargos}). Luego realizamos el tallado del DEM probando tres algoritmos: `r.carve` y `r.mapcalc` de GRASS GIS, y `FillBurn` de WhiteboxTools [@GRASS_GIS_software; @petrasova2011geoinformation; @grassdev2022rcarve; @grassdev2022rmapcalc; @shapiro1994rmapcalc; @larson1991performing; @lindsay2018whiteboxtools; @saunders2000]. Como criterio de selección establecimos que el mejor algoritmo fuese aquel que lograra una mínima alteración en el DEM, minimizando a la vez el tiempo de cómputo. `r.carve` produjo un buen DEM tallado, aunque ocupó mucho tiempo de cómputo, por lo que no la consideramos una herramienta adecuada para iteraciones rápidas. Con `r.mapcalc` realizamos el tallado mediante una simple álgebra de mapas (normalización, operaciones booleanas, multiplicación), de donde obtuvimos un DEM poco alterado en tiempo relativamente corto. Finalmente, probamos con la función `FillBurn` de WhiteboxTools, la cual produjo un DEM tallado sustancialmente alterado respecto del original, especialmente en las áreas de karst con depresiones. Optamos por continuar nuestro flujo de procesamiento con el DEM tallado por `r.mapcalc` (ver Figura \ref{fig:demtallado}).
 
 ## Procesamiento de hidrología computacional
-
 
 <!-- A partir de este punto, usamos el DEM tallado para generar generamos la red de drenaje de la República Dominicana. Los detalles de este proceso incluyeron una serie de pasos para eliminar los sumideros y para definir adecuadamente la red de drenaje. En particular, se utilizó el enfoque D8, uno de los métodos más utilizados en la hidrología digital, para la dirección del flujo. -->
 
 <!-- Finalmente, extrajimos la red de drenaje a partir de los datos de elevación procesados. Este es el último paso en el procesamiento de los datos de elevación y proporciona el resultado final de nuestro análisis: una representación detallada de la red de drenaje de la República Dominicana. -->
 
 <!-- [@quinn1991prediction; @freeman1991calculating] -->
-
 
 <!-- Para lograrlo, relevamos el papel de las herramientas de código abierto, que permiten la extracción automatizada y reproducible de redes de drenaje, y nos apoyamos en la fuente geoespacial más detallada y accesible actualmente: el modelo digital de elevaciones ALOS-PALSAR, que ofrece una resolución de 12 metros [@jaxameti2007alos]. Además, complementamos nuestro análisis con recursos preexistentes, como el mapa topográfico nacional. -->
 
@@ -161,26 +160,25 @@ Para lograr una rápida salida del trabajo, dejamos para futuras investigaciones
 -   En relación a las cuencas y redes de drenaje transfronterizas, es importante destacar que sólo se caracterizaron utilizando información la porción correspondiente al territorio dominicano. Como resultado, el orden de red máximo obtenido para estas redes podría no reflejar su orden real. Estas cuencas abarcan las de los ríos Artibonito, Pedernales y Masacre, además de varias cuencas menores dispersas a lo largo de la frontera. No obstante, una evaluación visual preliminar indica que la mencionada limitación no interfiere con el propósito de nuestro estudio. Además, en futuros trabajos, abordaremos estas cuencas de manera integral para proporcionar una visión más completa de su morfometría.
 -   Para asegurar que los datos de elevación eran adecuados y precisos en términos de elevación, se debería validar el DEM con datos de puntos de verificación tomados con GNSS.
 
-
-
-# Financiamiento {-}
+# Financiamiento {.unnumbered}
 
 Esta investigación recibió financiamiento del Banco Interamericano de Desarrollo (BID), y fue apoyado por la ONG Guakía Ambiente y la Universidad Autónoma de Santo Domingo (UASD).
 
-# Declaración de conflicto de intereses {-}
+# Declaración de conflicto de intereses {.unnumbered}
 
 El autor y la autora de este artículo declaran que no tienen ningún conflicto de interés con el contenido de este artículo.
 
 # Disponibilidad de datos, scripts y código
 
-Los datos que respaldan los hallazgos de este estudio están disponibles abiertamente en Zenodo en \url{10.5281/zenodo.8146391} [@RELLENAR]. Los scripts utilizados para la curación de datos, análisis y visualización están disponibles en Zenodo en \url{} [@RELLENAR].
+Los datos que respaldan los hallazgos de este estudio están disponibles abiertamente en Zenodo en \url{https://doi.org/10.5281/zenodo.8146391} [@martinez2023datos]. Los scripts utilizados para la curación de datos, análisis y visualización están disponibles en esta sección, así como en el repositorio de GitHub en \url{https://github.com/geofis/red-hidrografica-densa-rd} y en Zenodo en \url{} [@RELLENAR].
 
 \newpage
 
-# Información suplementaria {- #infosupl}
+# Información suplementaria {#infosupl .unnumbered}
 
+```{=tex}
 \beginsupplement
-
+```
 ```{r child=paste0(raiz_supl_met, '.Rmd'), eval=incluir_supl_al_final}
 ```
 
