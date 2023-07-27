@@ -42,13 +42,13 @@ knitr::opts_chunk$set(
   message = FALSE,
   out.width = '100%',
   # res = 300,
-  dpi = 300)
+  dpi = 300
+  # fig.pos = "H", out.extra = "" #Figuras en el lugar insertadas
+  )
 # options(digits = 3)
 ```
 
-## Suplemento para la sección Materiales y Métodos {.unnumbered}
-
-### Obtención y Preprocesamiento del DEM
+## Suplemento metodológico para la subsección "Obtención y Preprocesamiento del DEM" {.unnumbered}
 
 Los siguientes bloques de código cargan los paquetes de uso común a lo largo de este cuaderno, así como funciones creadas por nosotros para eficientizar las tareas de limpieza y representación de datos y mapas. Igualmente, aprovechamos este bloque de código para declarar la ruta del directorio donde se alojan los archivos fuente, la cual reaprovechamos en distintas partes del código.
 
@@ -60,8 +60,10 @@ library(sf)
 library(kableExtra)
 library(tidyverse)
 library(gdalUtilities)
+library(e1071)
 source('R/funciones.R')
-dem_proc_dir <- 'alos-palsar-dem-rd/dem/'
+dem_proc_dir <- 'estadisticos'
+figuras <- 'figuras'
 ```
 
 ```{r cargarfuentesotrormd, echo=F, include=F}
@@ -207,7 +209,7 @@ g.list type=raster
 ```
 
 ```{r demsinprocesar, echo=F, fig.cap='DEM sin procesar, representado como relieve sombreado. Nótesense los píxeles sin datos, destacados en color rojo (Los Patos-Ojeda-Paraíso, provincia Barahona, sudoeste de República Dominicana)'}
-knitr::include_graphics("out/dem-sin-procesar.jpg")
+knitr::include_graphics(paste(figuras, "dem-sin-procesar.jpg", sep = '/'))
 ```
 
 A continuación, rellenamos las celdas con valor nulo (sin datos) por medio del eficiente complemento de GRASS `r.fill.nulls`. Lo configuramos para rellenar píxeles nulos usando interpolación *spline* bilineal con regularización Tykhonov (*spline* es un método de descomposición de curvas en porciones descritas por polinomios).
@@ -224,7 +226,7 @@ echo "Job finished" | mail -s "Job finished" USUARIO@MAIL
 ```
 
 ```{r demrelleno, echo=F, fig.cap='DEM sin procesar, representado como relieve sombreado. Los píxeles sin datos fueron eliminados (Los Patos-Ojeda-Paraíso, provincia Barahona, sudoeste de República Dominicana)'}
-knitr::include_graphics("out/dem-relleno.jpg")
+knitr::include_graphics(paste(figuras, "dem-relleno.jpg", sep = '/'))
 ```
 
 En el siguiente paso suavizamos el DEM preservando morfologías. Para esto usamos la herramienta *FeaturePreservingSmoothing* de WhiteboxTools, la cual reduce la rugosidad generada por el ruido en el DEM [@lindsay2019; @lindsay2018whiteboxtools]. Para aplicar esta herramienta, primero exportamos el DEM desde la base de datos de GRASS GIS a archivo GeoTIFF, y posteriormente aplicamos el suavizado. Finalmente, importamos el DEM suavizado nuevamente a la base de datos de GRASS GIS para continuar el procesamiento en dicha aplicación.
@@ -250,7 +252,7 @@ echo "Job finished" | mail -s "Job finished" USUARIO@MAIL
 ```
 
 ```{r demsuavizado, echo=F, fig.cap='DEM suavizado, representado como relieve sombreado. Nótese la conservación de las morfologías principales y la eliminación del ruido sobre éstas (Los Patos-Ojeda-Paraíso, provincia Barahona, sudoeste de República Dominicana)'}
-knitr::include_graphics("out/dem-suavizado.jpg")
+knitr::include_graphics(paste(figuras, "dem-suavizado.jpg", sep = '/'))
 ```
 
 ```{bash, eval=F}
@@ -314,13 +316,13 @@ r.univar dem_pseudo_ortometrico
 El resumen estadístico proporcionado por la herramienta `r.univar` de GRASS GIS, usando la máscara ajustada a los límites costeros e internacional del país, informa que la elevación mínima es -51.5 m, mientras que la máxima es 3102.34 m, para un rango de casi 3154 m. El valor mínimo probablemente no está bien recogido, debido a que la máscara empleada podría estar eliminando elevaciones muy bajas en el área de la Hoya de Enriquillo. La elevación media, considerando tanto los negativos como los positivos, es de aproximadamente 404 m, con desviación estándar de 487 m y coeficiente de variación de 121%. Remarcamos que, aunque ASF advierte de no usar este modelo para fines de elevación, el valor máximo se ajusta bastante a la elevación máxima conocida en República Dominicana, que es el pico Duarte [@ign2022medicion].
 
 ```{r alturasgeoideelipsoide, echo=F, fig.cap='Alturas respecto de geoide EGM08 ($\\sim$ortométrica) y sobre elipsoide WGS84, de un transecto descendente desde Bahoruco Oriental al Mar Caribe (Los Patos-Ojeda-Paraíso, provincia Barahona, sudoeste de República Dominicana)'}
-knitr::include_graphics("out/perfiles-dem/los-patos.png")
+knitr::include_graphics(paste(figuras, "perfiles-dem/los-patos.png", sep = '/'))
 ```
 
 A continuación, efectuamos el procedimiento de tallado o grabado de una red preexistente sobre el DEM, conocido como *stream burning* [@lindsay2016]. Con este procedimiento, logramos que los píxeles del DEM intersectados con el vectorial de la red preexistente, adquieran un valor muy bajo respecto de su entorno, para asegurar que los algoritmos automáticos de análisis hidrológico dirijan el flujo a través de los lechos de ríos establecidos. El tallado es particularmente útil, incluso esencial, en áreas planas, ya que ayuda a los algoritmos autómáticos a producir redes hidrográficas más realistas y topológicamente correctas. Sin embargo, su aplicación de requiere de una cuidadosa selección de la red preexistente a tallar. Para crearla, usamos una red de drenaje de cursos fluviales seleccionados, que incluyó sólo los de gran longitud, comúnmente ríos permamentes, de lecho ancho y claramente establecidos. Nos apoyamos en imágenes satelitales [@googlemaps] y, ocasionalmente, en el MTN-50K [@icm1989serie]. Complementamos con @OpenStreetMap, ya que este servicio provee información vectorial de fácil acceso y precisa. El resultado consistió en una red de cursos largos seleccionados de República Dominicana, representada por los ríos Artibonito, Yaque del Norte, Yuna, Yaque del Sur, varios ríos del extremo meridional de la cordillera Central y del borde sudoriental del país, así como algunos ríos seleccionados de la cordillera Septentrional.
 
 ```{r redcursoslargos, echo=F, fig.cap='Mapa de la red de cursos largos creada para el estudio a partir de varias fuentes (más detalles, en el texto).'}
-knitr::include_graphics("out/red-cursos-largos.jpg")
+knitr::include_graphics(paste(figuras, "red-cursos-largos.jpg", sep = '/'))
 ```
 
 Nuestra de red cursos largos contiene varios ríos que atraviesan amplios valles y karsts, por lo son comunes los tramos que cruzan zonas complicadas para la conducción del flujo donde probablemente el error posicional de las líneas es mayor. Cabe también señalar que, para asegurar la continuidad topológica de la red, dimos un tratamiento especial a los ríos que llenan embalses, los cuales representamos por medio trazados históricos obtenidos del MTN-50K, omitiendo así la presencia de los embalses.
@@ -339,7 +341,7 @@ v.to.db -p option=length map=red_mtn50k_cleaned_largos > \
 
 ```{r, message=F, warning=F}
 stats_red_mtn50k_largos <- read_delim(
-  paste0(dem_proc_dir,
+  paste0(dem_proc_dir, '/',
          'stats_length_red_mtn50k_cleaned_largos.txt'),
   progress = F, show_col_types = F)
 n_seg_red_mtn50k_largos <- stats_red_mtn50k_largos %>%
@@ -393,7 +395,7 @@ echo "Tallado finalizado" | mail -s "Mensaje sobre tallado" USUARIO@MAIL
 ```
 
 ```{r demtallado, echo=F, fig.cap='DEM sin aplicación de hidrografía (A), y con aplicación de hidrografía seleccionada (B). El DEM se representa como relieve sombreado y la aplicación se denota como un grabado oscurecido (cañón del río Payabo, Los Haitises, y río Yuna (proximidades de Arenoso, nordeste de República Dominicana)'}
-knitr::include_graphics("out/dem-sin-tallar-tallado.png")
+knitr::include_graphics(paste(figuras, "dem-sin-tallar-tallado.png", sep = '/'))
 ```
 
 Como última alternativa de procesamiento, probamos la herramienta `FillBurn`, basada en @saunders2000 e implementada por @lindsay2016 en de WBT. `FillBurn` realiza dos modificaciones a la vez sobre el DEM; por una parte, graba la red, usando una profundidad por defecto y, por otro, rellena las depresiones. La herramienta mostró mejor rendimiento que la de GRASS GIS en cuanto a tiempo de cómputo. Tras tallar la red evaluamos el DEM resultante, y comprobamos que **resultó ser muy diferente al original, especialmente en las áreas con depresiones**. Por esta razón, descartamos este DEM y elegimos usar el tallado por medio de álgebra de mapas (`r.mapcalc`) con GRASS GIS en los siguientes pasos de nuestro flujo de trabajo.
@@ -405,13 +407,19 @@ time r.out.gdal --overwrite --verbose createopt="COMPRESS=LZW,BIGTIFF=YES" \
  format=GTiff type=Float64 output=dem_pseudo_ortometrico.tif
 echo "Job finished" | mail -s "Job finished" USUARIO@MAIL
 ## real 1m0.248s
+```
 
+```{r, eval=F}
 # Exportar red_mtn50k_cleaned_largos.gpkg a shapefile
 ogr2ogr(
-  src_datasource_name = '/media/jose/datos/alos-palsar-dem-rd/dem/red_mtn50k_cleaned_largos.gpkg',
-  dst_datasource_name = '/media/jose/datos/alos-palsar-dem-rd/dem/red_mtn50k_cleaned_largos.shp',
+  src_datasource_name = paste0('/media/jose/datos/alos-palsar-dem-rd/',
+                               'dem/red_mtn50k_cleaned_largos.gpkg'),
+  dst_datasource_name = paste0('/media/jose/datos/alos-palsar-dem-rd/',
+                               'dem/red_mtn50k_cleaned_largos.shp'),
   verbose=TRUE)
+```
 
+```{bash, eval=F}
 # Tallar con WBT
 time ~/WhiteboxTools_linux_amd64/WBT/whitebox_tools \
   --wd='/media/jose/datos/alos-palsar-dem-rd/dem/' \
@@ -425,11 +433,302 @@ echo "Job finished" | mail -s "Job finished" USUARIO@MAIL
 ## real	0m38.519s
 ```
 
-A continuación, aplicamos algoritmos de grabado de depresiones ... ... ...
+A continuación, implementamos algoritmos para superponer depresiones sobre el Modelo Digital de Elevación (DEM). Este paso es esencial para guiar el flujo de agua a través de las depresiones, en los lugares donde éstas sean presentes. Es importante tener en cuenta que sólo se deben superponer aquellas depresiones que tengan la capacidad de capturar la escorrentía superficial, como los ponores o pérdidas, ya que son estos elementos los que condicionarán la hidrología en su entorno. El proceso de superposición de depresiones es fundamental para obtener límites de cuencas y redes de drenaje coherentes.
 
-### Procesamiento de hidrología computacional
+Para generar un conjunto de depresiones, utilizamos la capa de litologías de la República Dominicana, proporcionada por @mollat2004mapa. A partir de este recurso, identificamos y separamos las calizas que presentaban un grado de karstificación suficiente, basándonos en nuestra experiencia de campo. Además, creamos una capa de depresiones empleando el complemento `r.geomorphon` y utilizando el DEM como insumo, según el método propuesto por @jasiewicz2013. También digitalizamos manualmente algunas depresiones cuya ubicación ya conocíamos a partir de nuestra experiencia en el terreno. Finalmente, realizamos una intersección de las tres fuentes de datos para producir una capa exhaustiva que refleja las depresiones capaces de capturar el flujo superficial.
 
-El próximo paso consistió en 
+```{r geomorfonosrd, echo=F, fig.cap='"Geomórfonos" de República Dominicana generados a partir de DEM ALOS PALSAR. En cartela, detalle del cañón del río Payabo'}
+knitr::include_graphics(paste(figuras, "geomorfonos-de-rd.jpg", sep = '/'))
+```
+
+No obstante, nuestro resultado debe tomarse con cautela en el relieve kárstico. Como bien es sabido, no todas las calizas representadas en la geología dominicana están lo suficientemente karstificadas como para desarrollar depresiones. Por esta razón, usamos la capa de calizas a discreción, y sólo conservamos aquellos afloramientos de calizas en los que, desde nuestro conocimiento de terreno, no se evidenciaba escorrentía superficial. Asimismo, reservamos aquellas calizas donde encontramos evidencia de depresiones en la topografía detallada y en imágenes satelitales. No obstante, gran parte de este trabajo se realizó manualmente, por lo que nuestra colección de dolinas tiene suficiente precisión, pero no es exhaustiva. Además, es virtualmente imposible identificar todas las depresiones que funcionan como pérdidas en imágenes satelitales o en mapas topográficos y geológicos. Finalmente, un elemento adicional complica aún más las cosas en los relieves kársticos: muchas pérdidas no ocurren a través de una depresión topográficamente visible, pues gran parte de la infiltración se produce a través de fracturas en la roca, pasando al endokarst y a la zona vadosa de manera "silenciosa", sin que veamos desde el aire la típica morfología deprimida (e.g. dolina).
+
+```{bash, eval=F}
+# Crear geomórfonos
+# WBT
+# time ~/WhiteboxTools_linux_amd64/WBT/whitebox_tools \
+#   -r=Geomorphons -v --wd='/media/jose/datos/alos-palsar-dem-rd/dem/' \
+#   --dem=dem_tallado.tif -o=geomorfonos.tif --search=25 \
+#   --threshold=0 --tdist=0.0 --forms
+# echo "Job finished" | mail -s "Job finished" USUARIO@MAIL
+## real 6m52.298s #MUY EFICIENTE. Se prefirió la versión de GRASS 
+## para garantizar flujo de trabajo dentro de la base de datos.
+# GRASS GIS
+time r.geomorphon \
+  --overwrite --verbose \
+  elevation=dem_pseudo_ortometrico forms=geomorfonos search=25
+echo "r.geomorphon finalizado" | mail -s "Mensaje sobre r.geomorphon" USUARIO@MAIL
+## real	33m16.508s #MUY LENTO
+
+# Extraer depresiones desde geomorfonos
+r.mapcalc --overwrite \
+  expression="'depresiones_geomorfonos' = if(geomorfonos == 10, 1, null())"
+
+# Importar depresiones manualmente digitalizadas a base de datos de GRASS GIS
+v.import --overwrite input=depresiones_digitalizadas.gpkg \
+  output=depresiones_digitalizadas
+
+# Convertir depresiones digitalizadas manualmente a ráster
+v.to.rast --overwrite input=depresiones_digitalizadas \
+  type=area use=val output=depresiones_digitalizadas
+
+# Importa la capa de calizas con depresiones en RD (de Mapa Geológico 250K)
+v.import --overwrite input=calizas_con_depresiones.gpkg output=calizas_con_depresiones
+
+# Convertir la capa de calizas con depresiones a ráster
+v.to.rast --overwrite input=calizas_con_depresiones type=area \
+  use=val output=calizas_con_depresiones
+
+# Adjuntar depresiones digitalizadas manualmente con calizas
+r.mapcalc --overwrite \
+  expression="'depresiones_geomorfonos_calizas' = \
+              'depresiones_geomorfonos' * 'calizas_con_depresiones'"
+
+# Unir todas las depresiones en un único mapa
+r.patch --overwrite input=depresiones_geomorfonos_calizas,depresiones_digitalizadas \
+  output=depresiones_todas
+```
+
+```{r depresiones, echo=F, fig.cap='DEM ALOS PALSAR representado como mapa hipsómétrico (rojo y marrón representan terreno elevado, verde y azul claro terreno bajo) sobre relieve sombreado, mostrando el área de Guaraguao, Los Haitises, al sur del río Yuna (nordeste de República Dominicana). (A) sin mostrar depresiones, (B) mostrando depresiones en tonalidad azul oscuro'}
+knitr::include_graphics(paste(figuras, "depresiones.png", sep = '/'))
+```
+
+## Suplemento meotodológico para la subsección "Procesamiento de hidrología computacional" {.unnumbered}
+
+Las técnicas de hidrología computacional han experimentado una considerable transformación desde su origen en el siglo pasado hasta la actualidad, un proceso evolutivo al que han contribuido múltiples entidades y personas de manera directa [@quinn1991prediction; @freeman1991calculating; @ehlschlaeger1989using; @larson1991performing; @mccool1987revised; @metz2011efficient; @moore1991digital; @weltz1988revised; @holmgren1994multiple]. De manera particular, en las últimas dos décadas, se han realizado avances que han expandido el alcance y profundidad de la hidrología computacional como disciplina, abriendo nuevas fronteras de conocimiento y posibilitando abordajes más sofisticados y detallados de los fenómenos hídricos. En este proceso, GRASS GIS ha jugado un papel fundamental, pues no solo ha mantenido activo calendario de lanzamiento de versiones, sino que también ha ampliado, gracias a comunidad, el número de herramientas de forma significativa.
+
+Para realizar análisis de cuencas y redes de drenaje en GRASS GIS, el complemento por excelencia es `r.watershed` [@grassdev2022rwatershed], el cual ofrece la posibilidad de crear mapas de acumulación de flujo usando algoritmos avanzados, y facilita también la tarea de extraer *talwegs* y redes de drenaje, y delimitar cuencas. Alternativamente, en los casos en los que los que existe especial interés por el análisis de redes de drenaje y la jerarquía hidrográfica, se utiliza la familia de complementos `r.stream*` [@jasiewicz2011a]. Dentro de esta familia se encuentran `r.stream.extract` para generar la red, `r.stream.order` para calcular su jerarquía (requiere de los subproductos generados para la herramienta anterior), y `r.stream.basins` para crear cuencas hidrográficas en función de la jerarquía. En este sentido, debemos elegir apropiadamente entre `r.watershed` o la familia `r.stream*` según nuestras necesidades y objetivos, o usar ambos si nos interesan resultados combinados, pero tomando las debidas precauciones.
+
+Ambos complementos necesitan de dos mapas derivados para generar productos hidrológicos, los cuales pueden ser generados por ellos mismos; estos son el mapa de la red propiamente (`stream_rast`), y el de dirección de drenaje (`direction`). En este sentido, debe evitarse combinar mapas generados por algoritmos distintos para mantener la consistencia (por ejemplo, se desaconseja generar `stream_ras` con `r.watershed` y `direction` con `r.stream*`, y viceversa), por lo que se recomienda generar ambos mapas por medio del mismo algoritmo.
+
+Considerando que nuestro objetivo principal es la jerarquía de red, podíamos iniciar con `r.stream.extract` para generar los insumos para `r.stream.order`. Pero dado que este último requiere el mapa de acumulación flujo, el cual sólo es producido por `r.watershed`, generamos primero este mapa. Por lo tanto, sólo usamos `r.watershed` para obtener el mapa de acumulación que necesitamos en la aplicación de la familia `r.stream.*`.
+
+Previo al inicio de los análisis hidrológicos, aplicamos una máscara ajustada a la línea de costa y los límites fronterizos del país para evitar que las redes extraídas se extiendan al mar, y creamos una zona de influencia en el límite fronterizo para permitir la salida y entrada de flujo a través de este. Posteriormente, extrajimos el mapa de acumulación de flujo.
+
+```{bash, eval=F}
+# Importar máscara
+v.import --overwrite input=mascara-1km-solo-en-frontera.gpkg \
+  output=mascara_1km_solo_en_frontera
+# Fijar máscara (EJECUTAR SÓLO SI ES ESTRICTAMENTE NECESARIO, PUES TARDA MUCHO)
+r.mask -r
+r.mask vector=mascara_1km_solo_en_frontera
+
+# Acumulación de flujo
+time r.watershed --overwrite --verbose elevation=dem_tallado \
+ depression=depresiones_todas accumulation=rwshed_acum \
+ threshold=180 stream=rwshed_talwegs \
+ # El umbral 180 se usó en la extracción de una red de muestra, como forma de
+ # previsualizar una hidrografía inicial y no como red definitiva.
+ # Otras opciones posibles del addon son las siguientes (útiles en otras aplicaciones):
+ # drainage=rwshed_direccion_drenaje basin=rwshed_cuencas half_basin=rwshed_hemicuenca \
+ # tci=rwshed_tci spi=rwshed_spi \
+ # length_slope=rwshed_longitud_vertiente slope_steepness=rwshed_empinamiento \
+ # retention=rwshed_retencion_flujo max_slope_length=rwshed_max_longitud_vertiente \
+ memory=32000
+echo "r.watershed finalizado" | mail -s "Mensaje sobre r.watershed" USUARIO@MAIL
+## real 9m47.041s
+```
+
+```{r acumyredrwshed, echo=F, fig.cap='Mapa de acumulación de flujo generado con `r.watershed`. En cartela, detalle del mapa en la cuenca del río Yaque del Sur.'}
+knitr::include_graphics(paste(figuras, "acumulacion-flujo-y-red-rwshed.png", sep = '/'))
+```
+
+Usando como insumos el DEM y el mapa de acumulación producido por `r.watershed`, obtuvimos la red hidrográfica utilizando `r.stream.extract`. Esta etapa requirió la evaluación de umbrales de acumulación óptimos a través de inspección visual. El umbral de acumulación es un área de debate en hidrología computacional. Nos enfocamos en la evaluación de criterios para la extracción de *talwegs* en un sentido amplio, sin considerarlos como cursos fluviales permanentes. Reconocemos que la determinación de la permanencia fluvial requeriría un análisis detallado de las características individuales de cada cuenca, incluyendo aspectos como la pendiente, tamaño, litología y clima.
+
+Siguiendo las mejores prácticas, realizamos diversas ejecuciones del complemento `r.stream.extract` usando varios umbrales para identificar la red hidrográfica más adecuada en nuestra área de interés [@marchesini2021; @freeman1991calculating; @jasiewicz2011a]. Para seleccionar un umbral de acumulación óptimo, consideramos cuatro criterios: consistencia con estudios similares, suficiente densidad de red, evitar una generalización excesiva de la red, y prevenir una red demasiado densa que incluya áreas sin características hidrológicas mínimas. Dado que nuestro DEM tiene una resolución espacial de 12.5 m, examinamos diferentes umbrales para obtener una red hidrográfica adecuada. En `r.stream.extract`, optamos por los umbrales de acumulación de 180, 540 y 900 celdas, equivalentes a 3, 8 y 14 hectáreas de superficie, respectivamente. Estos umbrales están en línea con los utilizados en estudios que consultamos, donde se evaluaron áreas propensas a inundaciones y cuencas de captación [@freeman1991calculating; @marchesini2021].
+
+El código necesario para generar las distintas redes evaluadas lo implementamos mediante un bucle `for` en Bash para mayor eficiencia y consistencia en el procesamiento. Hicimos que el bucle iterara automáticamente sobre los tres umbrales de acumulación, usando los valores de umbral como iterador (`i={180..900..360}`, debe leerse como "itera desde 180 a 900 en incrementos de 360 enteros", resultando en los valores 180, 540 y 900), el cual pasamos como argumento del parámetro `threshold`. Finalmente, para cada red generada con los distintos umbrales, calculamos la longitud de cursos fluviales, actualizamos la base de datos de GRASS GIS y generamos un archivo de texto resumen que posteriormente importamos a R para obtener estadísticos básicos.
+
+```{bash, eval=F}
+# Extraer redes de drenaje para tres umbrales de acumulación distintos
+# En bucle
+for i in `echo {180..900..360}`; \
+  do echo -e "\nTRABAJANDO EL UMBRAL DE ACUMULACIÓN $i ...\n"; \
+  time r.stream.extract --overwrite elevation=dem_tallado accumulation=rwshed_acum \
+    depression=depresiones_todas threshold=$i \
+    stream_vector=rstream_talwegs_umbral_$i stream_raster=rstream_talwegs_umbral_$i \
+    direction=rstream_direccion_umbral_$i memory=32000; \
+  echo -e "r.stream.extract umbral $i finalizado" |\
+    mail -s "Mensaje sobre r.stream.extract" USUARIO@MAIL; \
+done
+## real 11m28.455s
+## real 11m26.908s
+## real 11m30.074s
+# Único umbral, para testing
+# time r.stream.extract --overwrite elevation=dem_tallado accumulation=rwshed_acum \
+#   depression=depresiones_todas threshold=64 \
+#   stream_vector=rstream_talwegs_umbral_64 stream_raster=rstream_talwegs_umbral_64 \
+#     direction=rstream_direccion_umbral_64 memory=32000
+# echo "Job finished" | mail -s "Job finished" USUARIO@MAIL
+## real	11m46.930s
+
+# Calcular estadisticos, y pasar a archivo
+for i in `echo {180..900..360}`; \
+  do v.to.db -p option=length map=rstream_talwegs_umbral_$i >\
+    stats_length_rstream_talwegs_umbral_$i.txt;
+done
+```
+
+```{r, message=F, warning=F}
+stats_rstream_talwegs <- sapply(as.character(c(180, 540, 900)), function(x) 
+  read_delim(paste0(dem_proc_dir, '/', 'stats_length_rstream_talwegs_umbral_', x, '.txt'),
+             progress = F, show_col_types = F), simplify = F)
+n_rstream_talwegs <- stats_rstream_talwegs %>% 
+  map(~ .x %>% filter(!cat==-1) %>% nrow) %>% unlist
+length_rstream_talwegs <- stats_rstream_talwegs %>%
+  map(~ .x %>% filter(!cat==-1) %>% pull(length) %>% sum/1000) %>% unlist
+```
+
+Evaluamos los resultados y recopilamos los estadísticos esenciales de cada red formada con los distintos umbrales. Para los umbrales de 180, 540 y 900 celdas, se obtuvieron **`r vector_a_lista(format(n_rstream_talwegs, scientific=F))` segmentos** correspondientemente, acumulando **`r vector_a_lista(format(length_rstream_talwegs, scientific=F, digits=1))` kilómetros** de longitud en cada caso. Para cada una de las redes, evaluamos el grado de alineación con nuestros criterios de selección de la red óptima, tras lo cual elegimos la red generada con el umbral de acumulación de 540 celdas. Sin embargo, mantuvimos las restantes en la base de datos y les aplicamos todos los subsiguientes algoritmos de análisis de hidrología computacional, hasta alcanzar los resultados finales.
+
+```{r redindiferenciada, echo=F, fig.cap='Red de drenaje extraída para tres umbrales de acumulación: (A) 180 celdas, equivalente a ~3 ha; (B) 540 celdas, equivalente a ~8 ha; (C) 900 celdas, equivalente a ~14 ha. La imagen de fondo es un relieve sombreado a partir de DEM ALOS PALSAR, mostrando el área de El Arroyazo en la reserva científica Ébano Verde (provincia La Vega, cordillera Central de República Dominicana)'}
+knitr::include_graphics(paste(figuras, "red-indiferenciada.png", sep = '/'))
+```
+
+Posteriormente, calculamos el orden jerárquico de la red hidrográfica, proceso que repetimos para cada uno de los umbrales de acumulación que definimos previamente, es decir, 180, 540 y 900 celdas. Al igual que en casos anteriores, utilizamos un bucle en Bash para iterar automáticamente sobre los tres umbrales de acumulación; en este caso, los valores del índice se correspondían con los sufijos de los mapas de entrada (`_$i`). El núcleo del bucle, en este caso, contiene la ejecución del complemento `r.stream.order` de GRASS GIS. Este complemento se invoca con una serie de argumentos que especifican los mapas de entrada y salida que se deben usar en el cálculo. De manera específica, le proporcionamos el mapa de *talwegs* o cursos (parámetro `stream_rast`), el mapa de dirección de drenaje (`direction`), el mapa de elevación (`elevation`), y el mapa de acumulación (`accumulation`), todos correspondientes al umbral de acumulación que está siendo procesado en cada iteración. Adicionalmente, especificamos los nombres de los mapas de salida que contienen el orden de red según los métodos de Strahler y Horton (argumentos `strahler` y `horton`) [@horton1945erosional; @strahler1957quantitative], así como el mapa de topología (`topo`) y el vectorial de salida (`stream_vect`).
+
+```{bash, eval=F}
+# Extraer orden de red
+# En bucle
+for i in `echo {180..900..360}`; \
+  do echo -e "\nTRABAJANDO EL UMBRAL DE ACUMULACIÓN $i ...\n"; \
+  time r.stream.order --overwrite stream_rast=rstream_talwegs_umbral_$i \
+    direction=rstream_direccion_umbral_$i \
+    elevation=dem_tallado accumulation=rwshed_acum \
+    stream_vect=rstream_orden_de_red_umbral_$i \
+    strahler=rstream_orden_strahler_de_red_umbral_$i \
+    horton=rstream_orden_horton_de_red_umbral_$i \
+    topo=topologia_orden_umbral_$i memory=32000; \
+  echo -e "r.stream.order umbral de acumulación $i finalizado" |\
+    mail -s "Mensaje sobre r.stream.order" USUARIO@MAIL; \
+done
+## real 1m34.983s
+## real 1m18.662s
+## real 1m14.986s
+# Aplicación de algoritmo con un único umbral, sólo para pruebas
+# time r.stream.order --overwrite \
+#     stream_rast=rstream_talwegs direction=rstream_direccion \
+#     elevation=dem_tallado accumulation=rwshed_acum stream_vect=order_todos \
+#     topo=topologia_orden memory=32000
+# echo "Job finished" | mail -s "Job finished" USUARIO@MAIL
+## real	
+```
+
+```{r redorden3umbrales, echo=F, fig.cap='Orden de red de Strahler para redes de drenaje generadas a partir de tres umbrales de acumulación: (A) 180 celdas, equivalente a ~3 ha; (B) 540 celdas, equivalente a ~8 ha; (C) 900 celdas, equivalente a ~14 ha. El área mostrada corresponde al río San Juan, afluente del río Yaque del Sur (vertiente sur de la cordillera Central de República Dominicana)'}
+knitr::include_graphics(paste(figuras, "red-orden.png", sep = '/'))
+```
+
+```{r redordenumbral180, echo=F, fig.cap='Orden de red de Strahler en el área del pico de la Viuda y Sabana Vieja, provincia San Juan (vertiente sur de la cordillera Central de República Dominicana). Esta red fue generada usando un umbral de acumulación de 180 celdas, equivalente a ~3 ha. De fondo, mapa topográfico nacional escala 1:50,000 y relieve sombreado'}
+knitr::include_graphics(paste(figuras, "red-orden-detalle-mtn.jpg", sep = '/'))
+```
+
+A continuación, delimitamos cuencas y subcuencas según la jerarquía de red, con independencia de si tratara de cuencas tributarias o no, para lo cual usamos el complemento `r.stream.basins` especificando la opción (*flag*) `-c`, que utiliza una secuencia única de categorías (en nuestro caso, órdenes) para delimitar las cuencas en lugar de flujos de entrada. En este caso, construimos un bucle `for` doble, anidando el orden de red dentro del umbral de acumulación. Así, para cada uno de los mapas de redes hidrográficas según los tres umbrales de acumulación, delimitamos las cuencas de cada uno de los órdenes de Strahler disponibles. Al utilizar el criterio orden de red, las unidades delimitadas por este procedimiento incluyen tanto cuencas completas como subcuencas (tributarias), por lo que la mayoría contiene redes de drenaje tributarias (ríos que desembocan en otros ríos).
+
+```{bash, eval=F}
+# Delimitar cuencas según jerarquía
+# En bucle
+for i in `echo {180..900..360}`; \
+  do for j in `echo {1..8..1}`; \
+    do echo -e "\nTRABAJANDO EL UMBRAL DE ACUMULACIÓN $i, orden $j...\n"; \
+    time r.stream.basins -c --overwrite direction=rstream_direccion_umbral_$i \
+      stream_rast=rstream_orden_strahler_de_red_umbral_$i cats=$j \
+      basins=rstream_cuencas_strahler_umbral_${i}_orden_$j memory=32000; \
+  done; \
+  echo -e "r.stream.basins umbral de acumulación $i finalizado" |\
+    mail -s "Mensaje sobre r.stream.basins" USUARIO@MAIL; \
+done
+## real ~ 0m40s repetido tantas veces como órdenes para cada umbral de acumulación
+```
+
+Posteriormente, delimitamos las cuencas con desembocadura en mares, lagos, lagunas o en pérdidas kársticas. En esta sección aplicamos el mismo complemento que en el paso anterior (`r.stream.basins`) en bucle doble anidado, pero en esta ocasión especificamos la opción `-l`. Es decir, delimitamos las cuencas completas, cuya red desemboca en el mar (exorreicas), o en lagos, lagunas y pérdidas del karst (endorreicas), y excluimos las subcuencas de redes tributarias (eg. red cuyo curso principal desemboca en otro río). Por lo tanto, se trata de cuencas propiamente en la acepción más formal del término, que significa que no existe---o no se conoce ni se puede detectar con información disponible---prolongación del drenaje superficial fuera de ellas.
+
+```{bash, eval=F}
+# Delimitar cuencas terminales
+# En bucle
+for i in `echo {180..900..360}`; \
+  do for j in `echo {1..8..1}`; \
+    do echo -e "\nTRABAJANDO EL UMBRAL DE ACUMULACIÓN $i, orden $j...\n"; \
+    time r.stream.basins -lc --overwrite direction=rstream_direccion_umbral_$i \
+      stream_rast=rstream_orden_strahler_de_red_umbral_$i cats=$j \
+      basins=rstream_cuencas_strahler_terminal_umbral_${i}_orden_$j memory=32000; \
+  done; \
+  echo -e "r.stream.basins umbral de acumulación $i finalizado" |\
+    mail -s "Mensaje sobre r.stream.basins" USUARIO@MAIL; \
+done
+## real ~ 0m40s repetido tantas veces como órdenes para cada umbral de acumulación
+```
+
+Finalmente, convertimos las cuencas a modelo de datos vectorial, pero para evitar agrandar la base de datos innecesariamente, elegimos sólo las cuencas generadas para el umbral de 540 celdas. Los vectoriales resultantes nos permitieron un mejor manejo de los datos para análisis y representación de la cuencas. Describimos el procedimiento detallado a continuación.
+
+Comenzamos la vectorización ejecutando un bucle para convertir cada capa ráster de cuencas terminales correspondiente a cada orden de red (desde 1 a 8) en un mapa vectorial de tipo área. Para realizar esta conversión, utilizamos el complemento `r.to.vect` de GRASS GIS, añadiendo también una nueva columna llamada `strahler` a la tabla de atributos de cada capa vectorial, que luego actualizamos con el valor del orden de red Strahler correspondiente. Después de procesar las cuencas de cada orden, fusionamos todas las capas vectoriales en una sola utilizando el complemento `v.patch`. Esto produjo una única capa vectorial conteniendo información sobre todas las cuencas terminales para todos los órdenes Strahler. Es importante aclarar que sólo fueron propiamente clasificadas como polígonos con de orden de red, aquellas las áreas del ráster que contaban con categorías asignadas (e.g. píxeles con valor 1 a 8), es decir, aquellas a las que el algoritmo `r.stream.basins` asignó un orden de red debidamente. Las áreas que formaban el fondo (e.g. píxeles con valor cero), que corresponden a espacios con drenaje hacia depresiones sin pertenencia a jerarquía alguna, conforman la capa "0" del mapa vectorial generado (`rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned 0`). Por esta razón, el mapa vectorial de cuencas generado, presenta espacios vacíos; si hiciera falta recuperar dichos espacios, bastaría con cargar la referida capa "0", tomando en consideración que sus elementos no cuentan con atributos aprovechables.
+
+Luego, limpiamos y preparamos los datos para el análisis. Primero, corregimos la topología y actualizamos el área de cada cuenca usando el complemento `v.clean`. Eliminamos las áreas inferiores a 200 metros cuadrados (cuencas espurias) para mejorar la calidad de los datos. Posteriormente, eliminamos los registros con un valor de área nulo (artefactos). Estas etapas de limpieza y preparación son críticas para garantizar la precisión y relevancia de nuestros resultados.
+
+Finalmente, seleccionamos las filas válidas---las que tenían un valor de categoría distinto de -1---de la tabla de atributos de nuestra capa vectorial final, y exportamos estos datos a un archivo de texto. Este archivo de texto contiene estadísticas del área para cada cuenca terminal según orden Strahler, lo cual nos proporcionó información valiosa para nuestro análisis posterior.
+
+```{bash, eval=F}
+for i in `echo {1..8..1}`; \
+  do r.to.vect --overwrite input=rstream_cuencas_strahler_terminal_umbral_540_orden_$i \
+  output=rstream_cuencas_strahler_terminal_umbral_540_orden_$i type=area; \
+  v.db.addcolumn rstream_cuencas_strahler_terminal_umbral_540_orden_$i \
+    columns="strahler int"; \
+  v.db.update rstream_cuencas_strahler_terminal_umbral_540_orden_$i \
+  col=strahler value=$i where="strahler IS NULL"; \
+done
+v.patch -e --overwrite \
+  input=`g.list type=v pattern='rstream_cuencas_strahler_terminal_umbral_540_orden_*' \
+    separator=comma` \
+  output=rstream_cuencas_strahler_terminal_umbral_540_todos
+
+# Calcular estadisticos, y pasar a archivo
+## Preparación de fuentes (corrección de topología >
+##                         actualización de área >
+##                         eliminar registros)
+v.clean --overwrite layer=1 input=rstream_cuencas_strahler_terminal_umbral_540_todos \
+  output=rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned \
+  tool=rmarea threshold=200
+v.to.db --overwrite option=area type=centroid columns=area \
+  map=rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned
+v.db.droprow rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned \
+  output=rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned_2 where="area IS NULL"
+g.rename --overwrite \
+  vector=rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned_2,\
+  rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned
+
+# Excluir cuencas strahler>=4 y area<=1e6
+v.db.droprow rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned \
+  output=rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned_2 \
+  where="strahler >= 4 and area <= 1e6"
+g.rename --overwrite \
+  vector=rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned_2,\
+  rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned
+
+## Generar tabla
+v.db.select --overwrite rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned \
+  where='cat!=-1' > stats_area_rstream_cuencas_strahler_terminal_umbral_540_todos.txt
+```
+
+```{r, message=F, warning=F}
+stats_rstream_cuencas_540 <- read_delim(
+  paste0(dem_proc_dir, '/',
+         'stats_area_rstream_cuencas_strahler_terminal_umbral_540_todos.txt'),
+  progress = F, show_col_types = F)
+rstream_cuencas_540_por_orden <- stats_rstream_cuencas_540 %>% 
+  rename(`Orden de red (Strahler)` = strahler) %>% 
+  group_by(`Orden de red (Strahler)`)  %>%
+  summarise(`Número de cuencas` = n(),
+            `Área promedio` = mean(area),
+            `Área total` = sum(area))
+```
+
+## Suplemento para la sección "Resultados"
+
+Realizamos análisis estadísticos de las cuencas terminales. Se necesita descargar el comprimido con los [datos del estudio](https://doi.org/10.5281/zenodo.8146391), colocar el directorio `gpkg-shp` en el directorio raíz de este repo. Como medida de seguridad, excluimos cuencas con orden de red cuatro o mayor y con área menor 1\ \textsuperscript{2}. Posteriormente, generamos un nuevo objeto de cuencas de orden cuatro o mayor para análisis focalizados.
+
+```{r}
+cuencas <- read_sf('gpkg-shp/rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned.gpkg')
+cuencas4mas <- cuencas[cuencas$strahler >= 4, ]
+```
 
 
 

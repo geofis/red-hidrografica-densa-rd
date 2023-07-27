@@ -3,7 +3,8 @@
 .RData
 .Ruserdata
 *_cache/
-alos-palsar-dem-rd
-out
+alos-palsar-dem-rd-original
+out-original
 R
 seleccion-sitios-red-de-estaciones-hidrometricas-suplemento-metodologico.Rmd
+gpkg-shp

@@ -109,7 +109,7 @@ partir de modelo digital de elevaciones de resolución media}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
-\usepackage{orcidlink} \usepackage{float} \usepackage[all]{nowidow} \usepackage[spanish]{babel} \usepackage{xcolor} \usepackage{tabu} \renewcommand\tablename{Tabla} \renewcommand\figurename{Figura} \newcommand{\beginsupplement}{ \setcounter{table}{0} \renewcommand{\thetable}{S\arabic{table}} \renewcommand\tablename{Tabla} \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}} \renewcommand\figurename{Figura} } \usepackage[hidelinks]{hyperref} \usepackage{xurl}
+\usepackage{orcidlink} \usepackage{float} \usepackage[all]{nowidow} \usepackage[spanish]{babel} \renewcommand\spanishtablename{Tabla} \usepackage{xcolor} \usepackage{tabu} \renewcommand\tablename{Tabla} \renewcommand\figurename{Figura} \newcommand{\beginsupplement}{ \setcounter{table}{0} \renewcommand{\thetable}{S\arabic{table}} \renewcommand\tablename{Tabla} \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}} \renewcommand\figurename{Figura} } \usepackage[hidelinks]{hyperref} \usepackage{xurl} \usepackage[left]{lineno} \linenumbers
 \begin{document}
 \maketitle
 
@@ -148,13 +148,13 @@ nacional a escala 1:50,000 (``MTN-50k'') (Instituto Cartográfico Militar
 necesarios para apoyar el análisis hidrológico. Por otro lado, los
 estudios técnicos y multitemáticos de ámbito subnacional desarrollados
 por el Instituto Nacional de Recursos Hidráulicos (INDRHI) de RD y otras
-entidades, aunque son valiosas fuentes de información, utilizan
-metodologías diversas, lo que limita la consolidación de una red
-hidrográfica coherente a nivel nacional (CIDIAT y INDRHI, 1992;
+entidades y autores, aunque son valiosas fuentes de información,
+utilizan metodologías diversas, lo que limita la consolidación de una
+red hidrográfica coherente a nivel nacional (CIDIAT y INDRHI, 1992;
 Halcrow-COR Ing. S.A., 2002; INDRHI, 1996, 2012; INDRHI y AQUATER, 2000;
-INDRHI y EPTISA, 2000; OEA y INDRHI, 1994; Rodríguez y Febrillet, 2006;
-Secretaría de Estado de Medio Ambiente y Recursos Naturales, 2004;
-SERCITEC y INDRHI, 2002).
+INDRHI y EPTISA, 2000; Martinez-Batlle, 2019; Martínez-Batlle, 2019; OEA
+y INDRHI, 1994; Rodríguez y Febrillet, 2006; Secretaría de Estado de
+Medio Ambiente y Recursos Naturales, 2004; SERCITEC y INDRHI, 2002)
 
 Adicionalmente, las redes hidrográficas derivadas de modelos digitales
 de elevaciones de baja resolución, como el Shuttle Radar Topography
@@ -210,18 +210,19 @@ de redes densas con énfasis en áreas de montaña.
 
 El propósito de este artículo es ofrecer nuevos datos para superar las
 limitaciones de las redes hidrográficas existentes, desarrollando una
-red densa de ríos, arroyos y cañadas---canales, talwegs---, con énfasis
-en áreas montañosas donde la precisión es crítica, utilizando como
-fuente el DEM servido con los productos ALOS PALSAR RTC de 12.5 metros
-de resolución espacial. Nuestro segundo objetivo es optimizar el DEM,
-reduciendo el ruido y asegurando su precisión hidrológica, a la vez que
-mantenemos los elementos morfológicos significativos del terreno. El
-tercer objetivo, no menos importante, es sistematizar el protocolo de
-procesamiento con una metodología explícita, generando una base de
-código abierto basada en software libre para el procesamiento de datos
-de elevación e hidrología computacional, que ofrezca a personas
-interesadas, especialmente a estudiantes, una referencia didáctica que
-pueda aplicarse a fuentes de elevación similares.
+red densa de ríos, arroyos y cañadas---canales, talwegs---con énfasis en
+áreas montañosas---donde las fuentes actualmente disponibles suelen
+mostrar una red dispersa---, utilizando como fuente el DEM servido con
+los productos ALOS PALSAR RTC de 12.5 metros de resolución espacial.
+Nuestro segundo objetivo es optimizar el DEM, reduciendo el ruido y
+asegurando su precisión hidrológica, a la vez que mantenemos los
+elementos morfológicos significativos del terreno. El tercer objetivo,
+no menos importante, es sistematizar el protocolo de procesamiento con
+una metodología explícita, generando una base de código abierto basada
+en software libre para el procesamiento de datos de elevación e
+hidrología computacional, que ofrezca a personas interesadas,
+especialmente a estudiantes, una referencia didáctica que pueda
+aplicarse a fuentes de elevación similares.
 
 Nuestro trabajo tiene potencial para suplir las demandas de información
 sobre hidrografía de resolución fina, que es un aspecto crucial en
@@ -229,13 +230,18 @@ muchos estudios de modelación, análisis de riesgos, morfometría de
 cuencas, entre otros. De manera particular, la hidrografía densa
 generada por nosotros es idónea para mejorar la red estaciones
 hidrométricas del país, la cual es limitada y afronta diversos desafíos
-como muchas redes de este tipo a nivel global. Asimismo, nuestro trabajo
-también podría contribuir información para acciones de conservación,
-planificación y gestión de los recursos hídricos a nivel nacional (Burn,
-1997; INDRHI, 2019; Mishra y Coulibaly, 2009; Mishra y Coulibaly, 2010).
-Además, los datos generados pueden ser de gran valor para un amplio
-rango de aplicaciones, incluyendo la planificación del uso del suelo, el
-diseño de infraestructuras, la gestión de cuencas hidrográficas y la
+de densidad de puntos y de operación, un común denominador en este tipo
+de redes globalmente. Nos enfocamos en la utilidad de una hidrografía
+sistemáticamente generada, no necesariamente en las métricas precisas,
+pues el modelo digital de elevaciones usado tiene error, y la
+información de terreno necesaria para conducir el flujo en áreas llanas,
+es insuficiente. Asimismo, nuestro trabajo también podría contribuir a
+aportar información para acciones de conservación, planificación y
+gestión de los recursos hídricos a nivel nacional (Burn, 1997; INDRHI,
+2019; Mishra y Coulibaly, 2009; Mishra y Coulibaly, 2010). Además, los
+datos generados pueden ser de gran valor para un amplio rango de
+aplicaciones, incluyendo la planificación del uso del suelo, el diseño
+de infraestructuras, la gestión de cuencas hidrográficas y la
 modelización de escorrentía y erosión. A medida que nos enfrentamos a
 los impactos del cambio climático y a la creciente escasez de agua,
 esperamos que este trabajo sirva como una contribución significativa
@@ -258,22 +264,22 @@ inconsistentes (García y Ojeda, 2011). Seleccionar el término apropiado
 para describir la unidad topográficamente deprimida por donde fluye o
 por donde podría circular el agua de escorrentía, es un desafío nada
 despreciable. Este reto se intensifica cuando el idioma introduce
-distintas connotaciones para términos similares, cuya traducción literal
-puede generar confusión (como ocurre con \emph{channel} y canal en
-inglés y español, respectivamente). (Anderson y Anderson, 2010;
+distintas connotaciones para términos similares, y donde la traducción
+podría prestarse a confusión---tal como ocurre con \emph{channel} y
+canal en inglés y español, respectivamente---(Anderson y Anderson, 2010;
 Charlton, 2010; Gutiérrez Elorza, 2009; Pedraza Gilsanz, 1996).
 
-Dado que las distintas acepciones y discrepancias en la terminología
-superan el alcance del presente trabajo, fijaremos los términos que
-utilizaremos de manera convencional. En este estudio, empleamos los
+La resolución de las discrepancias en la terminología supera el alcance
+del presente trabajo, por lo decidimos fijar los términos utilizados en
+el artículo de manera convencional. En este estudio, empleamos los
 términos \emph{talweg} y canal de forma indistinta para referimos a la
 unidad topográficamente deprimida por la que fluye, o podría fluir, la
 corriente. En geomorfología, utilizamos la voz germánica \emph{talweg}
 para referirnos a la línea imaginaria que traza la parte más baja de un
 valle, razón por la cual también la hemos incluido entre los términos
-usados (Foucault y Raoult, 1985). Es importante remarcar que nuestra
-definición convencional no siempre se refiere a un curso fluvial
-permanente, pues la circulación del agua está influenciada por múltiples
+genéricos usados (Foucault y Raoult, 1985). Es importante remarcar que
+nuestra definición convencional no siempre se refiere a un curso fluvial
+permanente, pues la circulación del agua es influenciada por múltiples
 factores. Asimismo, cabe destacar que, a esta unidad geomorfológica en
 sus distintas variantes hidrodinámicas y dimensionales, también se le
 conoce con múltiples nombres en República Dominicana (en orden de mayor
@@ -296,7 +302,7 @@ DEM}\label{obtenciuxf3n-y-preprocesamiento-del-dem}}
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=0.8\linewidth]{resumen-obtencion-preprocesamiento-dem} 
+{\centering \includegraphics[width=0.8\linewidth]{figuras/resumen-obtencion-preprocesamiento-dem} 
 
 }
 
@@ -304,20 +310,21 @@ DEM}\label{obtenciuxf3n-y-preprocesamiento-del-dem}}
 \end{figure}
 
 Iniciamos nuestro estudio valorando diversas herramientas para el
-procesamiento de los datos. Debido a la gran variedad de complementos
-que ofrece, junto con su alto rendimiento y la calidad de los resultados
-que proporciona, decidimos utilizar GRASS GIS v8.2.0 para realizar la
-mayor parte del procesamiento (Figura \ref{fig:obtencionpreprocdem}). La
+procesamiento de los datos (Figura \ref{fig:obtencionpreprocdem}).
+Debido a la gran variedad de complementos que ofrece, junto con su alto
+rendimiento y la calidad de los resultados que proporciona, decidimos
+utilizar GRASS GIS v8.2.0 para realizar la mayor parte del
+preprocesamiento del DEM (GRASS Development Team, 2023). La
 implementación de su interfaz de línea de comandos (e.g.~interfaz basada
 en texto), en nuestro caso Bash, garantizó la reproducibilidad de
 nuestros procedimientos. Nos auxiliamos también de la biblioteca
 GDAL/OGR, WhiteboxTools el entorno de programación estadística R y el
-lenguaje de programación Python (GDAL/OGR contributors, 2022; GRASS
-Development Team, 2023; Lindsay, 2018; R Core Team, 2023; Van Rossum y
-Drake, 2009). Nuestro enfoque de reproducibilidad asegura que, sin
-importar la fuente de datos empleada, el seguimiento del flujo de
-trabajo es viable, manteniendo la integridad y coherencia del proceso de
-análisis, sin menoscabo de la calidad del resultado final.
+lenguaje de programación Python (GDAL/OGR contributors, 2022; Lindsay,
+2018; R Core Team, 2023; Van Rossum y Drake, 2009). Nuestro enfoque de
+reproducibilidad asegura que, sin importar la fuente de datos empleada,
+el seguimiento del flujo de trabajo es viable, manteniendo la integridad
+y coherencia del proceso de análisis, sin menoscabo de la calidad del
+resultado final.
 
 Asimismo, para facilitar nuestra labor, utilizamos una serie de
 bibliotecas de R, además de funciones personalizadas escritas por
@@ -349,11 +356,11 @@ embargo, en el trabajo se utilizó el DEM sin preprocesar, lo cual
 seguramente afectó el detectado bajo rendimiento. Consideramos que, a
 pesar de los resultados de su comparativa, la alta resolución del DEM lo
 convierte en una excelente opción para la extracción de redes de
-drenaje, siempre que se apliquen filtros apropiados. Además, ASF señaló
-en su documentación (ASF DAAC, 2014; JAXA/METI y ASF DAAC, 2015) que el
-DEM usado en la RTC no es una fuente confiable de elevación, por lo que
-el resultado obtenido por Aziz y Rashwan (2022) era más bien el
-esperado.
+drenaje, siempre que se apliquen filtros apropiados (Ngula Niipele y
+Chen, 2019). Además, ASF señaló en su documentación (ASF DAAC, 2014;
+JAXA/METI y ASF DAAC, 2015) que el DEM usado en la RTC no es una fuente
+confiable de elevación, por lo que el resultado obtenido por Aziz y
+Rashwan (2022) era más bien el esperado.
 
 Para conformar un mosaico continuo del DEM de República Dominicana,
 seleccionamos y descargamos más de 40 escenas únicas de ALOS-PALSAR
@@ -433,12 +440,285 @@ sustancialmente alterado respecto del original, especialmente en las
 procesamiento con el DEM tallado por \texttt{r.mapcalc} (ver Figura
 \ref{fig:demtallado}).
 
+Finalmente, como último paso del preprocesamiento del DEM, aplicamos
+algoritmos para superponer depresiones al modelo, un paso esencial para
+dirigir la escorrentía y definir de forma coherente los límites de las
+cuencas y redes de drenaje. Utilizamos diversas fuentes para generar un
+conjunto de depresiones. Principalmente, a partir de la capa de
+litologías de la República Dominicana (Mollat et~al., 2004),
+identificamos las calizas con suficiente grado de karstificación.
+Además, utilizamos el complemento \texttt{r.geomorphon} para crear una
+capa de depresiones (Jasiewicz y Stepinski, 2013) (Figura
+\ref{fig:geomorfonosrd}), y digitalizamos manualmente algunas
+depresiones conocidas. Finalmente, intersectamos las tres fuentes de
+datos para producir una capa exhaustiva de las depresiones que capturan
+la escorrentía superficial (Figura \ref{fig:depresiones}).
+
 \hypertarget{procesamiento-de-hidrologuxeda-computacional}{%
 \subsection{Procesamiento de hidrología
 computacional}\label{procesamiento-de-hidrologuxeda-computacional}}
 
+\begin{figure}[H]
+
+{\centering \includegraphics[width=0.8\linewidth]{figuras/resumen-procesamiento-hidrologia-computacional} 
+
+}
+
+\caption{Resumen gráfico del procesamiento de hidrología computacional}\label{fig:procesamientohidrocompu}
+\end{figure}
+
+El avance en las técnicas de procesamiento de hidrología computacional
+ha permitido estudios cada vez más sofisticados de fenómenos hídricos,
+impulsado por las actualizaciones y herramientas disponibles hoy en día,
+entre las cuales destacan las de GRASS GIS (Ehlschlaeger, 1989; Freeman,
+1991; Holmgren, 1994; Larson et~al., 1991; McCool et~al., 1987; Metz
+et~al., 2011; Moore et~al., 1991; Quinn et~al., 1991; Weltz et~al.,
+1988). Por su potencial y múltiples complementos disponibles, todo el
+procesamiento de hidrología computacional lo desarrollamos en GRASS GIS
+(Figura \ref{fig:procesamientohidrocompu}).
+
+Antes de iniciar el procesamiento de hidrología computacional con GRASS
+GIS, aplicamos una máscara de país, delimitada por la línea de costa y a
+los límites fronterizos, para evitar que las redes se extendieran más
+allá de nuestra área de interés. Posteriormente, generamos el mapa de
+acumulación de flujo con el complemento \texttt{r.watershed} (GRASS
+Development Team, 2022d) (Figura \ref{fig:acumyredrwshed}), y utilizamos
+este mapa como fuente de los complementos de la familia
+\texttt{r.stream*} para el estudio de redes de drenaje y jerarquía
+hidrográfica (Jasiewicz y Metz, 2011). Dentro de esta familia se
+encuentran \texttt{r.stream.extract}, que usa el mapa de acumulación de
+flujo generado por \texttt{r.watershed} para extraer la red,
+\texttt{r.stream.order} para calcular la jerarquía hidrográfica, y
+\texttt{r.stream.basins} para crear cuencas hidrográficas en función de
+la referida jerarquía. En consecuencia, aplicamos estos algoritmos al
+DEM para generar la hidrografía dominicana jerarquizada y la
+delimitación de las cuencas según órdenes, proceso que sumarizamos a
+continuación.
+
+Empleando el DEM y el mapa de acumulación creado con
+\texttt{r.watershed}, generamos la red hidrográfica usando el
+complemento \texttt{r.stream.extract}, enfocándonos en la extracción de
+cursos indiferenciados, sin caracterización hidrodinámica, sólo
+morfológica (Freeman, 1991; Jasiewicz y Metz, 2011; Marchesini et~al.,
+2021). Basándonos en experiencia de terreno y estudios previos,
+seleccionamos umbrales de acumulación de 180, 540 y 900 celdas,
+equivalentes a 3, 8 y 14 hectáreas respectivamente (Freeman, 1991;
+Marchesini et~al., 2021). Automatizamos la generación de las redes con
+un bucle \texttt{for} en Bash, iterando sobre cada umbral de
+acumulación; para cada red generada (Figura
+\ref{fig:redindiferenciada}), actualizamos la base de datos y creamos un
+resumen con estadísticas básicas.
+
+Para determinar la red hidrográfica óptima de alta densidad de República
+Dominicana, realizamos una inspección visual de los tres resultados
+generados a partir de los umbrales de acumulación elegidos (Figura
+\ref{fig:redorden3umbrales}). Tras evaluar las redes, seleccionamos la
+obtenida con el umbral de 540 celdas, por ajustarse a nuestros criterios
+de selección. Sin embargo, para preservar la reproducibilidad de
+nuestros resultados y facilitar eventuales aplicaciones futuras,
+decidimos conservar todos las redes en la base de datos, incluyendo las
+originadas a partir de los umbrales de 180 y 900 celdas. En concreto, la
+red generada con el umbral 180 celdas, presenta un buen ajuste con las
+vaguadas topográficas marcadas en el mapa topográfico (Figura
+\ref{fig:redordenumbral180}).
+
+A continuación, con el complemento \texttt{r.stream.order} de GRASS GIS,
+calculamos la jerarquía de la red hidrográfica para cada uno de los
+umbrales de acumulación previamente establecidos (180, 540 y 900
+celdas), utilizando un bucle en Bash para automatizar el proceso. Este
+análisis permitió obtener la jerarquía de la red hidrográfica de acuerdo
+a los métodos de Strahler y Horton, ofreciendo información útil para
+nuestros objetivos (Horton, 1945; Strahler, 1957).
+
+Utilizando el complemento \texttt{r.stream.basins} de GRASS GIS,
+delimitamos las cuencas y subcuencas según la jerarquía de red para cada
+uno de los tres umbrales de acumulación. Este proceso permitió la
+delimitación de unidades que incluyen, de forma indiferenciada, tanto
+cuencas como subcuencas con redes de drenaje tributarias.
+Posteriormente, aplicamos el mismo complemento para delimitar las
+cuencas que desembocan en el mar, lagos, lagunas o pérdidas del karst,
+excluyendo las subcuencas tributarias (e.g.~cuencas sin prolongación de
+drenaje superficial fuera de ellas).
+
+Finalizamos el procesamiento de hidrología computacional seleccionando
+solo las cuencas generadas para el umbral de 540 celdas y las
+convertimos en un modelo de datos vectorial utilizando el complemento
+\texttt{r.to.vect} de GRASS GIS. Este procedimiento incluyó la creación
+y actualización de una nueva columna \texttt{strahler} en la tabla de
+atributos de cada capa vectorial para indicar el correspondiente orden
+de red. Después de procesar y fusionar todas las cuencas de cada orden
+en una única capa vectorial con \texttt{v.patch}, procedimos a limpiar y
+preparar los datos para el análisis. Este paso, que incluyó la
+corrección de topología, la actualización del área de cada cuenca con
+\texttt{v.clean}, la eliminación de áreas espurias y artefactos, resultó
+crítico para garantizar la precisión de nuestros resultados. Finalmente,
+seleccionamos los datos válidos y los exportamos a un archivo de texto,
+lo que nos proporcionó valiosas estadísticas del área para cada cuenca
+con desembocadura en mares, lagos o en pérdidas kársticas, según el
+orden Strahler para nuestro análisis posterior.
+
 \hypertarget{resultados}{%
 \section{Resultados}\label{resultados}}
+
+La base de datos de cuencas hidrográficas delimitadas y la red de
+drenaje extraída usando el umbral de acumulación de 540 celdas
+(\textasciitilde8 ha), se ajustó bien a nuestros criterios óptimos de
+selección. El modelo de red hidrográfica y la delimitación de cuencas
+demostró coherencia, suficiente detalle y una diversidad sustancial a lo
+largo del territorio dominicano, especialmente en las áreas de montaña,
+proporcionando una representación hidrográfica precisa sin atenuar
+patrones de variabilidad. Presentamos a continuación los principales
+hallazgos, en forma de resúmenes estadísticos, de las cuencas y sus
+redes de drenaje.
+
+\hypertarget{cuencas-que-desembocan-en-mares-lagos-lagunas-o-en-puxe9rdidas-kuxe1rsticas}{%
+\subsection{Cuencas que desembocan en mares, lagos, lagunas o en
+pérdidas
+kársticas}\label{cuencas-que-desembocan-en-mares-lagos-lagunas-o-en-puxe9rdidas-kuxe1rsticas}}
+
+En el caso de las cuencas que desembocan en mares, lagos, lagunas o en
+pérdidas kársticas, en total delimitamos 6941 cuencas hidrográficas
+(Figura \ref{fig:cuencasordenestodas}). Predominan cuencas de gran
+tamaño y anchura en los valles del Cibao y de San Juan, así como en la
+periferia de la plataforma kárstica sudoriental. Por otro lado, las
+cuencas medianas y de forma alargada con forma ligeramente ensanchada en
+cabecera, tienden a concentrarse a lo largo del borde meridional de la
+Cordillera Central y en el karst de la plataforma sudoriental. Las
+cuencas más pequeñas, en cambio, se distribuyen de manera más uniforme a
+través de los sistemas kársticos y zonas costeras. Entre todas las
+cuencas delimitadas, se alcanzó una jerarquía de red máxima de ocho,
+condición que sólo se observó en tres cuencas específicas: Yaque del
+Sur, Yuna y Ozama.
+
+La cuenca más extensa, correspondiente al río Yaque del Norte, cubre una
+superficie de 6986~km\textsuperscript{2}, aunque sólo alcanzó orden
+máximo de siete, seguida de las cuencas de los ríos Yuna
+(4873~km\textsuperscript{2}) y Yaque del Sur
+(4614~km\textsuperscript{2}), ambas con orden máximo de ocho (en la
+siguiente sección, discutimos sobre la discrepancia entre las
+superficies de cuencas obtenidas por nosotros y los tamaños publicados
+en referencias existentes). El tamaño promedio de las cuencas es de
+7~km\textsuperscript{2} y desviación estándar de
+129~km\textsuperscript{2}, reflejando la diversidad de las cuencas
+hidrográficas presentes en el país.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{figuras/cuencas-ordenes-todas} 
+
+}
+
+\caption{Cuencas según orden de Strahler de República Dominicana, y sus correspondientes redes de drenaje (sólo mostrando los cursos de orden 4 o superior). El umbral de acumulación usado para extraer la red fue de 540 celdas (aprox. 8 ha).}\label{fig:cuencasordenestodas}
+\end{figure}
+
+La mitad de las cuencas delimitadas tiene 0.36~km\textsuperscript{2} o
+menos de superficie, el 25\% de las cuencas más grandes apenas supera
+los 0.85~km\textsuperscript{2} y, de hecho, el 5\% más grande sólo
+alcanza 5.6~km\textsuperscript{2} o más. Por lo tanto, la distribución
+de las cuencas por tamaño presenta sesgo a la derecha (sesgo calculado,
+39.8), con un importante número de cuencas pequeñas y pocas grandes, un
+patrón bastante común en este tipo de conjunto de datos.
+
+\begin{table}[H]
+
+\caption{\label{tab:tablaordenesarea}Relación entre orden de red de Strahler y número de cuencas para el umbral de acumulación 540 celdas ($\sim$ 8 hectáreas)}
+\centering
+\begin{tabu} to \linewidth {>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X>{\raggedleft}X}
+\toprule
+Orden de red (Strahler) & Número de cuencas & Área promedio & Área total\\
+\midrule
+1 & 4070 & 263837.3 & 1073817672\\
+2 & 2029 & 956249.8 & 1940230776\\
+3 & 606 & 3911578.6 & 2370416619\\
+4 & 165 & 21414857.6 & 3533451511\\
+5 & 46 & 111125189.5 & 5111758717\\
+\addlinespace
+6 & 19 & 517463997.1 & 9831815945\\
+7 & 2 & 3979801647.7 & 7959603295\\
+8 & 4 & 3708474023.0 & 14833896092\\
+\bottomrule
+\end{tabu}
+\end{table}
+
+Los estadísticos básicos de cuenca sugieren que los resultados obtenidos
+fueron consistentes, pues observamos el típico decrecimiento exponencial
+del número de cuencas en relación con el orden de red (ver Figura
+\ref{fig:ordennumcuencas} y Tabla \ref{tab:tablaordenesarea}). En
+segundo lugar, destaca un hecho particular reseñable: el número de
+cuencas de orden siete es menor que el número de cuencas de orden ocho,
+un hecho que afecta a la cuenca del Yaque del Norte que, con
+independencia de su gran tamaño, no alcanza la jerarquía máxima.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{preprint_files/figure-latex/ordennumcuencas-1} 
+
+}
+
+\caption{Número de cuencas por órdenes de red de Strahler para el umbral de acumulación 540 celdas ($\sim$8 hectáreas)}\label{fig:ordennumcuencas}
+\end{figure}
+
+Una caracterización de las cuencas que alcanzan un orden cuatro o mayor
+resulta también oportuna en este caso, dado que las cuencas de orden de
+red inferior son muy numerosas y, por la naturaleza del DEM empleado, la
+delimitación de las cuencas pequeñas es más propensa a error. Así,
+enfocando nuestro análisis sólo en las cuencas de orden cuatro o mayor,
+encontramos algunos patrones de interés que merecen mención.
+
+Contabilizamos 235 cuencas de orden cuatro y mayor, lo que representa un
+3.39\% del total nacional. Sin embargo, este pequeño porcentaje
+representa, en términos de superficie, el 88.5\% del área total de
+cuencas. En este subconjunto encontramos un tamaño mínimo de
+2.37~km\textsuperscript{2}, promedio de 176~km\textsuperscript{2} y
+desviación estándar de 129~km\textsuperscript{2}. La mitad de las
+cuencas de orden cuatro y mayor 25.68~km\textsuperscript{2} o menos de
+superficie y, aunque este subconjunto de cuencas tiene mejor
+distribución, el sesgo a la derecha persiste (sesgo calculado 7.23).
+
+\hypertarget{cuencas-y-subcuencas}{%
+\subsection{Cuencas y subcuencas}\label{cuencas-y-subcuencas}}
+
+Analizando las cuencas considerando sólo el orden de su red,
+
+\hypertarget{red-de-drenaje}{%
+\subsection{Red de drenaje}\label{red-de-drenaje}}
+
+La longitud total de \emph{talwegs} obtenidos es de \#\#\# kilómetros,
+con el río más largo extendiéndose por \#\#\# kilómetros. Este nivel de
+detalle en la cartografía de ríos y corrientes supera significativamente
+a los modelos previos existentes, permitiendo una mejor comprensión y
+análisis de los patrones de flujo de agua en la República Dominicana
+(Figura \ref{fig:redordennacional}).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{figuras/red-orden-nacional} 
+
+}
+
+\caption{Representación de la red hidrográfica dominicana simbolizando el grosor de los segmentos en función de su orden de red (método de Strahler). El orden máximo alcanzado fue de 8. Esta red fue generada usando un umbral de acumulación de 540 celdas ($\sim$8 ha)}\label{fig:redordennacional}
+\end{figure}
+
+En cuanto a la jerarquía de la red, se observó un rango desde \#\#\# (la
+menor jerarquía) hasta \#\#\# (la mayor jerarquía), lo que indica una
+diversidad significativa en la configuración de las corrientes de agua.
+Esta jerarquía hidrográfica proporciona información valiosa para
+comprender la estructura y el funcionamiento de las cuencas.
+
+Además, la inclusión de las redes generadas con los umbrales de 180 y
+900 celdas en la base de datos añade un nivel adicional de detalle y
+versatilidad, ofreciendo diversas opciones para futuros estudios o
+aplicaciones que requieran diferentes niveles de resolución. Cabe
+mencionar que la red generada con un umbral de 180 celdas resultó en la
+mayor cantidad de cuencas hidrográficas identificadas, mientras que la
+red generada con el umbral de 900 celdas proporcionó las
+representaciones más simplificadas de las cuencas.
+
+En cuanto a la distribución de cursos según jerarquía hidrográfica, la
+red generada con el umbral de 8 hectáreas alcanzó un orden máximo de 8
+según los métodos de Strahler y Horton. Tanto la distribución del número
+de cursos como la suma de longitudes según órdenes jerárquicos,
+presentan un relación inversa exponencial.
 
 \hypertarget{discusiuxf3n}{%
 \section{Discusión}\label{discusiuxf3n}}
@@ -455,7 +735,21 @@ investigaciones lo siguiente:
 \item
   Evaluación de precisión de la elevación.
 \item
-  Mejora de la hidrografía de las áreas llanas.
+  Nuestro interés gira en torno a la aplicabilidad de la hidrografía
+  sistemáticamente generada, no necesariamente a las métricas, pues el
+  modelo digital de elevaciones usado tiene error, y la información de
+  terreno es insuficiente.
+\item
+  El drenaje en las áreas de desembocadura, especialmente en los casos
+  de Yuna y Yaque de Sur.
+\item
+  Morfometría de redes y morfometría de cuencas, para próximos trabajos.
+\item
+  Mejora de la hidrografía de las áreas llanas (esperaremos mejores
+  fuentes de elevación, e.g.~TanDEM-X)
+\item
+  Las diferencias en cuanto a superficie de las cuencas, e.g.~Yuna y
+  Yaque del Sur.
 \item
   Análisis hortonianos exhaustivos.
 \item
@@ -494,14 +788,6 @@ investigaciones lo siguiente:
   de verificación tomados con GNSS.
 \end{itemize}
 
-\hypertarget{financiamiento}{%
-\section*{Financiamiento}\label{financiamiento}}
-\addcontentsline{toc}{section}{Financiamiento}
-
-Esta investigación recibió financiamiento del Banco Interamericano de
-Desarrollo (BID), y fue apoyado por la ONG Guakía Ambiente y la
-Universidad Autónoma de Santo Domingo (UASD).
-
 \hypertarget{declaraciuxf3n-de-conflicto-de-intereses}{%
 \section*{Declaración de conflicto de
 intereses}\label{declaraciuxf3n-de-conflicto-de-intereses}}
@@ -511,8 +797,10 @@ El autor y la autora de este artículo declaran que no tienen ningún
 conflicto de interés con el contenido de este artículo.
 
 \hypertarget{disponibilidad-de-datos-scripts-y-cuxf3digo}{%
-\section{Disponibilidad de datos, scripts y
+\section*{Disponibilidad de datos, scripts y
 código}\label{disponibilidad-de-datos-scripts-y-cuxf3digo}}
+\addcontentsline{toc}{section}{Disponibilidad de datos, scripts y
+código}
 
 Los datos que respaldan los hallazgos de este estudio están disponibles
 abiertamente en Zenodo en \url{https://doi.org/10.5281/zenodo.8146391}
@@ -530,15 +818,12 @@ sección, así como en el repositorio de GitHub en
 
 \beginsupplement
 
-\hypertarget{suplemento-para-la-secciuxf3n-materiales-y-muxe9todos}{%
-\subsection*{Suplemento para la sección Materiales y
-Métodos}\label{suplemento-para-la-secciuxf3n-materiales-y-muxe9todos}}
-\addcontentsline{toc}{subsection}{Suplemento para la sección Materiales
-y Métodos}
-
-\hypertarget{obtenciuxf3n-y-preprocesamiento-del-dem-1}{%
-\subsubsection{Obtención y Preprocesamiento del
-DEM}\label{obtenciuxf3n-y-preprocesamiento-del-dem-1}}
+\hypertarget{suplemento-metodoluxf3gico-para-la-subsecciuxf3n-obtenciuxf3n-y-preprocesamiento-del-dem}{%
+\subsection*{Suplemento metodológico para la subsección ``Obtención y
+Preprocesamiento del
+DEM''}\label{suplemento-metodoluxf3gico-para-la-subsecciuxf3n-obtenciuxf3n-y-preprocesamiento-del-dem}}
+\addcontentsline{toc}{subsection}{Suplemento metodológico para la
+subsección ``Obtención y Preprocesamiento del DEM''}
 
 Los siguientes bloques de código cargan los paquetes de uso común a lo
 largo de este cuaderno, así como funciones creadas por nosotros para
@@ -556,8 +841,10 @@ en distintas partes del código.
 \FunctionTok{library}\NormalTok{(kableExtra)}
 \FunctionTok{library}\NormalTok{(tidyverse)}
 \FunctionTok{library}\NormalTok{(gdalUtilities)}
+\FunctionTok{library}\NormalTok{(e1071)}
 \FunctionTok{source}\NormalTok{(}\StringTok{\textquotesingle{}R/funciones.R\textquotesingle{}}\NormalTok{)}
-\NormalTok{dem\_proc\_dir }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}alos{-}palsar{-}dem{-}rd/dem/\textquotesingle{}}
+\NormalTok{dem\_proc\_dir }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}estadisticos\textquotesingle{}}
+\NormalTok{figuras }\OtherTok{\textless{}{-}} \StringTok{\textquotesingle{}figuras\textquotesingle{}}
 \end{Highlighting}
 \end{Shaded}
 
@@ -851,7 +1138,7 @@ nuestra preferencia.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{out/dem-sin-procesar} 
+{\centering \includegraphics[width=0.8\linewidth]{figuras/dem-sin-procesar} 
 
 }
 
@@ -880,7 +1167,7 @@ polinomios).
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{out/dem-relleno} 
+{\centering \includegraphics[width=0.8\linewidth]{figuras/dem-relleno} 
 
 }
 
@@ -920,7 +1207,7 @@ GRASS GIS para continuar el procesamiento en dicha aplicación.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{out/dem-suavizado} 
+{\centering \includegraphics[width=0.8\linewidth]{figuras/dem-suavizado} 
 
 }
 
@@ -1014,7 +1301,7 @@ Geográfico Nacional, 2022).
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{out/perfiles-dem/los-patos} 
+{\centering \includegraphics[width=0.8\linewidth]{figuras/perfiles-dem/los-patos} 
 
 }
 
@@ -1047,7 +1334,7 @@ ríos seleccionados de la cordillera Septentrional.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{out/red-cursos-largos} 
+{\centering \includegraphics[width=0.8\linewidth]{figuras/red-cursos-largos} 
 
 }
 
@@ -1080,7 +1367,7 @@ presencia de los embalses.
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{stats\_red\_mtn50k\_largos }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}
-  \FunctionTok{paste0}\NormalTok{(dem\_proc\_dir,}
+  \FunctionTok{paste0}\NormalTok{(dem\_proc\_dir, }\StringTok{\textquotesingle{}/\textquotesingle{}}\NormalTok{,}
          \StringTok{\textquotesingle{}stats\_length\_red\_mtn50k\_cleaned\_largos.txt\textquotesingle{}}\NormalTok{),}
   \AttributeTok{progress =}\NormalTok{ F, }\AttributeTok{show\_col\_types =}\NormalTok{ F)}
 \NormalTok{n\_seg\_red\_mtn50k\_largos }\OtherTok{\textless{}{-}}\NormalTok{ stats\_red\_mtn50k\_largos }\SpecialCharTok{\%\textgreater{}\%}
@@ -1185,7 +1472,7 @@ donde circula la red quedaron con una profundidad equivalente al rango.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.8\linewidth]{out/dem-sin-tallar-tallado} 
+{\centering \includegraphics[width=0.8\linewidth]{figuras/dem-sin-tallar-tallado} 
 
 }
 
@@ -1212,13 +1499,23 @@ GRASS GIS en los siguientes pasos de nuestro flujo de trabajo.
 \NormalTok{ format=GTiff type=Float64 output=dem\_pseudo\_ortometrico.tif}
 \BuiltInTok{echo} \StringTok{"Job finished"} \KeywordTok{|} \ExtensionTok{mail} \AttributeTok{{-}s} \StringTok{"Job finished"}\NormalTok{ USUARIO@MAIL}
 \CommentTok{\#\# real 1m0.248s}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{\# Exportar red\_mtn50k\_cleaned\_largos.gpkg a shapefile}
-\ExtensionTok{ogr2ogr}\ErrorTok{(}
-  \ExtensionTok{src\_datasource\_name}\NormalTok{ = }\StringTok{\textquotesingle{}/media/jose/datos/alos{-}palsar{-}dem{-}rd/dem/red\_mtn50k\_cleaned\_largos.gpkg\textquotesingle{}}\NormalTok{,}
-  \ExtensionTok{dst\_datasource\_name}\NormalTok{ = }\StringTok{\textquotesingle{}/media/jose/datos/alos{-}palsar{-}dem{-}rd/dem/red\_mtn50k\_cleaned\_largos.shp\textquotesingle{}}\NormalTok{,}
-  \VariableTok{verbose}\OperatorTok{=}\NormalTok{TRUE}\KeywordTok{)}
+\FunctionTok{ogr2ogr}\NormalTok{(}
+  \AttributeTok{src\_datasource\_name =} \FunctionTok{paste0}\NormalTok{(}\StringTok{\textquotesingle{}/media/jose/datos/alos{-}palsar{-}dem{-}rd/\textquotesingle{}}\NormalTok{,}
+                               \StringTok{\textquotesingle{}dem/red\_mtn50k\_cleaned\_largos.gpkg\textquotesingle{}}\NormalTok{),}
+  \AttributeTok{dst\_datasource\_name =} \FunctionTok{paste0}\NormalTok{(}\StringTok{\textquotesingle{}/media/jose/datos/alos{-}palsar{-}dem{-}rd/\textquotesingle{}}\NormalTok{,}
+                               \StringTok{\textquotesingle{}dem/red\_mtn50k\_cleaned\_largos.shp\textquotesingle{}}\NormalTok{),}
+  \AttributeTok{verbose=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
+\begin{Shaded}
+\begin{Highlighting}[]
 \CommentTok{\# Tallar con WBT}
 \BuiltInTok{time}\NormalTok{ \textasciitilde{}/WhiteboxTools\_linux\_amd64/WBT/whitebox\_tools }\DataTypeTok{\textbackslash{}}
   \AttributeTok{{-}{-}wd}\OperatorTok{=}\StringTok{\textquotesingle{}/media/jose/datos/alos{-}palsar{-}dem{-}rd/dem/\textquotesingle{}} \DataTypeTok{\textbackslash{}}
@@ -1233,14 +1530,578 @@ GRASS GIS en los siguientes pasos de nuestro flujo de trabajo.
 \end{Highlighting}
 \end{Shaded}
 
-A continuación, aplicamos algoritmos de grabado de depresiones \ldots{}
-\ldots{} \ldots{}
+A continuación, implementamos algoritmos para superponer depresiones
+sobre el Modelo Digital de Elevación (DEM). Este paso es esencial para
+guiar el flujo de agua a través de las depresiones, en los lugares donde
+éstas sean presentes. Es importante tener en cuenta que sólo se deben
+superponer aquellas depresiones que tengan la capacidad de capturar la
+escorrentía superficial, como los ponores o pérdidas, ya que son estos
+elementos los que condicionarán la hidrología en su entorno. El proceso
+de superposición de depresiones es fundamental para obtener límites de
+cuencas y redes de drenaje coherentes.
 
-\hypertarget{procesamiento-de-hidrologuxeda-computacional-1}{%
-\subsubsection{Procesamiento de hidrología
-computacional}\label{procesamiento-de-hidrologuxeda-computacional-1}}
+Para generar un conjunto de depresiones, utilizamos la capa de
+litologías de la República Dominicana, proporcionada por Mollat et~al.
+(2004). A partir de este recurso, identificamos y separamos las calizas
+que presentaban un grado de karstificación suficiente, basándonos en
+nuestra experiencia de campo. Además, creamos una capa de depresiones
+empleando el complemento \texttt{r.geomorphon} y utilizando el DEM como
+insumo, según el método propuesto por Jasiewicz y Stepinski (2013).
+También digitalizamos manualmente algunas depresiones cuya ubicación ya
+conocíamos a partir de nuestra experiencia en el terreno. Finalmente,
+realizamos una intersección de las tres fuentes de datos para producir
+una capa exhaustiva que refleja las depresiones capaces de capturar el
+flujo superficial.
 
-El próximo paso consistió en
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{figuras/geomorfonos-de-rd} 
+
+}
+
+\caption{"Geomórfonos" de República Dominicana generados a partir de DEM ALOS PALSAR. En cartela, detalle del cañón del río Payabo}\label{fig:geomorfonosrd}
+\end{figure}
+
+No obstante, nuestro resultado debe tomarse con cautela en el relieve
+kárstico. Como bien es sabido, no todas las calizas representadas en la
+geología dominicana están lo suficientemente karstificadas como para
+desarrollar depresiones. Por esta razón, usamos la capa de calizas a
+discreción, y sólo conservamos aquellos afloramientos de calizas en los
+que, desde nuestro conocimiento de terreno, no se evidenciaba
+escorrentía superficial. Asimismo, reservamos aquellas calizas donde
+encontramos evidencia de depresiones en la topografía detallada y en
+imágenes satelitales. No obstante, gran parte de este trabajo se realizó
+manualmente, por lo que nuestra colección de dolinas tiene suficiente
+precisión, pero no es exhaustiva. Además, es virtualmente imposible
+identificar todas las depresiones que funcionan como pérdidas en
+imágenes satelitales o en mapas topográficos y geológicos. Finalmente,
+un elemento adicional complica aún más las cosas en los relieves
+kársticos: muchas pérdidas no ocurren a través de una depresión
+topográficamente visible, pues gran parte de la infiltración se produce
+a través de fracturas en la roca, pasando al endokarst y a la zona
+vadosa de manera ``silenciosa'', sin que veamos desde el aire la típica
+morfología deprimida (e.g.~dolina).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear geomórfonos}
+\CommentTok{\# WBT}
+\CommentTok{\# time \textasciitilde{}/WhiteboxTools\_linux\_amd64/WBT/whitebox\_tools \textbackslash{}}
+\CommentTok{\#   {-}r=Geomorphons {-}v {-}{-}wd=\textquotesingle{}/media/jose/datos/alos{-}palsar{-}dem{-}rd/dem/\textquotesingle{} \textbackslash{}}
+\CommentTok{\#   {-}{-}dem=dem\_tallado.tif {-}o=geomorfonos.tif {-}{-}search=25 \textbackslash{}}
+\CommentTok{\#   {-}{-}threshold=0 {-}{-}tdist=0.0 {-}{-}forms}
+\CommentTok{\# echo "Job finished" | mail {-}s "Job finished" USUARIO@MAIL}
+\CommentTok{\#\# real 6m52.298s \#MUY EFICIENTE. Se prefirió la versión de GRASS }
+\CommentTok{\#\# para garantizar flujo de trabajo dentro de la base de datos.}
+\CommentTok{\# GRASS GIS}
+\BuiltInTok{time}\NormalTok{ r.geomorphon }\DataTypeTok{\textbackslash{}}
+  \AttributeTok{{-}{-}overwrite} \AttributeTok{{-}{-}verbose} \DataTypeTok{\textbackslash{}}
+\NormalTok{  elevation=dem\_pseudo\_ortometrico forms=geomorfonos search=25}
+\BuiltInTok{echo} \StringTok{"r.geomorphon finalizado"} \KeywordTok{|} \ExtensionTok{mail} \AttributeTok{{-}s} \StringTok{"Mensaje sobre r.geomorphon"}\NormalTok{ USUARIO@MAIL}
+\CommentTok{\#\# real 33m16.508s \#MUY LENTO}
+
+\CommentTok{\# Extraer depresiones desde geomorfonos}
+\ExtensionTok{r.mapcalc} \AttributeTok{{-}{-}overwrite} \DataTypeTok{\textbackslash{}}
+\NormalTok{  expression=}\StringTok{"\textquotesingle{}depresiones\_geomorfonos\textquotesingle{} = if(geomorfonos == 10, 1, null())"}
+
+\CommentTok{\# Importar depresiones manualmente digitalizadas a base de datos de GRASS GIS}
+\ExtensionTok{v.import} \AttributeTok{{-}{-}overwrite}\NormalTok{ input=depresiones\_digitalizadas.gpkg }\DataTypeTok{\textbackslash{}}
+\NormalTok{  output=depresiones\_digitalizadas}
+
+\CommentTok{\# Convertir depresiones digitalizadas manualmente a ráster}
+\ExtensionTok{v.to.rast} \AttributeTok{{-}{-}overwrite}\NormalTok{ input=depresiones\_digitalizadas }\DataTypeTok{\textbackslash{}}
+\NormalTok{  type=area use=val output=depresiones\_digitalizadas}
+
+\CommentTok{\# Importa la capa de calizas con depresiones en RD (de Mapa Geológico 250K)}
+\ExtensionTok{v.import} \AttributeTok{{-}{-}overwrite}\NormalTok{ input=calizas\_con\_depresiones.gpkg output=calizas\_con\_depresiones}
+
+\CommentTok{\# Convertir la capa de calizas con depresiones a ráster}
+\ExtensionTok{v.to.rast} \AttributeTok{{-}{-}overwrite}\NormalTok{ input=calizas\_con\_depresiones type=area }\DataTypeTok{\textbackslash{}}
+\NormalTok{  use=val output=calizas\_con\_depresiones}
+
+\CommentTok{\# Adjuntar depresiones digitalizadas manualmente con calizas}
+\ExtensionTok{r.mapcalc} \AttributeTok{{-}{-}overwrite} \DataTypeTok{\textbackslash{}}
+\NormalTok{  expression=}\StringTok{"\textquotesingle{}depresiones\_geomorfonos\_calizas\textquotesingle{} = }\DataTypeTok{\textbackslash{}}
+\StringTok{              \textquotesingle{}depresiones\_geomorfonos\textquotesingle{} * \textquotesingle{}calizas\_con\_depresiones\textquotesingle{}"}
+
+\CommentTok{\# Unir todas las depresiones en un único mapa}
+\ExtensionTok{r.patch} \AttributeTok{{-}{-}overwrite}\NormalTok{ input=depresiones\_geomorfonos\_calizas,depresiones\_digitalizadas }\DataTypeTok{\textbackslash{}}
+\NormalTok{  output=depresiones\_todas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{figuras/depresiones} 
+
+}
+
+\caption{DEM ALOS PALSAR representado como mapa hipsómétrico (rojo y marrón representan terreno elevado, verde y azul claro terreno bajo) sobre relieve sombreado, mostrando el área de Guaraguao, Los Haitises, al sur del río Yuna (nordeste de República Dominicana). (A) sin mostrar depresiones, (B) mostrando depresiones en tonalidad azul oscuro}\label{fig:depresiones}
+\end{figure}
+
+\hypertarget{suplemento-meotodoluxf3gico-para-la-subsecciuxf3n-procesamiento-de-hidrologuxeda-computacional}{%
+\subsection*{Suplemento meotodológico para la subsección ``Procesamiento
+de hidrología
+computacional''}\label{suplemento-meotodoluxf3gico-para-la-subsecciuxf3n-procesamiento-de-hidrologuxeda-computacional}}
+\addcontentsline{toc}{subsection}{Suplemento meotodológico para la
+subsección ``Procesamiento de hidrología computacional''}
+
+Las técnicas de hidrología computacional han experimentado una
+considerable transformación desde su origen en el siglo pasado hasta la
+actualidad, un proceso evolutivo al que han contribuido múltiples
+entidades y personas de manera directa (Ehlschlaeger, 1989; Freeman,
+1991; Holmgren, 1994; Larson et~al., 1991; McCool et~al., 1987; Metz
+et~al., 2011; Moore et~al., 1991; Quinn et~al., 1991; Weltz et~al.,
+1988). De manera particular, en las últimas dos décadas, se han
+realizado avances que han expandido el alcance y profundidad de la
+hidrología computacional como disciplina, abriendo nuevas fronteras de
+conocimiento y posibilitando abordajes más sofisticados y detallados de
+los fenómenos hídricos. En este proceso, GRASS GIS ha jugado un papel
+fundamental, pues no solo ha mantenido activo calendario de lanzamiento
+de versiones, sino que también ha ampliado, gracias a comunidad, el
+número de herramientas de forma significativa.
+
+Para realizar análisis de cuencas y redes de drenaje en GRASS GIS, el
+complemento por excelencia es \texttt{r.watershed} (GRASS Development
+Team, 2022d), el cual ofrece la posibilidad de crear mapas de
+acumulación de flujo usando algoritmos avanzados, y facilita también la
+tarea de extraer \emph{talwegs} y redes de drenaje, y delimitar cuencas.
+Alternativamente, en los casos en los que los que existe especial
+interés por el análisis de redes de drenaje y la jerarquía hidrográfica,
+se utiliza la familia de complementos \texttt{r.stream*} (Jasiewicz y
+Metz, 2011). Dentro de esta familia se encuentran
+\texttt{r.stream.extract} para generar la red, \texttt{r.stream.order}
+para calcular su jerarquía (requiere de los subproductos generados para
+la herramienta anterior), y \texttt{r.stream.basins} para crear cuencas
+hidrográficas en función de la jerarquía. En este sentido, debemos
+elegir apropiadamente entre \texttt{r.watershed} o la familia
+\texttt{r.stream*} según nuestras necesidades y objetivos, o usar ambos
+si nos interesan resultados combinados, pero tomando las debidas
+precauciones.
+
+Ambos complementos necesitan de dos mapas derivados para generar
+productos hidrológicos, los cuales pueden ser generados por ellos
+mismos; estos son el mapa de la red propiamente (\texttt{stream\_rast}),
+y el de dirección de drenaje (\texttt{direction}). En este sentido, debe
+evitarse combinar mapas generados por algoritmos distintos para mantener
+la consistencia (por ejemplo, se desaconseja generar
+\texttt{stream\_ras} con \texttt{r.watershed} y \texttt{direction} con
+\texttt{r.stream*}, y viceversa), por lo que se recomienda generar ambos
+mapas por medio del mismo algoritmo.
+
+Considerando que nuestro objetivo principal es la jerarquía de red,
+podíamos iniciar con \texttt{r.stream.extract} para generar los insumos
+para \texttt{r.stream.order}. Pero dado que este último requiere el mapa
+de acumulación flujo, el cual sólo es producido por
+\texttt{r.watershed}, generamos primero este mapa. Por lo tanto, sólo
+usamos \texttt{r.watershed} para obtener el mapa de acumulación que
+necesitamos en la aplicación de la familia \texttt{r.stream.*}.
+
+Previo al inicio de los análisis hidrológicos, aplicamos una máscara
+ajustada a la línea de costa y los límites fronterizos del país para
+evitar que las redes extraídas se extiendan al mar, y creamos una zona
+de influencia en el límite fronterizo para permitir la salida y entrada
+de flujo a través de este. Posteriormente, extrajimos el mapa de
+acumulación de flujo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Importar máscara}
+\ExtensionTok{v.import} \AttributeTok{{-}{-}overwrite}\NormalTok{ input=mascara{-}1km{-}solo{-}en{-}frontera.gpkg }\DataTypeTok{\textbackslash{}}
+\NormalTok{  output=mascara\_1km\_solo\_en\_frontera}
+\CommentTok{\# Fijar máscara (EJECUTAR SÓLO SI ES ESTRICTAMENTE NECESARIO, PUES TARDA MUCHO)}
+\ExtensionTok{r.mask} \AttributeTok{{-}r}
+\ExtensionTok{r.mask}\NormalTok{ vector=mascara\_1km\_solo\_en\_frontera}
+
+\CommentTok{\# Acumulación de flujo}
+\BuiltInTok{time}\NormalTok{ r.watershed }\AttributeTok{{-}{-}overwrite} \AttributeTok{{-}{-}verbose}\NormalTok{ elevation=dem\_tallado }\DataTypeTok{\textbackslash{}}
+\NormalTok{ depression=depresiones\_todas accumulation=rwshed\_acum }\DataTypeTok{\textbackslash{}}
+\NormalTok{ threshold=180 stream=rwshed\_talwegs }\DataTypeTok{\textbackslash{}}
+ \CommentTok{\# El umbral 180 se usó en la extracción de una red de muestra, como forma de}
+ \CommentTok{\# previsualizar una hidrografía inicial y no como red definitiva.}
+ \CommentTok{\# Otras opciones posibles del addon son las siguientes (útiles en otras aplicaciones):}
+ \CommentTok{\# drainage=rwshed\_direccion\_drenaje basin=rwshed\_cuencas half\_basin=rwshed\_hemicuenca \textbackslash{}}
+ \CommentTok{\# tci=rwshed\_tci spi=rwshed\_spi \textbackslash{}}
+ \CommentTok{\# length\_slope=rwshed\_longitud\_vertiente slope\_steepness=rwshed\_empinamiento \textbackslash{}}
+ \CommentTok{\# retention=rwshed\_retencion\_flujo max\_slope\_length=rwshed\_max\_longitud\_vertiente \textbackslash{}}
+ \VariableTok{memory}\OperatorTok{=}\NormalTok{32000}
+\BuiltInTok{echo} \StringTok{"r.watershed finalizado"} \KeywordTok{|} \ExtensionTok{mail} \AttributeTok{{-}s} \StringTok{"Mensaje sobre r.watershed"}\NormalTok{ USUARIO@MAIL}
+\CommentTok{\#\# real 9m47.041s}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{figuras/acumulacion-flujo-y-red-rwshed} 
+
+}
+
+\caption{Mapa de acumulación de flujo generado con `r.watershed`. En cartela, detalle del mapa en la cuenca del río Yaque del Sur.}\label{fig:acumyredrwshed}
+\end{figure}
+
+Usando como insumos el DEM y el mapa de acumulación producido por
+\texttt{r.watershed}, obtuvimos la red hidrográfica utilizando
+\texttt{r.stream.extract}. Esta etapa requirió la evaluación de umbrales
+de acumulación óptimos a través de inspección visual. El umbral de
+acumulación es un área de debate en hidrología computacional. Nos
+enfocamos en la evaluación de criterios para la extracción de
+\emph{talwegs} en un sentido amplio, sin considerarlos como cursos
+fluviales permanentes. Reconocemos que la determinación de la
+permanencia fluvial requeriría un análisis detallado de las
+características individuales de cada cuenca, incluyendo aspectos como la
+pendiente, tamaño, litología y clima.
+
+Siguiendo las mejores prácticas, realizamos diversas ejecuciones del
+complemento \texttt{r.stream.extract} usando varios umbrales para
+identificar la red hidrográfica más adecuada en nuestra área de interés
+(Freeman, 1991; Jasiewicz y Metz, 2011; Marchesini et~al., 2021). Para
+seleccionar un umbral de acumulación óptimo, consideramos cuatro
+criterios: consistencia con estudios similares, suficiente densidad de
+red, evitar una generalización excesiva de la red, y prevenir una red
+demasiado densa que incluya áreas sin características hidrológicas
+mínimas. Dado que nuestro DEM tiene una resolución espacial de 12.5 m,
+examinamos diferentes umbrales para obtener una red hidrográfica
+adecuada. En \texttt{r.stream.extract}, optamos por los umbrales de
+acumulación de 180, 540 y 900 celdas, equivalentes a 3, 8 y 14 hectáreas
+de superficie, respectivamente. Estos umbrales están en línea con los
+utilizados en estudios que consultamos, donde se evaluaron áreas
+propensas a inundaciones y cuencas de captación (Freeman, 1991;
+Marchesini et~al., 2021).
+
+El código necesario para generar las distintas redes evaluadas lo
+implementamos mediante un bucle \texttt{for} en Bash para mayor
+eficiencia y consistencia en el procesamiento. Hicimos que el bucle
+iterara automáticamente sobre los tres umbrales de acumulación, usando
+los valores de umbral como iterador (\texttt{i=\{180..900..360\}}, debe
+leerse como ``itera desde 180 a 900 en incrementos de 360 enteros'',
+resultando en los valores 180, 540 y 900), el cual pasamos como
+argumento del parámetro \texttt{threshold}. Finalmente, para cada red
+generada con los distintos umbrales, calculamos la longitud de cursos
+fluviales, actualizamos la base de datos de GRASS GIS y generamos un
+archivo de texto resumen que posteriormente importamos a R para obtener
+estadísticos básicos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Extraer redes de drenaje para tres umbrales de acumulación distintos}
+\CommentTok{\# En bucle}
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \KeywordTok{\textasciigrave{}}\BuiltInTok{echo} \DataTypeTok{\{}\DecValTok{180}\DataTypeTok{..}\DecValTok{900}\DataTypeTok{..}\DecValTok{360}\DataTypeTok{\}}\KeywordTok{\textasciigrave{};} \DataTypeTok{\textbackslash{}}
+  \ControlFlowTok{do} \BuiltInTok{echo} \AttributeTok{{-}e} \StringTok{"\textbackslash{}nTRABAJANDO EL UMBRAL DE ACUMULACIÓN }\VariableTok{$i}\StringTok{ ...\textbackslash{}n"}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+  \BuiltInTok{time}\NormalTok{ r.stream.extract }\AttributeTok{{-}{-}overwrite}\NormalTok{ elevation=dem\_tallado accumulation=rwshed\_acum }\DataTypeTok{\textbackslash{}}
+\NormalTok{    depression=depresiones\_todas threshold=}\VariableTok{$i} \DataTypeTok{\textbackslash{}}
+\NormalTok{    stream\_vector=rstream\_talwegs\_umbral\_}\VariableTok{$i}\NormalTok{ stream\_raster=rstream\_talwegs\_umbral\_}\VariableTok{$i} \DataTypeTok{\textbackslash{}}
+\NormalTok{    direction=rstream\_direccion\_umbral\_}\VariableTok{$i}\NormalTok{ memory=32000}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+  \BuiltInTok{echo} \AttributeTok{{-}e} \StringTok{"r.stream.extract umbral }\VariableTok{$i}\StringTok{ finalizado"} \KeywordTok{|}\DataTypeTok{\textbackslash{}}
+    \ExtensionTok{mail} \AttributeTok{{-}s} \StringTok{"Mensaje sobre r.stream.extract"}\NormalTok{ USUARIO@MAIL}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+\ControlFlowTok{done}
+\CommentTok{\#\# real 11m28.455s}
+\CommentTok{\#\# real 11m26.908s}
+\CommentTok{\#\# real 11m30.074s}
+\CommentTok{\# Único umbral, para testing}
+\CommentTok{\# time r.stream.extract {-}{-}overwrite elevation=dem\_tallado accumulation=rwshed\_acum \textbackslash{}}
+\CommentTok{\#   depression=depresiones\_todas threshold=64 \textbackslash{}}
+\CommentTok{\#   stream\_vector=rstream\_talwegs\_umbral\_64 stream\_raster=rstream\_talwegs\_umbral\_64 \textbackslash{}}
+\CommentTok{\#     direction=rstream\_direccion\_umbral\_64 memory=32000}
+\CommentTok{\# echo "Job finished" | mail {-}s "Job finished" USUARIO@MAIL}
+\CommentTok{\#\# real 11m46.930s}
+
+\CommentTok{\# Calcular estadisticos, y pasar a archivo}
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \KeywordTok{\textasciigrave{}}\BuiltInTok{echo} \DataTypeTok{\{}\DecValTok{180}\DataTypeTok{..}\DecValTok{900}\DataTypeTok{..}\DecValTok{360}\DataTypeTok{\}}\KeywordTok{\textasciigrave{};} \DataTypeTok{\textbackslash{}}
+  \ControlFlowTok{do} \ExtensionTok{v.to.db} \AttributeTok{{-}p}\NormalTok{ option=length map=rstream\_talwegs\_umbral\_}\VariableTok{$i} \OperatorTok{\textgreater{}}\DataTypeTok{\textbackslash{}}
+\NormalTok{    stats\_length\_rstream\_talwegs\_umbral\_}\VariableTok{$i}\NormalTok{.txt}\KeywordTok{;}
+\ControlFlowTok{done}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{stats\_rstream\_talwegs }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(}\FunctionTok{as.character}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{180}\NormalTok{, }\DecValTok{540}\NormalTok{, }\DecValTok{900}\NormalTok{)), }\ControlFlowTok{function}\NormalTok{(x) }
+  \FunctionTok{read\_delim}\NormalTok{(}\FunctionTok{paste0}\NormalTok{(dem\_proc\_dir, }\StringTok{\textquotesingle{}/\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}stats\_length\_rstream\_talwegs\_umbral\_\textquotesingle{}}\NormalTok{, x, }\StringTok{\textquotesingle{}.txt\textquotesingle{}}\NormalTok{),}
+             \AttributeTok{progress =}\NormalTok{ F, }\AttributeTok{show\_col\_types =}\NormalTok{ F), }\AttributeTok{simplify =}\NormalTok{ F)}
+\NormalTok{n\_rstream\_talwegs }\OtherTok{\textless{}{-}}\NormalTok{ stats\_rstream\_talwegs }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{map}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ .x }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\NormalTok{cat}\SpecialCharTok{=={-}}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ nrow) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ unlist}
+\NormalTok{length\_rstream\_talwegs }\OtherTok{\textless{}{-}}\NormalTok{ stats\_rstream\_talwegs }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{map}\NormalTok{(}\SpecialCharTok{\textasciitilde{}}\NormalTok{ .x }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(}\SpecialCharTok{!}\NormalTok{cat}\SpecialCharTok{=={-}}\DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{pull}\NormalTok{(length) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ sum}\SpecialCharTok{/}\DecValTok{1000}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}\NormalTok{ unlist}
+\end{Highlighting}
+\end{Shaded}
+
+Evaluamos los resultados y recopilamos los estadísticos esenciales de
+cada red formada con los distintos umbrales. Para los umbrales de 180,
+540 y 900 celdas, se obtuvieron \textbf{419646, 192453 y 130244
+segmentos} correspondientemente, acumulando \textbf{138444, 98213 y
+82081 kilómetros} de longitud en cada caso. Para cada una de las redes,
+evaluamos el grado de alineación con nuestros criterios de selección de
+la red óptima, tras lo cual elegimos la red generada con el umbral de
+acumulación de 540 celdas. Sin embargo, mantuvimos las restantes en la
+base de datos y les aplicamos todos los subsiguientes algoritmos de
+análisis de hidrología computacional, hasta alcanzar los resultados
+finales.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{figuras/red-indiferenciada} 
+
+}
+
+\caption{Red de drenaje extraída para tres umbrales de acumulación: (A) 180 celdas, equivalente a ~3 ha; (B) 540 celdas, equivalente a ~8 ha; (C) 900 celdas, equivalente a ~14 ha. La imagen de fondo es un relieve sombreado a partir de DEM ALOS PALSAR, mostrando el área de El Arroyazo en la reserva científica Ébano Verde (provincia La Vega, cordillera Central de República Dominicana)}\label{fig:redindiferenciada}
+\end{figure}
+
+Posteriormente, calculamos el orden jerárquico de la red hidrográfica,
+proceso que repetimos para cada uno de los umbrales de acumulación que
+definimos previamente, es decir, 180, 540 y 900 celdas. Al igual que en
+casos anteriores, utilizamos un bucle en Bash para iterar
+automáticamente sobre los tres umbrales de acumulación; en este caso,
+los valores del índice se correspondían con los sufijos de los mapas de
+entrada (\texttt{\_\$i}). El núcleo del bucle, en este caso, contiene la
+ejecución del complemento \texttt{r.stream.order} de GRASS GIS. Este
+complemento se invoca con una serie de argumentos que especifican los
+mapas de entrada y salida que se deben usar en el cálculo. De manera
+específica, le proporcionamos el mapa de \emph{talwegs} o cursos
+(parámetro \texttt{stream\_rast}), el mapa de dirección de drenaje
+(\texttt{direction}), el mapa de elevación (\texttt{elevation}), y el
+mapa de acumulación (\texttt{accumulation}), todos correspondientes al
+umbral de acumulación que está siendo procesado en cada iteración.
+Adicionalmente, especificamos los nombres de los mapas de salida que
+contienen el orden de red según los métodos de Strahler y Horton
+(argumentos \texttt{strahler} y \texttt{horton}) (Horton, 1945;
+Strahler, 1957), así como el mapa de topología (\texttt{topo}) y el
+vectorial de salida (\texttt{stream\_vect}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Extraer orden de red}
+\CommentTok{\# En bucle}
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \KeywordTok{\textasciigrave{}}\BuiltInTok{echo} \DataTypeTok{\{}\DecValTok{180}\DataTypeTok{..}\DecValTok{900}\DataTypeTok{..}\DecValTok{360}\DataTypeTok{\}}\KeywordTok{\textasciigrave{};} \DataTypeTok{\textbackslash{}}
+  \ControlFlowTok{do} \BuiltInTok{echo} \AttributeTok{{-}e} \StringTok{"\textbackslash{}nTRABAJANDO EL UMBRAL DE ACUMULACIÓN }\VariableTok{$i}\StringTok{ ...\textbackslash{}n"}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+  \BuiltInTok{time}\NormalTok{ r.stream.order }\AttributeTok{{-}{-}overwrite}\NormalTok{ stream\_rast=rstream\_talwegs\_umbral\_}\VariableTok{$i} \DataTypeTok{\textbackslash{}}
+\NormalTok{    direction=rstream\_direccion\_umbral\_}\VariableTok{$i} \DataTypeTok{\textbackslash{}}
+\NormalTok{    elevation=dem\_tallado accumulation=rwshed\_acum }\DataTypeTok{\textbackslash{}}
+\NormalTok{    stream\_vect=rstream\_orden\_de\_red\_umbral\_}\VariableTok{$i} \DataTypeTok{\textbackslash{}}
+\NormalTok{    strahler=rstream\_orden\_strahler\_de\_red\_umbral\_}\VariableTok{$i} \DataTypeTok{\textbackslash{}}
+\NormalTok{    horton=rstream\_orden\_horton\_de\_red\_umbral\_}\VariableTok{$i} \DataTypeTok{\textbackslash{}}
+\NormalTok{    topo=topologia\_orden\_umbral\_}\VariableTok{$i}\NormalTok{ memory=32000}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+  \BuiltInTok{echo} \AttributeTok{{-}e} \StringTok{"r.stream.order umbral de acumulación }\VariableTok{$i}\StringTok{ finalizado"} \KeywordTok{|}\DataTypeTok{\textbackslash{}}
+    \ExtensionTok{mail} \AttributeTok{{-}s} \StringTok{"Mensaje sobre r.stream.order"}\NormalTok{ USUARIO@MAIL}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+\ControlFlowTok{done}
+\CommentTok{\#\# real 1m34.983s}
+\CommentTok{\#\# real 1m18.662s}
+\CommentTok{\#\# real 1m14.986s}
+\CommentTok{\# Aplicación de algoritmo con un único umbral, sólo para pruebas}
+\CommentTok{\# time r.stream.order {-}{-}overwrite \textbackslash{}}
+\CommentTok{\#     stream\_rast=rstream\_talwegs direction=rstream\_direccion \textbackslash{}}
+\CommentTok{\#     elevation=dem\_tallado accumulation=rwshed\_acum stream\_vect=order\_todos \textbackslash{}}
+\CommentTok{\#     topo=topologia\_orden memory=32000}
+\CommentTok{\# echo "Job finished" | mail {-}s "Job finished" USUARIO@MAIL}
+\CommentTok{\#\# real }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{figuras/red-orden} 
+
+}
+
+\caption{Orden de red de Strahler para redes de drenaje generadas a partir de tres umbrales de acumulación: (A) 180 celdas, equivalente a ~3 ha; (B) 540 celdas, equivalente a ~8 ha; (C) 900 celdas, equivalente a ~14 ha. El área mostrada corresponde al río San Juan, afluente del río Yaque del Sur (vertiente sur de la cordillera Central de República Dominicana)}\label{fig:redorden3umbrales}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{figuras/red-orden-detalle-mtn} 
+
+}
+
+\caption{Orden de red de Strahler en el área del pico de la Viuda y Sabana Vieja, provincia San Juan (vertiente sur de la cordillera Central de República Dominicana). Esta red fue generada usando un umbral de acumulación de 180 celdas, equivalente a ~3 ha. De fondo, mapa topográfico nacional escala 1:50,000 y relieve sombreado}\label{fig:redordenumbral180}
+\end{figure}
+
+A continuación, delimitamos cuencas y subcuencas según la jerarquía de
+red, con independencia de si tratara de cuencas tributarias o no, para
+lo cual usamos el complemento \texttt{r.stream.basins} especificando la
+opción (\emph{flag}) \texttt{-c}, que utiliza una secuencia única de
+categorías (en nuestro caso, órdenes) para delimitar las cuencas en
+lugar de flujos de entrada. En este caso, construimos un bucle
+\texttt{for} doble, anidando el orden de red dentro del umbral de
+acumulación. Así, para cada uno de los mapas de redes hidrográficas
+según los tres umbrales de acumulación, delimitamos las cuencas de cada
+uno de los órdenes de Strahler disponibles. Al utilizar el criterio
+orden de red, las unidades delimitadas por este procedimiento incluyen
+tanto cuencas completas como subcuencas (tributarias), por lo que la
+mayoría contiene redes de drenaje tributarias (ríos que desembocan en
+otros ríos).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Delimitar cuencas según jerarquía}
+\CommentTok{\# En bucle}
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \KeywordTok{\textasciigrave{}}\BuiltInTok{echo} \DataTypeTok{\{}\DecValTok{180}\DataTypeTok{..}\DecValTok{900}\DataTypeTok{..}\DecValTok{360}\DataTypeTok{\}}\KeywordTok{\textasciigrave{};} \DataTypeTok{\textbackslash{}}
+  \ControlFlowTok{do} \ControlFlowTok{for}\NormalTok{ j }\KeywordTok{in} \KeywordTok{\textasciigrave{}}\BuiltInTok{echo} \DataTypeTok{\{}\DecValTok{1}\DataTypeTok{..}\DecValTok{8}\DataTypeTok{..}\DecValTok{1}\DataTypeTok{\}}\KeywordTok{\textasciigrave{};} \DataTypeTok{\textbackslash{}}
+    \ControlFlowTok{do} \BuiltInTok{echo} \AttributeTok{{-}e} \StringTok{"\textbackslash{}nTRABAJANDO EL UMBRAL DE ACUMULACIÓN }\VariableTok{$i}\StringTok{, orden }\VariableTok{$j}\StringTok{...\textbackslash{}n"}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+    \BuiltInTok{time}\NormalTok{ r.stream.basins }\AttributeTok{{-}c} \AttributeTok{{-}{-}overwrite}\NormalTok{ direction=rstream\_direccion\_umbral\_}\VariableTok{$i} \DataTypeTok{\textbackslash{}}
+\NormalTok{      stream\_rast=rstream\_orden\_strahler\_de\_red\_umbral\_}\VariableTok{$i}\NormalTok{ cats=}\VariableTok{$j} \DataTypeTok{\textbackslash{}}
+\NormalTok{      basins=rstream\_cuencas\_strahler\_umbral\_}\VariableTok{$\{i\}}\NormalTok{\_orden\_}\VariableTok{$j}\NormalTok{ memory=32000}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+  \ControlFlowTok{done}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+  \BuiltInTok{echo} \AttributeTok{{-}e} \StringTok{"r.stream.basins umbral de acumulación }\VariableTok{$i}\StringTok{ finalizado"} \KeywordTok{|}\DataTypeTok{\textbackslash{}}
+    \ExtensionTok{mail} \AttributeTok{{-}s} \StringTok{"Mensaje sobre r.stream.basins"}\NormalTok{ USUARIO@MAIL}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+\ControlFlowTok{done}
+\CommentTok{\#\# real \textasciitilde{} 0m40s repetido tantas veces como órdenes para cada umbral de acumulación}
+\end{Highlighting}
+\end{Shaded}
+
+Posteriormente, delimitamos las cuencas con desembocadura en mares,
+lagos, lagunas o en pérdidas kársticas. En esta sección aplicamos el
+mismo complemento que en el paso anterior (\texttt{r.stream.basins}) en
+bucle doble anidado, pero en esta ocasión especificamos la opción
+\texttt{-l}. Es decir, delimitamos las cuencas completas, cuya red
+desemboca en el mar (exorreicas), o en lagos, lagunas y pérdidas del
+karst (endorreicas), y excluimos las subcuencas de redes tributarias
+(eg. red cuyo curso principal desemboca en otro río). Por lo tanto, se
+trata de cuencas propiamente en la acepción más formal del término, que
+significa que no existe---o no se conoce ni se puede detectar con
+información disponible---prolongación del drenaje superficial fuera de
+ellas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Delimitar cuencas terminales}
+\CommentTok{\# En bucle}
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \KeywordTok{\textasciigrave{}}\BuiltInTok{echo} \DataTypeTok{\{}\DecValTok{180}\DataTypeTok{..}\DecValTok{900}\DataTypeTok{..}\DecValTok{360}\DataTypeTok{\}}\KeywordTok{\textasciigrave{};} \DataTypeTok{\textbackslash{}}
+  \ControlFlowTok{do} \ControlFlowTok{for}\NormalTok{ j }\KeywordTok{in} \KeywordTok{\textasciigrave{}}\BuiltInTok{echo} \DataTypeTok{\{}\DecValTok{1}\DataTypeTok{..}\DecValTok{8}\DataTypeTok{..}\DecValTok{1}\DataTypeTok{\}}\KeywordTok{\textasciigrave{};} \DataTypeTok{\textbackslash{}}
+    \ControlFlowTok{do} \BuiltInTok{echo} \AttributeTok{{-}e} \StringTok{"\textbackslash{}nTRABAJANDO EL UMBRAL DE ACUMULACIÓN }\VariableTok{$i}\StringTok{, orden }\VariableTok{$j}\StringTok{...\textbackslash{}n"}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+    \BuiltInTok{time}\NormalTok{ r.stream.basins }\AttributeTok{{-}lc} \AttributeTok{{-}{-}overwrite}\NormalTok{ direction=rstream\_direccion\_umbral\_}\VariableTok{$i} \DataTypeTok{\textbackslash{}}
+\NormalTok{      stream\_rast=rstream\_orden\_strahler\_de\_red\_umbral\_}\VariableTok{$i}\NormalTok{ cats=}\VariableTok{$j} \DataTypeTok{\textbackslash{}}
+\NormalTok{      basins=rstream\_cuencas\_strahler\_terminal\_umbral\_}\VariableTok{$\{i\}}\NormalTok{\_orden\_}\VariableTok{$j}\NormalTok{ memory=32000}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+  \ControlFlowTok{done}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+  \BuiltInTok{echo} \AttributeTok{{-}e} \StringTok{"r.stream.basins umbral de acumulación }\VariableTok{$i}\StringTok{ finalizado"} \KeywordTok{|}\DataTypeTok{\textbackslash{}}
+    \ExtensionTok{mail} \AttributeTok{{-}s} \StringTok{"Mensaje sobre r.stream.basins"}\NormalTok{ USUARIO@MAIL}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+\ControlFlowTok{done}
+\CommentTok{\#\# real \textasciitilde{} 0m40s repetido tantas veces como órdenes para cada umbral de acumulación}
+\end{Highlighting}
+\end{Shaded}
+
+Finalmente, convertimos las cuencas a modelo de datos vectorial, pero
+para evitar agrandar la base de datos innecesariamente, elegimos sólo
+las cuencas generadas para el umbral de 540 celdas. Los vectoriales
+resultantes nos permitieron un mejor manejo de los datos para análisis y
+representación de la cuencas. Describimos el procedimiento detallado a
+continuación.
+
+Comenzamos la vectorización ejecutando un bucle para convertir cada capa
+ráster de cuencas terminales correspondiente a cada orden de red (desde
+1 a 8) en un mapa vectorial de tipo área. Para realizar esta conversión,
+utilizamos el complemento \texttt{r.to.vect} de GRASS GIS, añadiendo
+también una nueva columna llamada \texttt{strahler} a la tabla de
+atributos de cada capa vectorial, que luego actualizamos con el valor
+del orden de red Strahler correspondiente. Después de procesar las
+cuencas de cada orden, fusionamos todas las capas vectoriales en una
+sola utilizando el complemento \texttt{v.patch}. Esto produjo una única
+capa vectorial conteniendo información sobre todas las cuencas
+terminales para todos los órdenes Strahler. Es importante aclarar que
+sólo fueron propiamente clasificadas como polígonos con de orden de red,
+aquellas las áreas del ráster que contaban con categorías asignadas
+(e.g.~píxeles con valor 1 a 8), es decir, aquellas a las que el
+algoritmo \texttt{r.stream.basins} asignó un orden de red debidamente.
+Las áreas que formaban el fondo (e.g.~píxeles con valor cero), que
+corresponden a espacios con drenaje hacia depresiones sin pertenencia a
+jerarquía alguna, conforman la capa ``0'' del mapa vectorial generado
+(\texttt{rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos\_cleaned\ 0}).
+Por esta razón, el mapa vectorial de cuencas generado, presenta espacios
+vacíos; si hiciera falta recuperar dichos espacios, bastaría con cargar
+la referida capa ``0'', tomando en consideración que sus elementos no
+cuentan con atributos aprovechables.
+
+Luego, limpiamos y preparamos los datos para el análisis. Primero,
+corregimos la topología y actualizamos el área de cada cuenca usando el
+complemento \texttt{v.clean}. Eliminamos las áreas inferiores a 200
+metros cuadrados (cuencas espurias) para mejorar la calidad de los
+datos. Posteriormente, eliminamos los registros con un valor de área
+nulo (artefactos). Estas etapas de limpieza y preparación son críticas
+para garantizar la precisión y relevancia de nuestros resultados.
+
+Finalmente, seleccionamos las filas válidas---las que tenían un valor de
+categoría distinto de -1---de la tabla de atributos de nuestra capa
+vectorial final, y exportamos estos datos a un archivo de texto. Este
+archivo de texto contiene estadísticas del área para cada cuenca
+terminal según orden Strahler, lo cual nos proporcionó información
+valiosa para nuestro análisis posterior.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ i }\KeywordTok{in} \KeywordTok{\textasciigrave{}}\BuiltInTok{echo} \DataTypeTok{\{}\DecValTok{1}\DataTypeTok{..}\DecValTok{8}\DataTypeTok{..}\DecValTok{1}\DataTypeTok{\}}\KeywordTok{\textasciigrave{};} \DataTypeTok{\textbackslash{}}
+  \ControlFlowTok{do} \ExtensionTok{r.to.vect} \AttributeTok{{-}{-}overwrite}\NormalTok{ input=rstream\_cuencas\_strahler\_terminal\_umbral\_540\_orden\_}\VariableTok{$i} \DataTypeTok{\textbackslash{}}
+\NormalTok{  output=rstream\_cuencas\_strahler\_terminal\_umbral\_540\_orden\_}\VariableTok{$i}\NormalTok{ type=area}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+  \ExtensionTok{v.db.addcolumn}\NormalTok{ rstream\_cuencas\_strahler\_terminal\_umbral\_540\_orden\_}\VariableTok{$i} \DataTypeTok{\textbackslash{}}
+\NormalTok{    columns=}\StringTok{"strahler int"}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+  \ExtensionTok{v.db.update}\NormalTok{ rstream\_cuencas\_strahler\_terminal\_umbral\_540\_orden\_}\VariableTok{$i} \DataTypeTok{\textbackslash{}}
+\NormalTok{  col=strahler value=}\VariableTok{$i}\NormalTok{ where=}\StringTok{"strahler IS NULL"}\KeywordTok{;} \DataTypeTok{\textbackslash{}}
+\ControlFlowTok{done}
+\ExtensionTok{v.patch} \AttributeTok{{-}e} \AttributeTok{{-}{-}overwrite} \DataTypeTok{\textbackslash{}}
+\NormalTok{  input=}\KeywordTok{\textasciigrave{}}\ExtensionTok{g.list}\NormalTok{ type=v pattern=}\StringTok{\textquotesingle{}rstream\_cuencas\_strahler\_terminal\_umbral\_540\_orden\_*\textquotesingle{}} \DataTypeTok{\textbackslash{}}
+\NormalTok{    separator=comma}\KeywordTok{\textasciigrave{}} \DataTypeTok{\textbackslash{}}
+\NormalTok{  output=rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos}
+
+\CommentTok{\# Calcular estadisticos, y pasar a archivo}
+\CommentTok{\#\# Preparación de fuentes (corrección de topología \textgreater{}}
+\CommentTok{\#\#                         actualización de área \textgreater{}}
+\CommentTok{\#\#                         eliminar registros)}
+\ExtensionTok{v.clean} \AttributeTok{{-}{-}overwrite}\NormalTok{ layer=1 input=rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos }\DataTypeTok{\textbackslash{}}
+\NormalTok{  output=rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos\_cleaned }\DataTypeTok{\textbackslash{}}
+\NormalTok{  tool=rmarea threshold=200}
+\ExtensionTok{v.to.db} \AttributeTok{{-}{-}overwrite}\NormalTok{ option=area type=centroid columns=area }\DataTypeTok{\textbackslash{}}
+\NormalTok{  map=rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos\_cleaned}
+\ExtensionTok{v.db.droprow}\NormalTok{ rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos\_cleaned }\DataTypeTok{\textbackslash{}}
+\NormalTok{  output=rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos\_cleaned\_2 where=}\StringTok{"area IS NULL"}
+\ExtensionTok{g.rename} \AttributeTok{{-}{-}overwrite} \DataTypeTok{\textbackslash{}}
+\NormalTok{  vector=rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos\_cleaned\_2,}\DataTypeTok{\textbackslash{}}
+\NormalTok{  rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos\_cleaned}
+
+\CommentTok{\# Excluir cuencas strahler\textgreater{}=4 y area\textless{}=1e6}
+\ExtensionTok{v.db.droprow}\NormalTok{ rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos\_cleaned }\DataTypeTok{\textbackslash{}}
+\NormalTok{  output=rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos\_cleaned\_2 }\DataTypeTok{\textbackslash{}}
+\NormalTok{  where=}\StringTok{"strahler \textgreater{}= 4 and area \textless{}= 1e6"}
+\ExtensionTok{g.rename} \AttributeTok{{-}{-}overwrite} \DataTypeTok{\textbackslash{}}
+\NormalTok{  vector=rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos\_cleaned\_2,}\DataTypeTok{\textbackslash{}}
+\NormalTok{  rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos\_cleaned}
+
+\CommentTok{\#\# Generar tabla}
+\ExtensionTok{v.db.select} \AttributeTok{{-}{-}overwrite}\NormalTok{ rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos\_cleaned }\DataTypeTok{\textbackslash{}}
+\NormalTok{  where=}\StringTok{\textquotesingle{}cat!={-}1\textquotesingle{}} \OperatorTok{\textgreater{}}\NormalTok{ stats\_area\_rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos.txt}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{stats\_rstream\_cuencas\_540 }\OtherTok{\textless{}{-}} \FunctionTok{read\_delim}\NormalTok{(}
+  \FunctionTok{paste0}\NormalTok{(dem\_proc\_dir, }\StringTok{\textquotesingle{}/\textquotesingle{}}\NormalTok{,}
+         \StringTok{\textquotesingle{}stats\_area\_rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos.txt\textquotesingle{}}\NormalTok{),}
+  \AttributeTok{progress =}\NormalTok{ F, }\AttributeTok{show\_col\_types =}\NormalTok{ F)}
+\NormalTok{rstream\_cuencas\_540\_por\_orden }\OtherTok{\textless{}{-}}\NormalTok{ stats\_rstream\_cuencas\_540 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{rename}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Orden de red (Strahler)}\StringTok{\textasciigrave{}} \OtherTok{=}\NormalTok{ strahler) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Orden de red (Strahler)}\StringTok{\textasciigrave{}}\NormalTok{)  }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarise}\NormalTok{(}\StringTok{\textasciigrave{}}\AttributeTok{Número de cuencas}\StringTok{\textasciigrave{}} \OtherTok{=} \FunctionTok{n}\NormalTok{(),}
+            \StringTok{\textasciigrave{}}\AttributeTok{Área promedio}\StringTok{\textasciigrave{}} \OtherTok{=} \FunctionTok{mean}\NormalTok{(area),}
+            \StringTok{\textasciigrave{}}\AttributeTok{Área total}\StringTok{\textasciigrave{}} \OtherTok{=} \FunctionTok{sum}\NormalTok{(area))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{suplemento-para-la-secciuxf3n-resultados}{%
+\subsection{Suplemento para la sección
+``Resultados''}\label{suplemento-para-la-secciuxf3n-resultados}}
+
+Realizamos análisis estadísticos de las cuencas terminales. Se necesita
+descargar el comprimido con los
+\href{https://doi.org/10.5281/zenodo.8146391}{datos del estudio},
+colocar el directorio \texttt{gpkg-shp} en el directorio raíz de este
+repo. Como medida de seguridad, excluimos cuencas con orden de red
+cuatro o mayor y con área menor 1~\textsuperscript{2}. Posteriormente,
+generamos un nuevo objeto de cuencas de orden cuatro o mayor para
+análisis focalizados.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cuencas }\OtherTok{\textless{}{-}} \FunctionTok{read\_sf}\NormalTok{(}\StringTok{\textquotesingle{}gpkg{-}shp/rstream\_cuencas\_strahler\_terminal\_umbral\_540\_todos\_cleaned.gpkg\textquotesingle{}}\NormalTok{)}
+\NormalTok{cuencas4mas }\OtherTok{\textless{}{-}}\NormalTok{ cuencas[cuencas}\SpecialCharTok{$}\NormalTok{strahler }\SpecialCharTok{\textgreater{}=} \DecValTok{4}\NormalTok{, ]}
+\end{Highlighting}
+\end{Shaded}
 
 \hypertarget{informe-de-la-sesiuxf3n-de-r}{%
 \subsection*{Informe de la sesión de
@@ -1277,11 +2138,12 @@ R}\label{informe-de-la-sesiuxf3n-de-r}}
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] gdalUtilities_1.2.4 lubridate_1.9.2     forcats_1.0.0      
-##  [4] stringr_1.5.0       dplyr_1.1.2         purrr_1.0.1        
-##  [7] readr_2.1.4         tidyr_1.3.0         tibble_3.2.1       
-## [10] ggplot2_3.4.2       tidyverse_2.0.0     kableExtra_1.3.4   
-## [13] sf_1.0-12           raster_3.6-20       sp_1.6-0           
+##  [1] e1071_1.7-13        gdalUtilities_1.2.4 lubridate_1.9.2    
+##  [4] forcats_1.0.0       stringr_1.5.0       dplyr_1.1.2        
+##  [7] purrr_1.0.1         readr_2.1.4         tidyr_1.3.0        
+## [10] tibble_3.2.1        ggplot2_3.4.2       tidyverse_2.0.0    
+## [13] kableExtra_1.3.4    sf_1.0-12           raster_3.6-20      
+## [16] sp_1.6-0           
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] gtable_0.3.3       xfun_0.39          lattice_0.20-45    tzdb_0.4.0        
@@ -1290,16 +2152,17 @@ R}\label{informe-de-la-sesiuxf3n-de-r}}
 ## [13] KernSmooth_2.23-20 webshot_0.5.4      lifecycle_1.0.3    compiler_4.3.0    
 ## [17] munsell_0.5.0      terra_1.7-29       codetools_0.2-18   htmltools_0.5.5   
 ## [21] class_7.3-20       yaml_2.3.7         crayon_1.5.2       pillar_1.9.0      
-## [25] classInt_0.4-9     tidyselect_1.2.0   rvest_1.0.3        digest_0.6.31     
-## [29] stringi_1.7.12     fastmap_1.1.1      grid_4.3.0         colorspace_2.1-0  
-## [33] cli_3.6.1          magrittr_2.0.3     utf8_1.2.3         e1071_1.7-13      
-## [37] withr_2.5.0        scales_1.2.1       bit64_4.0.5        timechange_0.2.0  
-## [41] rmarkdown_2.21     httr_1.4.6         bit_4.0.5          reticulate_1.30   
-## [45] hms_1.1.3          png_0.1-8          evaluate_0.21      knitr_1.42        
-## [49] viridisLite_0.4.2  rticles_0.25       rlang_1.1.1        Rcpp_1.0.10       
-## [53] glue_1.6.2         DBI_1.1.3          xml2_1.3.4         vroom_1.6.3       
-## [57] svglite_2.1.1      rstudioapi_0.14    jsonlite_1.8.4     R6_2.5.1          
-## [61] systemfonts_1.0.4  units_0.8-2
+## [25] classInt_0.4-9     cachem_1.0.8       wk_0.7.3           conflicted_1.2.0  
+## [29] tidyselect_1.2.0   rvest_1.0.3        digest_0.6.31      stringi_1.7.12    
+## [33] fastmap_1.1.1      grid_4.3.0         colorspace_2.1-0   cli_3.6.1         
+## [37] magrittr_2.0.3     utf8_1.2.3         withr_2.5.0        scales_1.2.1      
+## [41] bit64_4.0.5        timechange_0.2.0   rmarkdown_2.21     httr_1.4.6        
+## [45] bit_4.0.5          reticulate_1.30    png_0.1-8          hms_1.1.3         
+## [49] ggspatial_1.1.8    memoise_2.0.1      evaluate_0.21      knitr_1.42        
+## [53] viridisLite_0.4.2  s2_1.1.4           rticles_0.25       rlang_1.1.1       
+## [57] Rcpp_1.0.10        glue_1.6.2         DBI_1.1.3          xml2_1.3.4        
+## [61] vroom_1.6.3        jsonlite_1.8.4     svglite_2.1.1      rstudioapi_0.14   
+## [65] R6_2.5.1           systemfonts_1.0.4  units_0.8-2
 \end{verbatim}
 
 \hypertarget{referencias}{%
@@ -1337,9 +2200,18 @@ CIDIAT y INDRHI. (1992). \emph{{Control de Inundaciones en la cuenca del
 Río Yaque del Sur}}. {Instituto Nacional de Recursos Hidráulicos
 (INDRHI)}.
 
+\leavevmode\vadjust pre{\hypertarget{ref-ehlschlaeger1989using}{}}%
+Ehlschlaeger, C. R. (1989). \emph{Using the A{\^{}} T search algorithm
+to develop hydrologic models from digital elevation data}. 275281.
+
 \leavevmode\vadjust pre{\hypertarget{ref-foucault1985diccionario}{}}%
 Foucault, A. y Raoult, J. F. (1985). \emph{Diccionario de Geología}.
 MASSON. \url{https://books.google.com.do/books?id=x5FDPQAACAAJ}
+
+\leavevmode\vadjust pre{\hypertarget{ref-freeman1991calculating}{}}%
+Freeman, T. G. (1991). Calculating catchment area with divergent flow
+based on a regular grid. \emph{Computers \& Geosciences}, \emph{17}(3),
+413-422. \url{https://doi.org/10.1016/0098-3004(91)90048-I}
 
 \leavevmode\vadjust pre{\hypertarget{ref-gadm}{}}%
 GADM. (2022). \emph{{GADM}}. Available online:
@@ -1377,6 +2249,11 @@ GRASS Development Team. (2022c). \emph{r.mapcalc - Raster map
 calculator. GRASS GIS manual}.
 \url{https://grass.osgeo.org/grass82/manuals/r.mapcalc.html}
 
+\leavevmode\vadjust pre{\hypertarget{ref-grassdev2022rwatershed}{}}%
+GRASS Development Team. (2022d). \emph{r.watershed - Calculates
+hydrological parameters and RUSLE factors.}
+\url{https://grass.osgeo.org/grass82/manuals/r.watershed.html}
+
 \leavevmode\vadjust pre{\hypertarget{ref-GRASS_GIS_softwarev82}{}}%
 GRASS Development Team. (2023). \emph{Geographic Resources Analysis
 Support System (GRASS) Software, Version 8.2.0}. Open Source Geospatial
@@ -1393,6 +2270,18 @@ Grandes Presas}}. {Instituto Nacional de Recursos Hidráulicos (INDRHI)}.
 \leavevmode\vadjust pre{\hypertarget{ref-hijmans2023raster}{}}%
 Hijmans, R. J. (2023). \emph{raster: Geographic Data Analysis and
 Modeling}. \url{https://CRAN.R-project.org/package=raster}
+
+\leavevmode\vadjust pre{\hypertarget{ref-holmgren1994multiple}{}}%
+Holmgren, P. (1994). Multiple flow direction algorithms for runoff
+modelling in grid based elevation models: An empirical evaluation.
+\emph{Hydrological Processes}, \emph{8}(4), 327-334.
+\url{https://doi.org/10.1002/hyp.3360080405}
+
+\leavevmode\vadjust pre{\hypertarget{ref-horton1945erosional}{}}%
+Horton, R. E. (1945). {Erosional development of streams and their
+drainage basins: Hydrophysical approach to quantitative morphology}.
+\emph{Geological Society of America Bulletin}, \emph{56}(3), 275-370.
+\url{https://doi.org/10.1130/0016-7606(1945)56\%5B275:EDOSAT\%5D2.0.CO;2}
 
 \leavevmode\vadjust pre{\hypertarget{ref-indrhi1996estadisticas}{}}%
 INDRHI. (1996). \emph{{Estadísticas del Agua en la República
@@ -1436,6 +2325,18 @@ Geography}, \emph{31}, 455-472.
 Jarvis, A., Reuter, H. I., Nelson, A. y Guevara, E. (2008). Hole-filled
 SRTM for the globe Version 4. \emph{available from the CGIAR-CSI SRTM
 90m Database (http://srtm. csi. cgiar. org)}, \emph{15}(25-54), 5.
+
+\leavevmode\vadjust pre{\hypertarget{ref-jasiewicz2011a}{}}%
+Jasiewicz, J. y Metz, M. (2011). A new GRASS GIS toolkit for Hortonian
+analysis of drainage networks. \emph{Computers \& Geosciences},
+\emph{37}(8), 1162-1173.
+\url{https://doi.org/10.1016/j.cageo.2011.03.003}
+
+\leavevmode\vadjust pre{\hypertarget{ref-jasiewicz2013}{}}%
+Jasiewicz, J. y Stepinski, T. F. (2013). Geomorphons {\textemdash} a
+pattern recognition approach to classification and mapping of landforms.
+\emph{Geomorphology}, \emph{182}, 147-156.
+\url{https://doi.org/10.1016/j.geomorph.2012.11.005}
 
 \leavevmode\vadjust pre{\hypertarget{ref-jaxameti2007alos}{}}%
 JAXA/METI y ASF DAAC. (2015). \emph{{ALOS
@@ -1488,11 +2389,40 @@ Mackay, E. A. y Spencer, A. J. (2017). The future of Caribbean tourism:
 competition and climate change implications. \emph{Worldwide Hospitality
 and Tourism Themes}, \emph{9}, 44-59.
 
+\leavevmode\vadjust pre{\hypertarget{ref-marchesini2021}{}}%
+Marchesini, I., Salvati, P., Rossi, M., Donnini, M., Sterlacchini, S. y
+Guzzetti, F. (2021). Data-driven flood hazard zonation of Italy.
+\emph{Journal of Environmental Management}, \emph{294}, 112986.
+\url{https://doi.org/10.1016/j.jenvman.2021.112986}
+
+\leavevmode\vadjust pre{\hypertarget{ref-martinez2019drainagepreprint}{}}%
+Martinez-Batlle, J.-R. (2019). \emph{Drainage rearrangement as a driver
+of geomorphological evolution during the Upper Pleistocene in a small
+tropical basin}. \url{https://doi.org/10.31223/OSF.IO/PFZVQ}
+
+\leavevmode\vadjust pre{\hypertarget{ref-martinez2019drainagejgg}{}}%
+Martínez-Batlle, J.-R. (2019). Drainage Rearrangement as a Driver of
+Geomorphological Evolution During the Upper Pleistocene in a Small
+Tropical Basin. \emph{Journal of Geography and Geology}, \emph{11}(2),
+1. \url{https://doi.org/10.5539/jgg.v11n2p1}
+
 \leavevmode\vadjust pre{\hypertarget{ref-martinez2023datos}{}}%
 Martínez-Batlle, J.-R. y Izzo-Gioiosa, M. (2023). \emph{Datos del
 estudio "Generación de red hidrográfica densa de República Dominicana a
 partir de modelo digital de elevaciones de resolución media"}.
 \url{https://doi.org/10.5281/ZENODO.8146391}
+
+\leavevmode\vadjust pre{\hypertarget{ref-mccool1987revised}{}}%
+McCool, D. K., Brown, L. C., Foster, G. R., Mutchler, C. K. y Meyer, L.
+D. (1987). Revised Slope Steepness Factor for the Universal Soil Loss
+Equation. \emph{Transactions of the ASAE}, \emph{30}(5), 1387-1396.
+\url{https://doi.org/10.13031/2013.30576}
+
+\leavevmode\vadjust pre{\hypertarget{ref-metz2011efficient}{}}%
+Metz, M., Mitasova, H. y Harmon, R. S. (2011). Efficient extraction of
+drainage networks from massive, radar-based elevation models with least
+cost path search. \emph{Hydrology and Earth System Sciences},
+\emph{15}(2), 667-678. \url{https://doi.org/10.5194/hess-15-667-2011}
 
 \leavevmode\vadjust pre{\hypertarget{ref-mishra2009}{}}%
 Mishra, A. K. y Coulibaly, P. (2009). Developments in hydrometric
@@ -1503,6 +2433,17 @@ RG2001. \url{https://doi.org/10.1029/2007RG000243}
 Mishra, A. K. y Coulibaly, P. (2010). Hydrometric network evaluation for
 Canadian watersheds. \emph{Journal of Hydrology}, \emph{380}(3-4),
 420-437. \url{https://doi.org/10.1016/j.jhydrol.2009.11.015}
+
+\leavevmode\vadjust pre{\hypertarget{ref-mollat2004mapa}{}}%
+Mollat, H., Wagner, B. M., Cepek, P. y Weiss, W. (2004). \emph{{Mapa
+Geol{ó}gico de la Rep{ú}blica Dominicana 1~:~250.000. Texto
+Explicativo}}. E. Schweizerbart'sche Verlagsbuchhandiung.
+
+\leavevmode\vadjust pre{\hypertarget{ref-moore1991digital}{}}%
+Moore, I. D., Grayson, R. B. y Ladson, A. R. (1991). Digital terrain
+modelling: A review of hydrological, geomorphological, and biological
+applications. \emph{Hydrological Processes}, \emph{5}(1), 3-30.
+\url{https://doi.org/10.1002/hyp.3360050103}
 
 \leavevmode\vadjust pre{\hypertarget{ref-nasajpl2013nasa}{}}%
 NASA JPL. (2013). \emph{NASA Shuttle Radar Topography Mission Global 3
@@ -1516,6 +2457,12 @@ NASA LP DAAC. (2000). \emph{SRTM 1 Arc-Second Global}.
 \leavevmode\vadjust pre{\hypertarget{ref-nasa2013aster}{}}%
 National Aeronautics and Space Administration y United States Geological
 Survey. (2009). \emph{{ASTER GDEM}}. \url{https://lpdaac.usgs.gov/}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-ngula2019usefulness}{}}%
+Ngula Niipele, J. y Chen, J. (2019). {The usefulness of alos-palsar dem
+data for drainage extraction in semi-arid environments in The Iishana
+sub-basin}. \emph{Journal of Hydrology: Regional Studies}, \emph{21},
+57-67. \url{https://doi.org/10.1016/j.ejrh.2018.11.003}
 
 \leavevmode\vadjust pre{\hypertarget{ref-obrien2023gdalutilities}{}}%
 O'Brien, J. (2023). \emph{gdalUtilities: Wrappers for 'GDAL' Utilities
@@ -1568,6 +2515,12 @@ E., Weaver, K., Fogleman, B., Leo, M. di y Stopkova, E. (2011).
 QGIS Development Team. (2021). \emph{QGIS Geographic Information System,
 Version 3.26.2}. QGIS Association. \url{https://www.qgis.org}
 
+\leavevmode\vadjust pre{\hypertarget{ref-quinn1991prediction}{}}%
+Quinn, P., Beven, K., Chevallier, P. y Planchon, O. (1991). The
+prediction of hillslope flow paths for distributed hydrological
+modelling using digital terrain models. \emph{Hydrological Processes},
+\emph{5}(1), 59-79. \url{https://doi.org/10.1002/hyp.3360050106}
+
 \leavevmode\vadjust pre{\hypertarget{ref-rcoreteam2023r}{}}%
 R Core Team. (2023). \emph{R: A Language and Environment for Statistical
 Computing}. R Foundation for Statistical Computing.
@@ -1601,9 +2554,20 @@ Shapiro, M. y Westervelt, J. (1994). \emph{r. mapcalc: An algebra for
 GIS and image processing}. US Army Corps of Engineers, Construction
 Engineering Research Laboratories.
 
+\leavevmode\vadjust pre{\hypertarget{ref-strahler1957quantitative}{}}%
+Strahler, A. N. (1957). Quantitative analysis of watershed
+geomorphology. \emph{Eos, Transactions American Geophysical Union},
+\emph{38}(6), 913-920. \url{https://doi.org/10.1029/tr038i006p00913}
+
 \leavevmode\vadjust pre{\hypertarget{ref-vanrossum2009python}{}}%
 Van Rossum, G. y Drake, F. L. (2009). \emph{Python 3 Reference Manual}.
 CreateSpace.
+
+\leavevmode\vadjust pre{\hypertarget{ref-weltz1988revised}{}}%
+Weltz, M. A., Renard, K. G. y Simanton, J. R. (1988). Revised Universal
+Soil Loss Equation for Western Rangelands{\^{}}1. \emph{Estrategias de
+Clasificación Y Manejo de Vegetación Silvestre Para la Producción de
+Alimentos en Zonas Áridas}, \emph{150}, 104.
 
 \leavevmode\vadjust pre{\hypertarget{ref-whicham2019welcome}{}}%
 Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D.,
