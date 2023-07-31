@@ -15,15 +15,22 @@ knitr::opts_chunk$set(
 ## ----suphidropaquetes---------------------------------------------------------
 conflicted::conflict_prefer("select", "dplyr")
 conflicted::conflict_prefer("filter", "dplyr")
+conflicted::conflict_prefer("distance", "raster")
+conflicted::conflict_prefer("alpha", "ggplot2")
+conflicted::conflict_prefer("rescale", "scales")
+library(psych)
 library(raster)
 library(sf)
 library(kableExtra)
 library(tidyverse)
 library(gdalUtilities)
 library(e1071)
+library(scales)
+library(tmap)
 source('R/funciones.R')
 dem_proc_dir <- 'estadisticos'
 figuras <- 'figuras'
+umbral_espurias <- 4000 #Umbral por debajo del cual se considera una cuenca como espuria
 
 
 ## ----cargarfuentesotrormd, echo=F, include=F----------------------------------
@@ -780,19 +787,115 @@ knitr::include_graphics(paste(figuras, "red-orden-detalle-mtn.jpg", sep = '/'))
 ## ## real ~ 0m40s repetido tantas veces como órdenes para cada umbral de acumulación
 
 
+## # Cuencas y subcuencas según orden
+
 ## for i in `echo {1..8..1}`; \
 
-##   do r.to.vect --overwrite input=rstream_cuencas_strahler_terminal_umbral_540_orden_$i \
+##   do echo -e "\nTRABAJANDO EL ORDEN $i...\n"; \
 
-##   output=rstream_cuencas_strahler_terminal_umbral_540_orden_$i type=area; \
+##     time r.to.vect --overwrite input=rstream_cuencas_strahler_umbral_540_orden_$i \
 
-##   v.db.addcolumn rstream_cuencas_strahler_terminal_umbral_540_orden_$i \
+##       output=rstream_cuencas_strahler_umbral_540_orden_$i type=area; \
 
-##     columns="strahler int"; \
+##     v.db.addcolumn rstream_cuencas_strahler_umbral_540_orden_$i \
 
-##   v.db.update rstream_cuencas_strahler_terminal_umbral_540_orden_$i \
+##       columns="strahler int"; \
 
-##   col=strahler value=$i where="strahler IS NULL"; \
+##     v.db.update rstream_cuencas_strahler_umbral_540_orden_$i \
+
+##       col=strahler value=$i where="strahler IS NULL"; \
+
+##     # Calcular estadisticos, y pasar a archivo
+
+##     ## Preparación de fuentes (corrección de topología >
+
+##     ##                         actualización de área >
+
+##     ##                         eliminar registros)
+
+##     v.clean --overwrite layer=1 \
+
+##       input=rstream_cuencas_strahler_umbral_540_orden_$i \
+
+##       output=foo \
+
+##       tool=rmarea threshold=4000
+
+##     v.to.db --overwrite option=area type=centroid columns=area \
+
+##       map=foo
+
+##     v.db.droprow --overwrite \
+
+##       input=foo \
+
+##       output=rstream_cuencas_strahler_umbral_540_orden_$i where="area IS NULL"
+
+##     g.remove -f type=vector \
+
+##     name=foo
+
+## done
+
+## # Tiempos uso de CPU, órdenes 1 a 8
+
+## # real	2m0.180s
+
+## # real	0m49.778s
+
+## # real	0m32.943s
+
+## # real	0m28.137s
+
+## # real	0m28.078s
+
+## # real	0m26.906s
+
+## # real	0m25.886s
+
+## # real	0m25.624s
+
+## # Limpiando las cuencas de órdenes 2 y 3 de menos de 60,000 m2
+
+## for i in `echo {2..3..1}`; \
+
+##   do v.db.droprow --overwrite \
+
+##     input=rstream_cuencas_strahler_umbral_540_orden_$i \
+
+##     output=foo \
+
+##     where="area <= 6e4";
+
+##     g.rename --overwrite \
+
+##       vector=foo,rstream_cuencas_strahler_umbral_540_orden_$i; \
+
+##     g.remove -f type=vector name=foo; \
+
+## done
+
+## 
+
+## 
+
+## # Cuencas terminales
+
+## for i in `echo {1..8..1}`; \
+
+##   do echo -e "\nTRABAJANDO EL ORDEN $i...\n"; \
+
+##     r.to.vect --overwrite input=rstream_cuencas_strahler_terminal_umbral_540_orden_$i \
+
+##       output=rstream_cuencas_strahler_terminal_umbral_540_orden_$i type=area; \
+
+##     v.db.addcolumn rstream_cuencas_strahler_terminal_umbral_540_orden_$i \
+
+##       columns="strahler int"; \
+
+##     v.db.update rstream_cuencas_strahler_terminal_umbral_540_orden_$i \
+
+##       col=strahler value=$i where="strahler IS NULL"; \
 
 ## done
 
@@ -803,8 +906,6 @@ knitr::include_graphics(paste(figuras, "red-orden-detalle-mtn.jpg", sep = '/'))
 ##     separator=comma` \
 
 ##   output=rstream_cuencas_strahler_terminal_umbral_540_todos
-
-## 
 
 ## # Calcular estadisticos, y pasar a archivo
 
@@ -818,13 +919,13 @@ knitr::include_graphics(paste(figuras, "red-orden-detalle-mtn.jpg", sep = '/'))
 
 ##   output=rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned \
 
-##   tool=rmarea threshold=200
+##   tool=rmarea threshold=4000
 
 ## v.to.db --overwrite option=area type=centroid columns=area \
 
 ##   map=rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned
 
-## v.db.droprow rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned \
+## v.db.droprow --overwrite rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned \
 
 ##   output=rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned_2 where="area IS NULL"
 
@@ -834,13 +935,99 @@ knitr::include_graphics(paste(figuras, "red-orden-detalle-mtn.jpg", sep = '/'))
 
 ##   rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned
 
-## 
+## # Excluir cuencas strahler>=4 y area<=1e6
 
-## ## Generar tabla
+## v.db.droprow --overwrite rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned \
+
+##   output=rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned_2 \
+
+##   where="strahler >= 4 and area <= 1e6"
+
+## g.rename --overwrite \
+
+##   vector=rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned_2,\
+
+##   rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned
+
+## # Generar tabla
 
 ## v.db.select --overwrite rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned \
 
 ##   where='cat!=-1' > stats_area_rstream_cuencas_strahler_terminal_umbral_540_todos.txt
+
+## 
+
+## 
+
+## # Generar salidas GPKG y SHP para cuencas terminales
+
+## ## Exportar el mapa 'rstream_orden_de_red_umbral_540' a GeoPackage
+
+## v.out.ogr --overwrite \
+
+##   input=rstream_orden_de_red_umbral_540 \
+
+##   output=gpkg-shp/rstream_orden_de_red_umbral_540.gpkg \
+
+##   type=line \
+
+##   format=GPKG
+
+## ## Exportar el mapa 'rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned'
+
+## ## a GeoPackage
+
+## v.out.ogr --overwrite \
+
+##   input=rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned \
+
+##   output=gpkg-shp/rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned.gpkg \
+
+##   type=area \
+
+##   format=GPKG
+
+## ## Exportar el mapa 'rstream_orden_de_red_umbral_540' a Shapefile
+
+## ogr2ogr -f "ESRI Shapefile" \
+
+##   gpkg-shp/rstream_orden_de_red_umbral_540.shp \
+
+##   gpkg-shp/rstream_orden_de_red_umbral_540.gpkg
+
+## ## Exportar el mapa 'rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned'
+
+## ## a Shapefile
+
+## ogr2ogr -f "ESRI Shapefile" \
+
+##   gpkg-shp/rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned.shp \
+
+##   gpkg-shp/rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned.gpkg
+
+## 
+
+## 
+
+## # Generar salidas GPKG y SHP para cuencas y subcuencas
+
+## ## Exportar mapas 'rstream_cuencas_strahler_umbral_540_orden_$i' a GeoPackage
+
+## for i in `echo {1..8..1}`; \
+
+##   do echo -e "\nTRABAJANDO EL ORDEN $i...\n"; \
+
+##     v.out.ogr --overwrite \
+
+##      input=rstream_cuencas_strahler_umbral_540_orden_$i \
+
+##      output=gpkg-shp/rstream_cuencas_strahler_umbral_540_orden_$i.gpkg \
+
+##      type=area \
+
+##      format=GPKG
+
+## done
 
 
 ## ---- message=F, warning=F----------------------------------------------------
@@ -857,8 +1044,98 @@ rstream_cuencas_540_por_orden <- stats_rstream_cuencas_540 %>%
 
 
 ## -----------------------------------------------------------------------------
-cuencas <- read_sf('gpkg-shp/rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned.gpkg')
-cuencas4mas <- cuencas[cuencas$strahler >= 4 & cuencas$area >= 1e6, ]
+# Cuencas terminales
+cuencas <- st_read(
+  dsn = 'gpkg-shp/rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned.gpkg')
+cuencas4mas <- cuencas[cuencas$strahler >= 4, ]
+# Cuencas y subcuencas
+system.time(
+  cuencas_subcuencas <- sapply(as.character(1:8), function(x) {
+    st_read(paste0('gpkg-shp/rstream_cuencas_strahler_umbral_540_orden_', x, '.gpkg'))
+    }, USE.NAMES = T, simplify = F)
+)
+cuencas_sub_areas_ordenes <- map(cuencas_subcuencas,
+                         ~.['area'] %>% st_drop_geometry %>%
+                           pull(area) %>% as_tibble %>%
+                           mutate(`Área (kilómetros cuadrados)` = value/1e6,
+                                  `Área (hectáreas)` = value/1e4) %>% 
+                           rename(`Área (metros cuadrados)` = value)) %>% 
+  bind_rows(.id = 'Orden de red')
+cuencas_sub_areas_ordenes_r <- cuencas_sub_areas_ordenes %>%
+  group_by(`Orden de red`) %>% 
+  summarise(describe(`Área (kilómetros cuadrados)`, type = 2)) %>% 
+  select(-`vars`, -trimmed, -mad, -se) %>%
+  select(`Orden de red`, `Número` = n, `Media (km${^2}$)` = mean,
+         `Mediana (km${^2}$)` = median, `Desv. estándar (km${^2}$)` = sd,
+         `Mínimo (km${^2}$)` = min, `Máximo (km${^2}$)` = max,
+         `Rango (km${^2}$)` = range, Sesgo = skew,
+         Curtosis = kurtosis)
+cuencas_sub_areas_ordenes_p <- cuencas_sub_areas_ordenes %>% ggplot +
+  aes(x = `Orden de red`, y = `Área (kilómetros cuadrados)`) +
+  geom_jitter(alpha = 0.2, height = 0, width = 0.05
+              , aes(color = `Orden de red`, fill = `Orden de red`)
+              ) +
+  geom_violin(alpha = 0.6, width = 0.8, color = "transparent", fill = "gray"
+              , aes(color = `Orden de red`)
+              ) +
+  geom_boxplot(alpha = 0, width = 0.3, color = "#808080") +
+  scale_y_continuous(trans = 'log2', labels = decimales_y_enteros) +
+  theme_bw() +
+  theme(legend.position = 'none', text = element_text(size = 18))
+png('figuras/cuencas-subcuencas-areas-ordenes-boxplot.png',
+    width = 3500, height = 2400, res = 450)
+cuencas_sub_areas_ordenes_p
+dev.off()
+
+
+## # Generar GPKG de país
+
+## v.out.ogr --overwrite \
+
+##   input=mascara \
+
+##   output=gpkg-shp/mascara.gpkg \
+
+##   type=area \
+
+##   format=GPKG
+
+
+## ---- eval=F------------------------------------------------------------------
+## # Máscara
+## mascara <- st_read('gpkg-shp/mascara.gpkg')
+## # Objeto sf de las cuencas de todos los órdenes
+## cuencas_sub_areas_ordenes_sf <- map(cuencas_subcuencas, ~.['area'] %>%
+##                            mutate(`Área (kilómetros cuadrados)` = area/1e6,
+##                                   `Área (hectáreas)` = area/1e4) %>%
+##                            rename(`Área (metros cuadrados)` = area)) %>%
+##   bind_rows(.id = 'Orden de red')
+## # Objeto sf de los linderos de las cuencas, en objeto de tipo MULTILINESTRING
+## cuencas_sub_areas_ordenes_lines_sf <- cuencas_sub_areas_ordenes_sf %>%
+##   select(orden = `Orden de red`) %>%
+##   mutate(grosor = ifelse(orden %in% 1:3, 0, 0.1)) %>%
+##   mutate(orden = paste('Orden', orden)) %>%
+##   st_cast('MULTILINESTRING')
+## # Mapa en tmap
+## cuencas_sub_areas_ordenes_tm <- cuencas_sub_areas_ordenes_sf %>%
+##   select(orden=`Orden de red`, `km cuad.` = `Área (kilómetros cuadrados)`) %>%
+##   mutate(grosor = ifelse(orden %in% 1:2, 0.0001, 0.1)) %>%
+##   mutate(orden = paste('Orden', orden)) %>%
+##   tm_shape() +
+##   tm_fill(col='km cuad.', palette = "YlOrBr", style = 'quantile') +
+##   tm_facets(by = "orden", ncol = 2, nrow = 4, free.coords = FALSE, free.scales = TRUE) +
+##   tm_shape(cuencas_sub_areas_ordenes_lines_sf) +
+##   tm_lines(lwd = 'grosor', col = 'grey80', legend.lwd.show = F) +
+##   tm_facets(by = "orden", ncol = 2, nrow = 4, free.coords = FALSE, free.scales = TRUE) +
+##   tm_layout(panel.label.size = 2.5, legend.stack = "horizontal",
+##             legend.title.size = 2, legend.text.size = 1.5) +
+##   tm_shape(shp = mascara) +
+##   tm_borders(col = 'black', lwd = 0.8)
+## # Mapa en PNG
+## tmap_save(
+##   tm = cuencas_sub_areas_ordenes_tm,
+##   filename = "figuras/cuencas-subcuencas-areas-ordenes.png",
+##   width = 3000, height = 4200, dpi = 200)
 
 
 ## -----------------------------------------------------------------------------
