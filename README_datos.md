@@ -9,7 +9,7 @@ Este repositorio contiene datos geoespaciales resultantes de ejecutar el código
 Los datos se distribuyen en dos directorios:
 
 1. Directorio `gpkg-shp`, que constituye una alternativa rápida para disponer de los datos hidrográficos sin necesidad de abrir la base de datos de GRASS GIS. Este directorio que contiene versiones en formato GeoPackage y ESRI-Shapefile de los vectoriales siguientes:
-  - Red de drenaje de República Dominicana, generada para un umbral de acumulación de 540 celdas (aproximadamente 8 hectáreas), incluyendo los siguientes campos (archivos `rstream_cuencas_strahler_terminal_umbral_540_todos_cleaned`):
+  - Red de drenaje de República Dominicana, generada para un umbral de acumulación de 540 celdas (aproximadamente 8 hectáreas), incluyendo los siguientes campos (archivos `rstream_orden_de_red_umbral_540_cleaned`):
       - `cat` entero: categoría;
       - `stream` entero: número de corriente, usualmente igual a cat;
       - `next_stream` entero: corriente a la que contribuye la corriente actual (aguas abajo);
