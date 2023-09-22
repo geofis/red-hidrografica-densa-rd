@@ -383,7 +383,7 @@ El autor y la autora declaran que no tienen ningún conflicto de interés con el
 
 # Disponibilidad de datos, scripts y código {.unnumbered}
 
-Los datos que respaldan los hallazgos de este estudio están disponibles abiertamente en Zenodo en \url{https://doi.org/10.5281/zenodo.8365294} [@martinez2023datos]. Los scripts utilizados para la curación de datos, análisis y visualización están disponibles en esta sección, así como en el repositorio de GitHub en \url{https://github.com/geofis/red-hidrografica-densa-rd} y en Zenodo en \url{https://doi.org/10.5281/zenodo.8368820} [@jose_ramon_martinez_batlle_2023_8368820].
+Los datos que respaldan los hallazgos de este estudio están disponibles abiertamente en Zenodo en \url{https://doi.org/10.5281/zenodo.8365294} [@martinez2023datos]. Los scripts utilizados para la curación de datos, análisis y visualización están disponibles en esta sección, así como en el repositorio de GitHub en \url{https://github.com/geofis/red-hidrografica-densa-rd} y en Zenodo en \url{https://doi.org/10.5281/zenodo.8370346} [@martinez2023repocodigo].
 
 \newpage
 
