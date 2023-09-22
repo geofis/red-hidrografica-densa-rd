@@ -35,6 +35,11 @@
 \rhead{\scshape Generación red hidrográfica densa de RD - \today}
 \cfoot{\thepage}
 
+%Manejar palabras clave
+\def\nombrepalabraclave{{\bfseries \emph Palabras clave}}%
+\def\palabrasclave#1{\par\addvspace\medskipamount{\rightskip=0pt plus1cm
+\def\and{\ifhmode\unskip\nobreak\fi\ $\cdot$
+}\noindent\nombrepalabraclave\enspace\ignorespaces#1\par}}
 
 %Handling Keywords
 \def\keywordname{{\bfseries \emph Keywords}}%
@@ -244,8 +249,8 @@
   \end@float%
 }
 
-% abstract styling
-\renewenvironment{abstract}
+% Estilo de resumen
+\newenvironment{resumen}
 {
   \centerline
   {\large \bfseries \scshape Resumen}
@@ -254,5 +259,17 @@
 {
   \end{quote}
 }
+
+% abstract styling
+\renewenvironment{abstract}
+{
+  \centerline
+  {\large \bfseries \scshape Abstract}
+  \begin{quote}
+}
+{
+  \end{quote}
+}
+
 
 \endinput

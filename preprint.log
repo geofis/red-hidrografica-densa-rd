@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.8.7)  22 SEP 2023 09:19
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.8.7)  22 SEP 2023 15:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -707,24 +707,24 @@ LaTeX Info: Redefining \% on input line 24.
 )
 \openout1 = `preprint.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 113.
-LaTeX Font Info:    ... okay on input line 113.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 114.
+LaTeX Font Info:    ... okay on input line 114.
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 11
-3.
+4.
 (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -795,7 +795,7 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \AtBeginShipoutBox=\box68
-Package hyperref Info: Link coloring OFF on input line 113.
+Package hyperref Info: Link coloring OFF on input line 114.
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -805,21 +805,21 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count310
 )
-LaTeX Info: Redefining \ref on input line 113.
-LaTeX Info: Redefining \pageref on input line 113.
-LaTeX Info: Redefining \nameref on input line 113.
+LaTeX Info: Redefining \ref on input line 114.
+LaTeX Info: Redefining \pageref on input line 114.
+LaTeX Info: Redefining \nameref on input line 114.
 (./preprint.out) (./preprint.out)
 \@outlinefile=\write5
 \openout5 = `preprint.out'.
 
-LaTeX Info: Redefining \microtypecontext on input line 113.
+LaTeX Info: Redefining \microtypecontext on input line 114.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `basictext'.
-LaTeX Info: Redefining \showhyphens on input line 113.
+LaTeX Info: Redefining \showhyphens on input line 114.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -847,52 +847,56 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 )) ABD: EveryShipout initializing macros
-LaTeX Info: Redefining \. on input line 113.
-LaTeX Info: Redefining \% on input line 113.
+LaTeX Info: Redefining \. on input line 114.
+LaTeX Info: Redefining \% on input line 114.
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/17.28'.
 (microtype)             Ignoring protrusion settings for this character.
+
+LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
+(Font)              using `T1/lmr/m/scsl' instead on input line 115.
+
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/10'.
 (microtype)             Ignoring protrusion settings for this character.
 
 LaTeX Font Warning: Font shape `T1/lmr/m/scit' undefined
-(Font)              using `T1/lmr/m/scsl' instead on input line 114.
+(Font)              using `T1/lmr/m/scsl' instead on input line 115.
 
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-14.
+15.
 (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-14.
+15.
 (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-114.
+115.
 (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-114.
+115.
 (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 114.
+(Font)              <10> on input line 115.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 114.
+(Font)              <7> on input line 115.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 114.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 114
+(Font)              <5> on input line 115.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 115
 .
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 114
+LaTeX Font Info:    Trying to load font information for U+msb on input line 115
 .
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -900,7 +904,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
-14.
+15.
 (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -910,10 +914,10 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 
 LaTeX Font Warning: Font shape `T1/lmr/bx/sc' undefined
-(Font)              using `T1/lmr/bx/n' instead on input line 117.
+(Font)              using `T1/lmr/bx/n' instead on input line 118.
 
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 1
-43.
+44.
 (/usr/share/texmf/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -921,155 +925,156 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-Underfull \vbox (badness 2644) has occurred while \output is active []
-
 [1
 
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[2]
-<figuras/resumen-obtencion-preprocesamiento-dem.pdf, id=105, 440.91628pt x 165.
+[3]
+<figuras/resumen-obtencion-preprocesamiento-dem.pdf, id=114, 440.91628pt x 165.
 76631pt>
 File: figuras/resumen-obtencion-preprocesamiento-dem.pdf Graphic file (type pdf
 )
 <use figuras/resumen-obtencion-preprocesamiento-dem.pdf>
 Package pdftex.def Info: figuras/resumen-obtencion-preprocesamiento-dem.pdf  us
-ed on input line 330.
+ed on input line 369.
 (pdftex.def)             Requested size: 375.80542pt x 141.28902pt.
-[3]
-<preprint_files/figure-latex/mapaindice-1.pdf, id=118, 457.71pt x 277.035pt>
-File: preprint_files/figure-latex/mapaindice-1.pdf Graphic file (type pdf)
-<use preprint_files/figure-latex/mapaindice-1.pdf>
-Package pdftex.def Info: preprint_files/figure-latex/mapaindice-1.pdf  used on 
-input line 403.
-(pdftex.def)             Requested size: 375.80542pt x 227.47029pt.
-
-Underfull \vbox (badness 1292) has occurred while \output is active []
-
 [4pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.467 
+l.415 
        <./figuras/resumen-obtencion-preprocesamiento-dem.pdf>]
-<figuras/resumen-procesamiento-hidrologia-computacional.pdf, id=140, 384.51253p
-t x 160.28482pt>
-File: figuras/resumen-procesamiento-hidrologia-computacional.pdf Graphic file (
-type pdf)
-<use figuras/resumen-procesamiento-hidrologia-computacional.pdf>
-Package pdftex.def Info: figuras/resumen-procesamiento-hidrologia-computacional
-.pdf  used on input line 488.
-(pdftex.def)             Requested size: 375.80542pt x 156.65982pt.
+<preprint_files/figure-latex/mapaindice-1.pdf, id=133, 457.71pt x 277.035pt>
+File: preprint_files/figure-latex/mapaindice-1.pdf Graphic file (type pdf)
+<use preprint_files/figure-latex/mapaindice-1.pdf>
+Package pdftex.def Info: preprint_files/figure-latex/mapaindice-1.pdf  used on 
+input line 442.
+(pdftex.def)             Requested size: 375.80542pt x 227.47029pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 [5pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.504 
-       <./preprint_files/figure-latex/mapaindice-1.pdf>] [6pdfTeX warning (ext4
-): destination with the same identifier (name{figure.3}) has been already used,
- duplicate ignored
+l.476 
+       <./preprint_files/figure-latex/mapaindice-1.pdf>]
+<figuras/resumen-procesamiento-hidrologia-computacional.pdf, id=160, 384.51253p
+t x 160.28482pt>
+File: figuras/resumen-procesamiento-hidrologia-computacional.pdf Graphic file (
+type pdf)
+<use figuras/resumen-procesamiento-hidrologia-computacional.pdf>
+Package pdftex.def Info: figuras/resumen-procesamiento-hidrologia-computacional
+.pdf  used on input line 527.
+(pdftex.def)             Requested size: 375.80542pt x 156.65982pt.
+[6pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.574 
+l.562 
        <./figuras/resumen-procesamiento-hidrologia-computacional.pdf>]
-<figuras/cuencas-ordenes-todas.jpg, id=181, 844.8363pt x 597.432pt>
-File: figuras/cuencas-ordenes-todas.jpg Graphic file (type jpg)
-<use figuras/cuencas-ordenes-todas.jpg>
-Package pdftex.def Info: figuras/cuencas-ordenes-todas.jpg  used on input line 
-650.
-(pdftex.def)             Requested size: 375.80542pt x 265.75157pt.
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [7]
-<preprint_files/figure-latex/ordennumcuencas-1.pdf, id=193, 459.7175pt x 315.17
-75pt>
-File: preprint_files/figure-latex/ordennumcuencas-1.pdf Graphic file (type pdf)
-
-<use preprint_files/figure-latex/ordennumcuencas-1.pdf>
-Package pdftex.def Info: preprint_files/figure-latex/ordennumcuencas-1.pdf  use
-d on input line 698.
-(pdftex.def)             Requested size: 281.85585pt x 193.24869pt.
+<figuras/cuencas-ordenes-todas.jpg, id=192, 844.8363pt x 597.432pt>
+File: figuras/cuencas-ordenes-todas.jpg Graphic file (type jpg)
+<use figuras/cuencas-ordenes-todas.jpg>
+Package pdftex.def Info: figuras/cuencas-ordenes-todas.jpg  used on input line 
+689.
+(pdftex.def)             Requested size: 375.80542pt x 265.75157pt.
 [8pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.721 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.1
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.721 
+l.703 
        <./figuras/cuencas-ordenes-todas.jpg>]
-Overfull \hbox (1.77473pt too wide) in paragraph at lines 750--750
- []\T1/lmr/m/n/10 (-20) Mediana
- []
+<preprint_files/figure-latex/ordennumcuencas-1.pdf, id=201, 459.7175pt x 315.17
+75pt>
+File: preprint_files/figure-latex/ordennumcuencas-1.pdf Graphic file (type pdf)
 
+<use preprint_files/figure-latex/ordennumcuencas-1.pdf>
+Package pdftex.def Info: preprint_files/figure-latex/ordennumcuencas-1.pdf  use
+d on input line 737.
+(pdftex.def)             Requested size: 281.85585pt x 193.24869pt.
 
-Overfull \hbox (0.54941pt too wide) in paragraph at lines 750--750
- []\T1/lmr/m/n/10 (-20) Curtosis|
- []
+Underfull \vbox (badness 6332) has occurred while \output is active []
 
-<figuras/cuencas-subcuencas-areas-ordenes-boxplot.png, id=200, 562.1pt x 385.44
-pt>
-File: figuras/cuencas-subcuencas-areas-ordenes-boxplot.png Graphic file (type p
-ng)
-<use figuras/cuencas-subcuencas-areas-ordenes-boxplot.png>
-Package pdftex.def Info: figuras/cuencas-subcuencas-areas-ordenes-boxplot.png  
-used on input line 769.
-(pdftex.def)             Requested size: 375.80542pt x 257.69649pt.
 [9pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.789 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.2
+l.770 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.1
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.789 
+l.770 
        <./preprint_files/figure-latex/ordennumcuencas-1.pdf>]
-Underfull \vbox (badness 6961) has occurred while \output is active []
+Overfull \hbox (1.77473pt too wide) in paragraph at lines 789--789
+ []\T1/lmr/m/n/10 (-20) Mediana
+ []
 
-[10pdfTeX warning (ext4): destination with the same identifier (name{figure.6})
+
+Overfull \hbox (0.54941pt too wide) in paragraph at lines 789--789
+ []\T1/lmr/m/n/10 (-20) Curtosis|
+ []
+
+<figuras/cuencas-subcuencas-areas-ordenes-boxplot.png, id=216, 562.1pt x 385.44
+pt>
+File: figuras/cuencas-subcuencas-areas-ordenes-boxplot.png Graphic file (type p
+ng)
+<use figuras/cuencas-subcuencas-areas-ordenes-boxplot.png>
+Package pdftex.def Info: figuras/cuencas-subcuencas-areas-ordenes-boxplot.png  
+used on input line 808.
+(pdftex.def)             Requested size: 375.80542pt x 257.69649pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[10pdfTeX warning (ext4): destination with the same identifier (name{table.2}) 
+has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.868 
+      ]
+<figuras/cuencas-subcuencas-areas-ordenes.png, id=225, 1084.05pt x 1517.67pt>
+File: figuras/cuencas-subcuencas-areas-ordenes.png Graphic file (type png)
+<use figuras/cuencas-subcuencas-areas-ordenes.png>
+Package pdftex.def Info: figuras/cuencas-subcuencas-areas-ordenes.png  used on 
+input line 882.
+(pdftex.def)             Requested size: 375.80542pt x 526.12091pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+[11pdfTeX warning (ext4): destination with the same identifier (name{figure.6})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.829 
-       <./figuras/cuencas-subcuencas-areas-ordenes-boxplot.png (PNG copy)>]
-<figuras/cuencas-subcuencas-areas-ordenes.png, id=221, 1084.05pt x 1517.67pt>
-File: figuras/cuencas-subcuencas-areas-ordenes.png Graphic file (type png)
-<use figuras/cuencas-subcuencas-areas-ordenes.png>
-Package pdftex.def Info: figuras/cuencas-subcuencas-areas-ordenes.png  used on 
-input line 843.
-(pdftex.def)             Requested size: 375.80542pt x 526.12091pt.
-<figuras/red-orden-nacional.jpg, id=222, 844.8363pt x 597.432pt>
-File: figuras/red-orden-nacional.jpg Graphic file (type jpg)
-<use figuras/red-orden-nacional.jpg>
-Package pdftex.def Info: figuras/red-orden-nacional.jpg  used on input line 901
-.
-(pdftex.def)             Requested size: 375.80542pt x 265.75157pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[11] [12pdfTeX warning (ext4): destination with the same identifier (name{figur
-e.7}) has been already used, duplicate ignored
+l.922 
+       <./figuras/cuencas-subcuencas-areas-ordenes-boxplot.png (PNG copy)>] [12
+pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
+s been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.938 
+l.922 
        <./figuras/cuencas-subcuencas-areas-ordenes.png (PNG copy)>]
+<figuras/red-orden-nacional.jpg, id=234, 844.8363pt x 597.432pt>
+File: figuras/red-orden-nacional.jpg Graphic file (type jpg)
+<use figuras/red-orden-nacional.jpg>
+Package pdftex.def Info: figuras/red-orden-nacional.jpg  used on input line 940
+.
+(pdftex.def)             Requested size: 375.80542pt x 265.75157pt.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [13pdfTeX warning (ext4): destination with the same identifier (name{figure.8})
@@ -1077,67 +1082,60 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.995 
-       <./figuras/red-orden-nacional.jpg>]
-<figuras/variables-de-redes-segun-ordenes.png, id=240, 722.7pt x 240.9pt>
+l.963 
+       <./figuras/red-orden-nacional.jpg>] [14pdfTeX warning (ext4): destinatio
+n with the same identifier (name{table.3}) has been already used, duplicate ign
+ored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1066 
+       ]
+<figuras/variables-de-redes-segun-ordenes.png, id=248, 722.7pt x 240.9pt>
 File: figuras/variables-de-redes-segun-ordenes.png Graphic file (type png)
 <use figuras/variables-de-redes-segun-ordenes.png>
 Package pdftex.def Info: figuras/variables-de-redes-segun-ordenes.png  used on 
-input line 1030.
+input line 1069.
 (pdftex.def)             Requested size: 469.75499pt x 156.5868pt.
-[14pdfTeX warning (ext4): destination with the same identifier (name{figure.9})
+<figuras/cursos-mas-largos.png, id=253, 843.15pt x 578.16pt>
+File: figuras/cursos-mas-largos.png Graphic file (type png)
+<use figuras/cursos-mas-largos.png>
+Package pdftex.def Info: figuras/cursos-mas-largos.png  used on input line 1124
+.
+(pdftex.def)             Requested size: 469.75499pt x 322.11768pt.
+[15pdfTeX warning (ext4): destination with the same identifier (name{figure.9})
  has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1082 
+l.1130 
        pdfTeX warning (ext4): destination with the same identifier (name{table.
-3}) has been already used, duplicate ignored
+4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1082 
-        <./figuras/variables-de-redes-segun-ordenes.png>]
-<figuras/cursos-mas-largos.png, id=251, 843.15pt x 578.16pt>
-File: figuras/cursos-mas-largos.png Graphic file (type png)
-<use figuras/cursos-mas-largos.png>
-Package pdftex.def Info: figuras/cursos-mas-largos.png  used on input line 1085
-.
-(pdftex.def)             Requested size: 469.75499pt x 322.11768pt.
-[15pdfTeX warning (ext4): destination with the same identifier (name{table.4}) 
-has been already used, duplicate ignored
+l.1130 
+        <./figuras/variables-de-redes-segun-ordenes.png>] [16pdfTeX warning (ex
+t4): destination with the same identifier (name{figure.10}) has been already us
+ed, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1144 
-       pdfTeX warning (ext4): destination with the same identifier (name{figure
-.10}) has been already used, duplicate ignored
+l.1176 
+        <./figuras/cursos-mas-largos.png (PNG copy)>] [17pdfTeX warning (ext4):
+ destination with the same identifier (name{table.5}) has been already used, du
+plicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1144 
-        <./figuras/cursos-mas-largos.png (PNG copy)>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[16pdfTeX warning (ext4): destination with the same identifier (name{table.5}) 
-has been already used, duplicate ignored
+l.1257 
+       ] [18pdfTeX warning (ext4): destination with the same identifier (name{t
+able.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1178 
+l.1342 
        ]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[17pdfTeX warning (ext4): destination with the same identifier (name{table.6}) 
-has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.1278 
-       ]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[18]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [19]
@@ -1145,10 +1143,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [20] [21]
 
-Package xcolor Warning: Incompatible color definition on input line 1579.
+Package xcolor Warning: Incompatible color definition on input line 1628.
 
 LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
-1599.
+1648.
 (/usr/share/texmf/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1160,910 +1158,892 @@ Package microtype Info: Character `texttrademark ' is missing
 (microtype)             in font `TS1/lmtt/m/n/10'.
 (microtype)             Ignoring protrusion settings for this character.
 
-Package xcolor Warning: Incompatible color definition on input line 1605.
+Package xcolor Warning: Incompatible color definition on input line 1654.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1605.
+Package xcolor Warning: Incompatible color definition on input line 1654.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1615.
+Package xcolor Warning: Incompatible color definition on input line 1664.
 
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1617.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1666.
 
-Package xcolor Warning: Incompatible color definition on input line 1619.
-
-
-Package xcolor Warning: Incompatible color definition on input line 1619.
+Package xcolor Warning: Incompatible color definition on input line 1668.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1648.
+Package xcolor Warning: Incompatible color definition on input line 1668.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1697.
 
 [22]
 
-Package xcolor Warning: Incompatible color definition on input line 1668.
+Package xcolor Warning: Incompatible color definition on input line 1717.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1668.
+Package xcolor Warning: Incompatible color definition on input line 1717.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1670.
+Package xcolor Warning: Incompatible color definition on input line 1719.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1676.
+Package xcolor Warning: Incompatible color definition on input line 1725.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1676.
+Package xcolor Warning: Incompatible color definition on input line 1725.
 
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1680 \caption
+l.1729 \caption
                {\label{tab:tablaindice}Escenas ALOS-PALSAR usadas para gener...
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1681 ...ción espacial de República Dominicana}
+l.1730 ...ción espacial de República Dominicana}
                                                   pdfTeX warning (ext4): destin
 ation with the same identifier (name{table.1}) has been already used, duplicate
  ignored
 <to be read again> 
                    \relax 
-l.1681 ...ción espacial de República Dominicana}
+l.1730 ...ción espacial de República Dominicana}
                                                   
 Underfull \vbox (badness 4752) has occurred while \output is active []
 
 [23]
 
-Package xcolor Warning: Incompatible color definition on input line 1731.
+Package xcolor Warning: Incompatible color definition on input line 1780.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1743.
+Package xcolor Warning: Incompatible color definition on input line 1792.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1743.
+Package xcolor Warning: Incompatible color definition on input line 1792.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1753.
+Package xcolor Warning: Incompatible color definition on input line 1802.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1764.
+Package xcolor Warning: Incompatible color definition on input line 1813.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1764.
+Package xcolor Warning: Incompatible color definition on input line 1813.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1774.
+Package xcolor Warning: Incompatible color definition on input line 1823.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1791.
+Package xcolor Warning: Incompatible color definition on input line 1840.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1791.
+Package xcolor Warning: Incompatible color definition on input line 1840.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1805.
+Package xcolor Warning: Incompatible color definition on input line 1854.
 
 
 Underfull \vbox (badness 1867) has occurred while \output is active []
 
 [24]
 
-Package xcolor Warning: Incompatible color definition on input line 1811.
+Package xcolor Warning: Incompatible color definition on input line 1860.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1811.
+Package xcolor Warning: Incompatible color definition on input line 1860.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1825.
+Package xcolor Warning: Incompatible color definition on input line 1874.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1831.
+Package xcolor Warning: Incompatible color definition on input line 1880.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1831.
+Package xcolor Warning: Incompatible color definition on input line 1880.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1859.
+Package xcolor Warning: Incompatible color definition on input line 1908.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1876.
+Package xcolor Warning: Incompatible color definition on input line 1925.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1876.
+Package xcolor Warning: Incompatible color definition on input line 1925.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1884.
+Package xcolor Warning: Incompatible color definition on input line 1933.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1893.
+Package xcolor Warning: Incompatible color definition on input line 1942.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1893.
+Package xcolor Warning: Incompatible color definition on input line 1942.
 
-<figuras/dem-sin-procesar.jpg, id=320, 1161.33875pt x 789.95125pt>
+<figuras/dem-sin-procesar.jpg, id=325, 1161.33875pt x 789.95125pt>
 File: figuras/dem-sin-procesar.jpg Graphic file (type jpg)
 <use figuras/dem-sin-procesar.jpg>
-Package pdftex.def Info: figuras/dem-sin-procesar.jpg  used on input line 1897.
+Package pdftex.def Info: figuras/dem-sin-procesar.jpg  used on input line 1946.
 
 (pdftex.def)             Requested size: 375.80542pt x 255.62218pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1901 \caption
+l.1950 \caption
                {DEM sin procesar, representado como relieve sombreado. Nóte...
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1901 ...ona, sudoeste de República Dominicana)}
+l.1950 ...ona, sudoeste de República Dominicana)}
                                                   \label{fig:demsinprocesar}pdf
 TeX warning (ext4): destination with the same identifier (name{figure.1}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1901 ...ona, sudoeste de República Dominicana)}
+l.1950 ...ona, sudoeste de República Dominicana)}
                                                   \label{fig:demsinprocesar} [2
 5]
 
-Package xcolor Warning: Incompatible color definition on input line 1911.
+Package xcolor Warning: Incompatible color definition on input line 1960.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1922.
+Package xcolor Warning: Incompatible color definition on input line 1971.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1922.
+Package xcolor Warning: Incompatible color definition on input line 1971.
 
-<figuras/dem-relleno.jpg, id=326, 1161.33875pt x 789.95125pt>
+<figuras/dem-relleno.jpg, id=331, 1161.33875pt x 789.95125pt>
 File: figuras/dem-relleno.jpg Graphic file (type jpg)
 <use figuras/dem-relleno.jpg>
-Package pdftex.def Info: figuras/dem-relleno.jpg  used on input line 1926.
+Package pdftex.def Info: figuras/dem-relleno.jpg  used on input line 1975.
 (pdftex.def)             Requested size: 375.80542pt x 255.62218pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1930 \caption
+l.1979 \caption
                {DEM sin procesar, representado como relieve sombreado. Los p...
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1930 ...ona, sudoeste de República Dominicana)}
+l.1979 ...ona, sudoeste de República Dominicana)}
                                                   \label{fig:demrelleno}pdfTeX 
 warning (ext4): destination with the same identifier (name{figure.2}) has been 
 already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1930 ...ona, sudoeste de República Dominicana)}
+l.1979 ...ona, sudoeste de República Dominicana)}
                                                   \label{fig:demrelleno}
 
-Package xcolor Warning: Incompatible color definition on input line 1942.
+Package xcolor Warning: Incompatible color definition on input line 1991.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1962.
+Package xcolor Warning: Incompatible color definition on input line 2011.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1962.
+Package xcolor Warning: Incompatible color definition on input line 2011.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1962.
+Package xcolor Warning: Incompatible color definition on input line 2011.
 
 [26 <./figuras/dem-sin-procesar.jpg>]
 
-Package xcolor Warning: Incompatible color definition on input line 1962.
+Package xcolor Warning: Incompatible color definition on input line 2011.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1962.
+Package xcolor Warning: Incompatible color definition on input line 2011.
 
-<figuras/dem-suavizado.jpg, id=331, 1161.33875pt x 789.95125pt>
+<figuras/dem-suavizado.jpg, id=336, 1161.33875pt x 789.95125pt>
 File: figuras/dem-suavizado.jpg Graphic file (type jpg)
 <use figuras/dem-suavizado.jpg>
-Package pdftex.def Info: figuras/dem-suavizado.jpg  used on input line 1966.
+Package pdftex.def Info: figuras/dem-suavizado.jpg  used on input line 2015.
 (pdftex.def)             Requested size: 375.80542pt x 255.62218pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1970 \caption
+l.2019 \caption
                {DEM suavizado, representado como relieve sombreado. Nótese ...
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1970 ...ona, sudoeste de República Dominicana)}
+l.2019 ...ona, sudoeste de República Dominicana)}
                                                   \label{fig:demsuavizado}pdfTe
 X warning (ext4): destination with the same identifier (name{figure.3}) has bee
 n already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.1970 ...ona, sudoeste de República Dominicana)}
+l.2019 ...ona, sudoeste de República Dominicana)}
                                                   \label{fig:demsuavizado}
 
-Package xcolor Warning: Incompatible color definition on input line 1973.
+Package xcolor Warning: Incompatible color definition on input line 2022.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1979.
+Package xcolor Warning: Incompatible color definition on input line 2028.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1979.
+Package xcolor Warning: Incompatible color definition on input line 2028.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1992.
+Package xcolor Warning: Incompatible color definition on input line 2041.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2034.
+Package xcolor Warning: Incompatible color definition on input line 2083.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2034.
+Package xcolor Warning: Incompatible color definition on input line 2083.
 
 
-Overfull \vbox (0.71202pt too high) detected at line 2034
+Overfull \vbox (0.71202pt too high) detected at line 2083
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 2034.
+Package xcolor Warning: Incompatible color definition on input line 2083.
 
 [27 <./figuras/dem-relleno.jpg>]
 
-Package xcolor Warning: Incompatible color definition on input line 2034.
+Package xcolor Warning: Incompatible color definition on input line 2083.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2034.
+Package xcolor Warning: Incompatible color definition on input line 2083.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2036.
+Package xcolor Warning: Incompatible color definition on input line 2085.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2043.
+Package xcolor Warning: Incompatible color definition on input line 2092.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2043.
+Package xcolor Warning: Incompatible color definition on input line 2092.
 
 
-Underfull \vbox (badness 10000) detected at line 2043
+Underfull \vbox (badness 10000) detected at line 2092
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 2043.
+Package xcolor Warning: Incompatible color definition on input line 2092.
 
 [28 <./figuras/dem-suavizado.jpg>]
 
-Package xcolor Warning: Incompatible color definition on input line 2043.
+Package xcolor Warning: Incompatible color definition on input line 2092.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2043.
+Package xcolor Warning: Incompatible color definition on input line 2092.
 
-<figuras/perfiles-dem/los-patos.png, id=340, 637.4214pt x 366.04755pt>
+<figuras/perfiles-dem/los-patos.png, id=345, 637.4214pt x 366.04755pt>
 File: figuras/perfiles-dem/los-patos.png Graphic file (type png)
 <use figuras/perfiles-dem/los-patos.png>
 Package pdftex.def Info: figuras/perfiles-dem/los-patos.png  used on input line
- 2061.
+ 2110.
 (pdftex.def)             Requested size: 375.80542pt x 215.81537pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2065 \caption
+l.2114 \caption
                {Alturas respecto de geoide EGM08 ($\sim$ortométrica) y sobr...
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2065 ...ona, sudoeste de República Dominicana)}
+l.2114 ...ona, sudoeste de República Dominicana)}
                                                   \label{fig:alturasgeoideel...
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2065 ...ona, sudoeste de República Dominicana)}
+l.2114 ...ona, sudoeste de República Dominicana)}
                                                   \label{fig:alturasgeoideel...
-<figuras/red-cursos-largos.jpg, id=342, 1054.6602pt x 596.9502pt>
+<figuras/red-cursos-largos.jpg, id=347, 1054.6602pt x 596.9502pt>
 File: figuras/red-cursos-largos.jpg Graphic file (type jpg)
 <use figuras/red-cursos-largos.jpg>
-Package pdftex.def Info: figuras/red-cursos-largos.jpg  used on input line 2094
+Package pdftex.def Info: figuras/red-cursos-largos.jpg  used on input line 2143
 .
 (pdftex.def)             Requested size: 375.80542pt x 212.70671pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2098 \caption
+l.2147 \caption
                {Mapa de la red de cursos largos creada para el estudio a par...
 pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2098 ...s fuentes (más detalles, en el texto).}
+l.2147 ...s fuentes (más detalles, en el texto).}
                                                   \label{fig:redcursoslargos}pd
 fTeX warning (ext4): destination with the same identifier (name{figure.5}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2098 ...s fuentes (más detalles, en el texto).}
+l.2147 ...s fuentes (más detalles, en el texto).}
                                                   \label{fig:redcursoslargos}
 
-Package xcolor Warning: Incompatible color definition on input line 2110.
+Package xcolor Warning: Incompatible color definition on input line 2159.
 
 [29 <./figuras/perfiles-dem/los-patos.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 2123.
+Package xcolor Warning: Incompatible color definition on input line 2172.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2123.
+Package xcolor Warning: Incompatible color definition on input line 2172.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2125.
+Package xcolor Warning: Incompatible color definition on input line 2174.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2136.
+Package xcolor Warning: Incompatible color definition on input line 2185.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2136.
+Package xcolor Warning: Incompatible color definition on input line 2185.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [30 <./figuras/red-cursos-largos.jpg>]
 
-Package xcolor Warning: Incompatible color definition on input line 2180.
+Package xcolor Warning: Incompatible color definition on input line 2229.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2192.
+Package xcolor Warning: Incompatible color definition on input line 2241.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2192.
+Package xcolor Warning: Incompatible color definition on input line 2241.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2207.
+Package xcolor Warning: Incompatible color definition on input line 2256.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2238.
+Package xcolor Warning: Incompatible color definition on input line 2287.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2238.
+Package xcolor Warning: Incompatible color definition on input line 2287.
 
 
-Overfull \vbox (0.74883pt too high) detected at line 2238
+Overfull \vbox (0.74883pt too high) detected at line 2287
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 2238.
+Package xcolor Warning: Incompatible color definition on input line 2287.
 
 [31]
 
-Package xcolor Warning: Incompatible color definition on input line 2238.
+Package xcolor Warning: Incompatible color definition on input line 2287.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2238.
+Package xcolor Warning: Incompatible color definition on input line 2287.
 
-<figuras/dem-sin-tallar-tallado.png, id=357, 958.3002pt x 765.0984pt>
+<figuras/dem-sin-tallar-tallado.png, id=362, 958.3002pt x 765.0984pt>
 File: figuras/dem-sin-tallar-tallado.png Graphic file (type png)
 <use figuras/dem-sin-tallar-tallado.png>
 Package pdftex.def Info: figuras/dem-sin-tallar-tallado.png  used on input line
- 2242.
+ 2291.
 (pdftex.def)             Requested size: 375.80542pt x 300.03326pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2246 \caption
+l.2295 \caption
                {DEM sin aplicación de hidrografía (A), y con aplicación d...
 pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2246 ...oso, nordeste de República Dominicana)}
+l.2295 ...oso, nordeste de República Dominicana)}
                                                   \label{fig:demtallado}pdfTeX 
 warning (ext4): destination with the same identifier (name{figure.6}) has been 
 already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2246 ...oso, nordeste de República Dominicana)}
+l.2295 ...oso, nordeste de República Dominicana)}
                                                   \label{fig:demtallado}
 
-Package xcolor Warning: Incompatible color definition on input line 2261.
+Package xcolor Warning: Incompatible color definition on input line 2310.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2271.
+Package xcolor Warning: Incompatible color definition on input line 2320.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2271.
+Package xcolor Warning: Incompatible color definition on input line 2320.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2273.
+Package xcolor Warning: Incompatible color definition on input line 2322.
 
 Package microtype Info: Character `texttrademark ' is missing
 (microtype)             in font `TS1/lmtt/m/it/10'.
 (microtype)             Ignoring protrusion settings for this character.
 
-Package xcolor Warning: Incompatible color definition on input line 2283.
+Package xcolor Warning: Incompatible color definition on input line 2332.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2283.
+Package xcolor Warning: Incompatible color definition on input line 2332.
 
 
-Overfull \vbox (1.14536pt too high) detected at line 2283
+Overfull \vbox (1.14536pt too high) detected at line 2332
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 2283.
+Package xcolor Warning: Incompatible color definition on input line 2332.
 
 [32 <./figuras/dem-sin-tallar-tallado.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 2283.
+Package xcolor Warning: Incompatible color definition on input line 2332.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2283.
+Package xcolor Warning: Incompatible color definition on input line 2332.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2285.
+Package xcolor Warning: Incompatible color definition on input line 2334.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2299.
+Package xcolor Warning: Incompatible color definition on input line 2348.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2299.
+Package xcolor Warning: Incompatible color definition on input line 2348.
 
-<figuras/geomorfonos-de-rd.jpg, id=364, 844.8363pt x 597.432pt>
+<figuras/geomorfonos-de-rd.jpg, id=369, 844.8363pt x 597.432pt>
 File: figuras/geomorfonos-de-rd.jpg Graphic file (type jpg)
 <use figuras/geomorfonos-de-rd.jpg>
-Package pdftex.def Info: figuras/geomorfonos-de-rd.jpg  used on input line 2326
+Package pdftex.def Info: figuras/geomorfonos-de-rd.jpg  used on input line 2375
 .
 (pdftex.def)             Requested size: 375.80542pt x 265.75157pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2330 \caption
+l.2379 \caption
                {"Geomórfonos" de República Dominicana generados a partir d...
 pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2330 ...la, detalle del cañón del río Payabo}
+l.2379 ...la, detalle del cañón del río Payabo}
                                                   \label{fig:geomorfonosrd}pdfT
 eX warning (ext4): destination with the same identifier (name{figure.7}) has be
 en already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2330 ...la, detalle del cañón del río Payabo}
+l.2379 ...la, detalle del cañón del río Payabo}
                                                   \label{fig:geomorfonosrd} [33
  <./figuras/geomorfonos-de-rd.jpg>]
 
-Package xcolor Warning: Incompatible color definition on input line 2353.
+Package xcolor Warning: Incompatible color definition on input line 2402.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2399.
+Package xcolor Warning: Incompatible color definition on input line 2448.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2399.
+Package xcolor Warning: Incompatible color definition on input line 2448.
 
-<figuras/depresiones.png, id=369, 922.647pt x 765.0984pt>
+<figuras/depresiones.png, id=374, 922.647pt x 765.0984pt>
 File: figuras/depresiones.png Graphic file (type png)
 <use figuras/depresiones.png>
-Package pdftex.def Info: figuras/depresiones.png  used on input line 2403.
+Package pdftex.def Info: figuras/depresiones.png  used on input line 2452.
 (pdftex.def)             Requested size: 375.80542pt x 311.63766pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2407 \caption
+l.2456 \caption
                {DEM ALOS PALSAR representado como mapa hipsómétrico (rojo ...
 pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2407 ...do depresiones en tonalidad azul oscuro}
+l.2456 ...do depresiones en tonalidad azul oscuro}
                                                   \label{fig:depresiones}pdfTeX
  warning (ext4): destination with the same identifier (name{figure.8}) has been
  already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2407 ...do depresiones en tonalidad azul oscuro}
+l.2456 ...do depresiones en tonalidad azul oscuro}
                                                   \label{fig:depresiones}
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [34] [35 <./figuras/depresiones.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 2475.
+Package xcolor Warning: Incompatible color definition on input line 2524.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2503.
+Package xcolor Warning: Incompatible color definition on input line 2552.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2503.
+Package xcolor Warning: Incompatible color definition on input line 2552.
 
-<figuras/acumulacion-flujo-y-red-rwshed.png, id=380, 911.5656pt x 709.2096pt>
+<figuras/acumulacion-flujo-y-red-rwshed.png, id=385, 911.5656pt x 709.2096pt>
 File: figuras/acumulacion-flujo-y-red-rwshed.png Graphic file (type png)
 <use figuras/acumulacion-flujo-y-red-rwshed.png>
 Package pdftex.def Info: figuras/acumulacion-flujo-y-red-rwshed.png  used on in
-put line 2507.
+put line 2556.
 (pdftex.def)             Requested size: 375.80542pt x 292.37941pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2511 \caption
+l.2560 \caption
                {Mapa de acumulación de flujo generado con `r.watershed`. En...
 pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) ha
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2511 ...pa en la cuenca del río Yaque del Sur.}
+l.2560 ...pa en la cuenca del río Yaque del Sur.}
                                                   \label{fig:acumyredrwshed}pdf
 TeX warning (ext4): destination with the same identifier (name{figure.9}) has b
 een already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2511 ...pa en la cuenca del río Yaque del Sur.}
+l.2560 ...pa en la cuenca del río Yaque del Sur.}
                                                   \label{fig:acumyredrwshed}
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [36]
 
-Package xcolor Warning: Incompatible color definition on input line 2556.
+Package xcolor Warning: Incompatible color definition on input line 2605.
 
 LaTeX Font Info:    Font shape `TS1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `TS1/lmtt/b/n' tried instead on input line 2560.
+(Font)              Font shape `TS1/lmtt/b/n' tried instead on input line 2609.
 
 Package microtype Info: Character `texttrademark ' is missing
 (microtype)             in font `TS1/lmtt/b/n/10'.
 (microtype)             Ignoring protrusion settings for this character.
 
-Package xcolor Warning: Incompatible color definition on input line 2585.
+Package xcolor Warning: Incompatible color definition on input line 2634.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2585.
+Package xcolor Warning: Incompatible color definition on input line 2634.
 
 
-Underfull \vbox (badness 1590) detected at line 2585
+Underfull \vbox (badness 1590) detected at line 2634
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 2585.
+Package xcolor Warning: Incompatible color definition on input line 2634.
 
 [37 <./figuras/acumulacion-flujo-y-red-rwshed.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 2585.
+Package xcolor Warning: Incompatible color definition on input line 2634.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2585.
+Package xcolor Warning: Incompatible color definition on input line 2634.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2587.
+Package xcolor Warning: Incompatible color definition on input line 2636.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2597.
+Package xcolor Warning: Incompatible color definition on input line 2646.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2597.
+Package xcolor Warning: Incompatible color definition on input line 2646.
 
-<figuras/red-indiferenciada.png, id=392, 1474.308pt x 839.7774pt>
+<figuras/red-indiferenciada.png, id=397, 1474.308pt x 839.7774pt>
 File: figuras/red-indiferenciada.png Graphic file (type png)
 <use figuras/red-indiferenciada.png>
-Package pdftex.def Info: figuras/red-indiferenciada.png  used on input line 261
-4.
+Package pdftex.def Info: figuras/red-indiferenciada.png  used on input line 266
+3.
 (pdftex.def)             Requested size: 375.80542pt x 214.05711pt.
 pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2618 \caption
+l.2667 \caption
                {Red de drenaje extraída para tres umbrales de acumulación:...
 pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2618 ...llera Central de República Dominicana)}
+l.2667 ...llera Central de República Dominicana)}
                                                   \label{fig:redindiferenciada}
 pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) h
 as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2618 ...llera Central de República Dominicana)}
+l.2667 ...llera Central de República Dominicana)}
                                                   \label{fig:redindiferenciada}
 [38 <./figuras/red-indiferenciada.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 2642.
+Package xcolor Warning: Incompatible color definition on input line 2691.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2667.
+Package xcolor Warning: Incompatible color definition on input line 2716.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2667.
+Package xcolor Warning: Incompatible color definition on input line 2716.
 
-<figuras/red-orden.png, id=398, 1694.0088pt x 851.3406pt>
+<figuras/red-orden.png, id=403, 1694.0088pt x 851.3406pt>
 File: figuras/red-orden.png Graphic file (type png)
 <use figuras/red-orden.png>
-Package pdftex.def Info: figuras/red-orden.png  used on input line 2671.
+Package pdftex.def Info: figuras/red-orden.png  used on input line 2720.
 (pdftex.def)             Requested size: 375.80542pt x 188.85435pt.
-<figuras/red-orden-detalle-mtn.jpg, id=399, 1186.4325pt x 789.95125pt>
+<figuras/red-orden-detalle-mtn.jpg, id=404, 1186.4325pt x 789.95125pt>
 File: figuras/red-orden-detalle-mtn.jpg Graphic file (type jpg)
 <use figuras/red-orden-detalle-mtn.jpg>
 Package pdftex.def Info: figuras/red-orden-detalle-mtn.jpg  used on input line 
-2680.
+2729.
 (pdftex.def)             Requested size: 375.80542pt x 250.22212pt.
 
-Package xcolor Warning: Incompatible color definition on input line 2692.
+Package xcolor Warning: Incompatible color definition on input line 2741.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2701.
+Package xcolor Warning: Incompatible color definition on input line 2750.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2701.
+Package xcolor Warning: Incompatible color definition on input line 2750.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2701.
+Package xcolor Warning: Incompatible color definition on input line 2750.
 
 [39pdfTeX warning (ext4): destination with the same identifier (name{figure.11}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.2701 \end{Shaded}
+l.2750 \end{Shaded}
                     <./figuras/red-orden.png>]
 
-Package xcolor Warning: Incompatible color definition on input line 2701.
+Package xcolor Warning: Incompatible color definition on input line 2750.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2701.
+Package xcolor Warning: Incompatible color definition on input line 2750.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2715.
+Package xcolor Warning: Incompatible color definition on input line 2764.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2732.
+Package xcolor Warning: Incompatible color definition on input line 2781.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2732.
+Package xcolor Warning: Incompatible color definition on input line 2781.
 
 [40pdfTeX warning (ext4): destination with the same identifier (name{figure.12}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.2748 
+l.2797 
         <./figuras/red-orden-detalle-mtn.jpg>]
 
-Package xcolor Warning: Incompatible color definition on input line 2749.
+Package xcolor Warning: Incompatible color definition on input line 2798.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2765.
+Package xcolor Warning: Incompatible color definition on input line 2814.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2765.
+Package xcolor Warning: Incompatible color definition on input line 2814.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2780.
+Package xcolor Warning: Incompatible color definition on input line 2829.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2796.
+Package xcolor Warning: Incompatible color definition on input line 2845.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2796.
+Package xcolor Warning: Incompatible color definition on input line 2845.
 
 [41]
 
-Package xcolor Warning: Incompatible color definition on input line 2844.
+Package xcolor Warning: Incompatible color definition on input line 2893.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2973.
+Package xcolor Warning: Incompatible color definition on input line 3022.
 
 
-Package xcolor Warning: Incompatible color definition on input line 2973.
+Package xcolor Warning: Incompatible color definition on input line 3022.
 
 
-Underfull \vbox (badness 10000) detected at line 2973
+Underfull \vbox (badness 10000) detected at line 3022
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 2973.
+Package xcolor Warning: Incompatible color definition on input line 3022.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [42]
 
-Package xcolor Warning: Incompatible color definition on input line 2973.
-
-
-Package xcolor Warning: Incompatible color definition on input line 2973.
-
-
-Underfull \vbox (badness 10000) detected at line 2973
- []
-
-
-Underfull \vbox (badness 10000) detected at line 2973
- []
-
-
-Package xcolor Warning: Incompatible color definition on input line 2973.
-
-[43]
-
-Package xcolor Warning: Incompatible color definition on input line 2973.
-
-
-Package xcolor Warning: Incompatible color definition on input line 2973.
-
-
-Package xcolor Warning: Incompatible color definition on input line 2975.
-
-
-Package xcolor Warning: Incompatible color definition on input line 3004.
-
-
-Package xcolor Warning: Incompatible color definition on input line 3004.
+Package xcolor Warning: Incompatible color definition on input line 3022.
 
 
 Package xcolor Warning: Incompatible color definition on input line 3022.
 
+
+Underfull \vbox (badness 10000) detected at line 3022
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 3022
+ []
+
+
+Package xcolor Warning: Incompatible color definition on input line 3022.
+
+[43]
+
+Package xcolor Warning: Incompatible color definition on input line 3022.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3022.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3024.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3053.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3053.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3071.
+
 [44]
 
-Package xcolor Warning: Incompatible color definition on input line 3071.
+Package xcolor Warning: Incompatible color definition on input line 3120.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3071.
+Package xcolor Warning: Incompatible color definition on input line 3120.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3078.
+Package xcolor Warning: Incompatible color definition on input line 3127.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3087.
+Package xcolor Warning: Incompatible color definition on input line 3136.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3087.
+Package xcolor Warning: Incompatible color definition on input line 3136.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 [45]
 
-Package xcolor Warning: Incompatible color definition on input line 3096.
+Package xcolor Warning: Incompatible color definition on input line 3145.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3101.
+Package xcolor Warning: Incompatible color definition on input line 3150.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3101.
+Package xcolor Warning: Incompatible color definition on input line 3150.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3114.
+Package xcolor Warning: Incompatible color definition on input line 3163.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3144.
+Package xcolor Warning: Incompatible color definition on input line 3193.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3144.
+Package xcolor Warning: Incompatible color definition on input line 3193.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3152.
+Package xcolor Warning: Incompatible color definition on input line 3201.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3160.
+Package xcolor Warning: Incompatible color definition on input line 3209.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3160.
+Package xcolor Warning: Incompatible color definition on input line 3209.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3162--3172
+Underfull \hbox (badness 10000) in paragraph at lines 3211--3221
 []\T1/lmr/m/n/10 (+20) Visualizamos la red a par-tir del ar-chi-vo fuen-te co-r
 res-pon-dien-te (nom-bre ra�z
  []
 
 [46]
 
-Package xcolor Warning: Incompatible color definition on input line 3173.
+Package xcolor Warning: Incompatible color definition on input line 3222.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3255.
+Package xcolor Warning: Incompatible color definition on input line 3304.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3255.
+Package xcolor Warning: Incompatible color definition on input line 3304.
 
 
-Underfull \vbox (badness 10000) detected at line 3255
+Underfull \vbox (badness 10000) detected at line 3304
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 3255.
+Package xcolor Warning: Incompatible color definition on input line 3304.
 
 
 Underfull \vbox (badness 3009) has occurred while \output is active []
 
 [47]
 
-Package xcolor Warning: Incompatible color definition on input line 3255.
+Package xcolor Warning: Incompatible color definition on input line 3304.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3255.
+Package xcolor Warning: Incompatible color definition on input line 3304.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3260.
+Package xcolor Warning: Incompatible color definition on input line 3309.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3293.
+Package xcolor Warning: Incompatible color definition on input line 3342.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3293.
+Package xcolor Warning: Incompatible color definition on input line 3342.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3299.
+Package xcolor Warning: Incompatible color definition on input line 3348.
 
 [48]
 
 LaTeX Font Warning: Font shape `T1/lmtt/bx/it' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/sl' tried instead on input line 3301.
+(Font)              Font shape `T1/lmtt/b/sl' tried instead on input line 3350.
 
 
 
-Package xcolor Warning: Incompatible color definition on input line 3382.
+Package xcolor Warning: Incompatible color definition on input line 3431.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3382.
+Package xcolor Warning: Incompatible color definition on input line 3431.
 
 
-Underfull \vbox (badness 10000) detected at line 3382
+Underfull \vbox (badness 10000) detected at line 3431
  []
 
 
-Underfull \vbox (badness 10000) detected at line 3382
+Underfull \vbox (badness 10000) detected at line 3431
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 3382.
+Package xcolor Warning: Incompatible color definition on input line 3431.
 
 [49]
 
-Package xcolor Warning: Incompatible color definition on input line 3382.
+Package xcolor Warning: Incompatible color definition on input line 3431.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3382.
+Package xcolor Warning: Incompatible color definition on input line 3431.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3399.
+Package xcolor Warning: Incompatible color definition on input line 3448.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3445.
+Package xcolor Warning: Incompatible color definition on input line 3494.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3445.
+Package xcolor Warning: Incompatible color definition on input line 3494.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3445.
+Package xcolor Warning: Incompatible color definition on input line 3494.
 
 [50]
 
-Package xcolor Warning: Incompatible color definition on input line 3445.
+Package xcolor Warning: Incompatible color definition on input line 3494.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3445.
+Package xcolor Warning: Incompatible color definition on input line 3494.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3450.
-
-
-Package xcolor Warning: Incompatible color definition on input line 3459.
-
-
-Package xcolor Warning: Incompatible color definition on input line 3459.
-
-
-Package xcolor Warning: Incompatible color definition on input line 3467.
-
-
-Package xcolor Warning: Incompatible color definition on input line 3484.
-
-
-Package xcolor Warning: Incompatible color definition on input line 3484.
-
-
-Package xcolor Warning: Incompatible color definition on input line 3491.
+Package xcolor Warning: Incompatible color definition on input line 3499.
 
 
 Package xcolor Warning: Incompatible color definition on input line 3508.
@@ -2072,32 +2052,50 @@ Package xcolor Warning: Incompatible color definition on input line 3508.
 Package xcolor Warning: Incompatible color definition on input line 3508.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3508.
+Package xcolor Warning: Incompatible color definition on input line 3516.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3533.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3533.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3540.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3557.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3557.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3557.
 
 [51]
 
-Package xcolor Warning: Incompatible color definition on input line 3508.
-
-
-Package xcolor Warning: Incompatible color definition on input line 3508.
-
-
-Package xcolor Warning: Incompatible color definition on input line 3517.
-
-
 Package xcolor Warning: Incompatible color definition on input line 3557.
 
 
 Package xcolor Warning: Incompatible color definition on input line 3557.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3564.
+Package xcolor Warning: Incompatible color definition on input line 3566.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3568.
+Package xcolor Warning: Incompatible color definition on input line 3606.
 
 
-Package xcolor Warning: Incompatible color definition on input line 3568.
+Package xcolor Warning: Incompatible color definition on input line 3606.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3613.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3617.
+
+
+Package xcolor Warning: Incompatible color definition on input line 3617.
 
 [52]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2114,30 +2112,30 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 [56]
 No file preprint.bbl.
 [57]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4172.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 4172.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4221.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 4221.
 (./preprint.aux
 LaTeX Info: Redefining \. on input line 24.
 LaTeX Info: Redefining \% on input line 24.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4172.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4172.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4221.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4221.
 
 Package rerunfilecheck Info: File `preprint.out' has not changed.
-(rerunfilecheck)             Checksum: E444626443402FF2DAEEB84AADC869BB;1437.
+(rerunfilecheck)             Checksum: 98EC45C8F8537CD59BBF244079F6C703;1499.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4172.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4221.
  ) 
 Here is how much of TeX's memory you used:
- 21957 strings out of 481239
- 409324 string characters out of 5920378
- 716092 words of memory out of 5000000
- 36350 multiletter control sequences out of 15000+600000
- 597086 words of font info for 138 fonts, out of 8000000 for 9000
+ 21974 strings out of 481239
+ 409614 string characters out of 5920378
+ 716412 words of memory out of 5000000
+ 36361 multiletter control sequences out of 15000+600000
+ 603074 words of font info for 142 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,17n,68p,943b,795s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 68i,17n,74p,943b,850s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dv
 ips/lm/lm-ts1.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/shar
 e/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ma
@@ -2153,10 +2151,10 @@ msy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy7.pfb></usr/share/texmf/f
 onts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtko10
 .pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts
 /type1/public/lm/lmtti10.pfb>
-Output written on preprint.pdf (57 pages, 37065456 bytes).
+Output written on preprint.pdf (57 pages, 37073831 bytes).
 PDF statistics:
- 826 PDF objects out of 1000 (max. 8388607)
- 709 compressed objects within 8 object streams
- 213 named destinations out of 1000 (max. 500000)
- 21259 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 831 PDF objects out of 1000 (max. 8388607)
+ 714 compressed objects within 8 object streams
+ 215 named destinations out of 1000 (max. 500000)
+ 23827 words of extra memory for PDF output out of 24883 (max. 10000000)
 
