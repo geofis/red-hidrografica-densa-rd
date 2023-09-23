@@ -1,5 +1,7 @@
 # Manuscrito "Generación de red hidrográfica densa de República Dominicana a partir de modelo digital de elevaciones de resolución media"
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8370346.svg)](https://doi.org/10.5281/zenodo.8370346)
+
 José Ramón Martínez Batlle, Universidad Autónoma de Santo Domingo (UASD) jmartinez19\@uasd.edu.do
 
 Michela Izzo Gioiosa, Guakia Ambiente, michela.izzo\@guakiambiente.org
