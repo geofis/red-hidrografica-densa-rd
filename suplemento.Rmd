@@ -1218,7 +1218,7 @@ v.out.ogr --overwrite \
 ## Exportar el mapa 'cursos_mas_largos' a Shapefile
 ## Nota: algunos valores de área de objetos no se transfieren bien al formato SHP
 ogr2ogr -f "ESRI Shapefile" \
-  gpkg-shp/cursos_ = .shp \
+  gpkg-shp/cursos_mas_largos.shp \
   gpkg-shp/cursos_mas_largos.gpkg
 ## Exportar el mapa 'desembocaduras_rios_grandes' a GeoPackage
 v.out.ogr --overwrite \
