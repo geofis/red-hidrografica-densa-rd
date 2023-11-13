@@ -124,7 +124,7 @@ convert -density 300 -background white -alpha remove -alpha off -resize 1920x \
 
 ## ![](img/red-orden.png)
 
-# Resultados
+# RESULTADOS
 
 ## ![](img/cuencas-ordenes-todas-captura.jpg)
 
