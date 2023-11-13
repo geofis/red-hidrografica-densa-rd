@@ -1,0 +1,193 @@
+---
+title: "Generación de red hidrográfica densa de República Dominicana a partir de <br> modelo digital de elevaciones <br> de resolución media"
+author: "<small> José Ramón Martínez Batlle, UASD (GitHub: \\@geofis) <br> Michela Izzo Gioiosa, Guakía Ambiente </small>"
+date: "II Congreso Internacional de Investigación, <br> Desarrollo e Innovación (I+D+I) <br> XXII Jornada de Investigación Científica <br> <small> Universidad Autónoma de Santo Domingo (UASD) <br> 14 al 16 de noviembre, 2023 <br> Santo Domingo, República Dominicana </small> <br> <span style='font-size: 18px;'>https://geofis.github.io/red-hidrografica-densa-rd/presentaciones/II-Congreso-IDI-XXII-JIC-nov23.html</span>"
+output:
+  revealjs::revealjs_presentation:
+    title-slide-attributes:
+      data-background-image: img/fondo.jpg
+      data-background-size: cover
+    template: defaultmodificada.html
+    transition: fade
+    css: estilos.css
+bibliography: ../references.bib
+csl: apa.csl
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE, echo=F}
+knitr::opts_chunk$set(echo = FALSE)
+ruta_figuras <- 'img/'
+```
+
+# JUSTIFICACIÓN
+
+-   **Limitaciones de las fuentes sobre hidrografía**. La hidrografía de República Dominicana, crucial para una gestión eficiente del agua, no había sido elaborada de forma sistemática ni a resolución suficiente.
+
+-   **Ventajas del DEM ALOS PALSAR RTC**. Con 12.5 metros de resolución espacial, se obtiene una red hidrográfica más detallada y precisa, especialmente en zonas montañosas.
+
+-   **Necesidad de una metodología reproducible basada en código abierto**. Esto facilita el uso y aplicación del estudio por parte de la comunidad científica y académica, **con especial interés en estudiantes como público meta**.
+
+## 
+
+|                                 |                                 |
+|:-------------------------------:|:-------------------------------:|
+| ![](img/scielo-preprint-01.jpg) | ![](img/qr-scielo-preprint.png) |
+
+## 
+
+|                                              |                                 |
+|:--------------------------------------------------:|:------------------:|
+| ![](img/scielo-preprint-02.jpg){width="80%"} | ![](img/qr-scielo-preprint.png) |
+
+## ![](img/scielo-preprint-03.jpg)
+
+## ![](img/scielo-preprint-04.jpg)
+
+## 
+
+|                                                  |                             |
+|:--------------------------------------------------:|:------------------:|
+| ![](img/repo-github-zenodo-01.jpg){width="100%"} | ![](img/qr-github-repo.png) |
+
+## 
+
+|                                    |                              |
+|:----------------------------------:|:----------------------------:|
+| ![](img/repo-github-zenodo-02.jpg) | ![](img/qr-zenodo-datos.png) |
+
+# MATERIALES Y MÉTODOS
+
+```{bash, eval=F, include=F, echo=F}
+ln -s ../../preprint_files/figure-latex/mapaindice-1.pdf img/
+convert -density 300 -background white -alpha remove -alpha off -resize 1920x \
+  img/mapaindice-1.pdf \
+  img/mapaindice-1.jpg
+```
+
+## ![](img/mapaindice-1.jpg)
+
+## ![](img/logos.png)
+
+```{bash, eval=F, include=F, echo=F}
+ln -s ../../figuras/resumen-obtencion-preprocesamiento-dem.pdf img/
+convert -density 300 -background white -alpha remove -alpha off -resize 1920x \
+  img/resumen-obtencion-preprocesamiento-dem.pdf \
+  img/resumen-obtencion-preprocesamiento-dem.jpg
+```
+
+## ![](img/resumen-obtencion-preprocesamiento-dem.jpg)
+
+```{bash, eval=F, include=F, echo=F}
+ln -s ../../figuras/resumen-procesamiento-hidrologia-computacional.pdf img/
+convert -density 300 -background white -alpha remove -alpha off -resize 1920x \
+  img/resumen-procesamiento-hidrologia-computacional.pdf \
+  img/resumen-procesamiento-hidrologia-computacional.jpg
+```
+
+## ![](img/resumen-procesamiento-hidrologia-computacional.jpg)
+
+## ![](img/los-patos.png)
+
+## DEM relleno y suavizado
+
+|                Relleno                 |                Suavizado                 |
+|:----------------------------------:|:----------------------------------:|
+| ![](img/dem-relleno.jpg){width="100%"} | ![](img/dem-suavizado.jpg){width="100%"} |
+
+## ![](img/dem-hipso-sombras-sin-procesar.jpg){width="100%"}
+
+## ![](img/dem-hipso-sombras-suavizado.jpg){width="100%"}
+
+## Red de cursos para tallado
+
+![](img/red-cursos-largos.jpg)
+
+## DEM tallado (grabado) y sin tallar
+
+![](img/dem-sin-tallar-tallado.png){width="75%"}
+
+## ![](img/geomorfonos-de-rd.jpg)
+
+## ![](img/ejemplo-geomorfonos-01.jpg)
+
+## ![](img/depresiones.png)
+
+## Umbral de acumulación
+
+![](img/vaguadas-talwegs-umbral-180.gif)
+
+## Tres umbrales de acumulación (180, 540 y 900 celdas \~2, 8 y 14 ha)
+
+![](img/red-indiferenciada.png)
+
+## ![](img/red-orden.png)
+
+# Resultados
+
+## ![](img/cuencas-ordenes-todas-captura.jpg)
+
+## 
+
+|                                                    |
+|:--------------------------------------------------:|
+| ![](img/ordennumcuencas-captura.jpg){width="75%"}  |
+| ![](img/tablaordenesarea-captura.jpg){width="75%"} |
+
+## 
+
+|                                                                            |
+|:----------------------------------------------------------------------:|
+|           ![](img/tablacuencassubareas-captura.jpg){width="75%"}           |
+| ![](img/cuencas-subcuencas-areas-ordenes-boxplot-captura.jpg){width="65%"} |
+
+## ![](img/red-orden-nacional-captura.jpg)
+
+## ![](img/red-orden-nacional-captura-recuadro.jpg)
+
+## ![](img/red-orden-nacional-captura-detalle.jpg)
+
+## ![](img/tablaredesordtotales-captura.jpg)
+
+## ![](img/variablesredesordenes-grafico-tabla-captura.jpg)
+
+## ![](img/cursos-mas-largos-captura.jpg)
+
+## ![](img/cursos-mas-largos-captura-destacados.jpg)
+
+## ![](img/tablacursosmaslargos-captura.jpg){width="75%"}
+
+## ![](img/tablaredesordratios-captura.jpg)
+
+# DISCUSIÓN
+
+## 
+
+-   **Representación detallada de cuencas y redes de drenaje** en República Dominicana, utilizando DEM de ALOS PALSAR RTC y técnicas avanzadas de hidrología computacional.
+
+-   **Avance significativo en la delimitación de cuencas y extracción de redes** (e.g. respecto de MTN y OSM), especialmente en áreas montañosas, que permitirá realizar otros estudios de hidrología computacional.
+
+-   **Datos abiertos y protocolos reproducibles** disponibles en repositorio público, en un contexto de limitada disponibilidad de datos detallados para hidrología computacional.
+
+## 
+
+-   La red de drenaje refleja la **influencia de factores geomorfológico y litológicos**, como la permeabilidad de las rocas y las características topográficas.
+
+-   **Importancia de los sistemas kársticos** en la estructuración de la red hidrográfica, con especial atención al karst de Los Haitises.
+
+-   La **reorganización del drenaje** a lo largo del tiempo es destacada, y se atribuye a factores geotectónicos, litológicos y climáticos.
+
+## 
+
+-   Se confirma la **relación exponencial** entre el orden de red y variables morfométricas, con singularidades en los órdenes altos.
+
+-   Una **limitación destacada del trabajo es la baja precisión posicional** de la red en áreas de llanura, que estudios posteriores podrían contribuir a mejorar.
+
+-   Los **resultados del estudio tienen potencial de impactar en la investigación hidrológica dominicana**, con aplicaciones en conservación, modelización hidrológica y biodiversidad; contribución a la educación con la publicación de código y protocolos reproducibles.
+
+# REFERENCIAS
+
+<section style="font-size: 24px; text-align: left;">
+
+</section>
