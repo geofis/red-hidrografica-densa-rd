@@ -186,8 +186,14 @@ convert -density 300 -background white -alpha remove -alpha off -resize 1920x \
 
 -   Los **resultados del estudio tienen potencial de impactar en la investigación hidrológica dominicana**, con aplicaciones en conservación, modelización hidrológica y biodiversidad; contribución a la educación con la publicación de código y protocolos reproducibles.
 
-# REFERENCIAS
+# 
 
-<section style="font-size: 24px; text-align: left;">
+<section style="font-size: 72px; text-align: center;">
+
+<br> 
+
+<img src="img/email-icon.png" style="display: inline-block; vertical-align: middle;" width="48" /> jmartinez19\@uasd.edu.do
+
+<img src="img/gh-icon.png" style="display: inline-block; vertical-align: middle;" width="48" /> geofis
 
 </section>
