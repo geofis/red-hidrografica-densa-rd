@@ -38,7 +38,7 @@ ruta_figuras <- 'img/'
 ## 
 
 |                                              |                                 |
-|:--------------------------------------------------:|:------------------:|
+|:--------------------------------------------:|:-------------------------------:|
 | ![](img/scielo-preprint-02.jpg){width="80%"} | ![](img/qr-scielo-preprint.png) |
 
 ## ![](img/scielo-preprint-03.jpg)
@@ -48,7 +48,7 @@ ruta_figuras <- 'img/'
 ## 
 
 |                                                  |                             |
-|:--------------------------------------------------:|:------------------:|
+|:------------------------------------------------:|:---------------------------:|
 | ![](img/repo-github-zenodo-01.jpg){width="100%"} | ![](img/qr-github-repo.png) |
 
 ## 
@@ -93,7 +93,7 @@ convert -density 300 -background white -alpha remove -alpha off -resize 1920x \
 ## DEM relleno y suavizado
 
 |                Relleno                 |                Suavizado                 |
-|:----------------------------------:|:----------------------------------:|
+|:--------------------------------------:|:----------------------------------------:|
 | ![](img/dem-relleno.jpg){width="100%"} | ![](img/dem-suavizado.jpg){width="100%"} |
 
 ## ![](img/dem-hipso-sombras-sin-procesar.jpg){width="100%"}
@@ -138,7 +138,7 @@ convert -density 300 -background white -alpha remove -alpha off -resize 1920x \
 ## 
 
 |                                                                            |
-|:----------------------------------------------------------------------:|
+|:--------------------------------------------------------------------------:|
 |           ![](img/tablacuencassubareas-captura.jpg){width="75%"}           |
 | ![](img/cuencas-subcuencas-areas-ordenes-boxplot-captura.jpg){width="65%"} |
 
@@ -190,10 +190,10 @@ convert -density 300 -background white -alpha remove -alpha off -resize 1920x \
 
 <section style="font-size: 72px; text-align: center;">
 
-<br> 
+<br>
 
-<img src="img/email-icon.png" style="display: inline-block; vertical-align: middle;" width="48" /> jmartinez19\@uasd.edu.do
+<img src="img/email-icon.png" style="display: inline-block; vertical-align: middle;" width="48"/> jmartinez19\@uasd.edu.do
 
-<img src="img/gh-icon.png" style="display: inline-block; vertical-align: middle;" width="48" /> geofis
+<img src="img/gh-icon.png" style="display: inline-block; vertical-align: middle;" width="48"/> geofis
 
 </section>
