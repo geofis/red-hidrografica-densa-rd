@@ -1,6 +1,6 @@
 ---
 title: "Generación de red hidrográfica densa de República Dominicana a partir de <br> modelo digital de elevaciones <br> de resolución media"
-author: "<small> José Ramón Martínez Batlle, UASD (GitHub: \\@geofis) <br> Michela Izzo Gioiosa, Guakía Ambiente </small>"
+author: "<small> José Ramón Martínez Batlle, UASD (jmartinez19\\@uasd.edu.do) <br> Michela Izzo Gioiosa, Guakía Ambiente </small>"
 date: "II Congreso Internacional de Investigación, <br> Desarrollo e Innovación (I+D+I) <br> XXII Jornada de Investigación Científica <br> <small> Universidad Autónoma de Santo Domingo (UASD) <br> 14 al 16 de noviembre, 2023 <br> Santo Domingo, República Dominicana </small> <br> <span style='font-size: 18px;'>https://geofis.github.io/red-hidrografica-densa-rd/presentaciones/II-Congreso-IDI-XXII-JIC-nov23.html</span>"
 output:
   revealjs::revealjs_presentation:
